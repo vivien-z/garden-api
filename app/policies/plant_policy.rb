@@ -1,4 +1,4 @@
-class MyGardenPolicy < ApplicationPolicy
+class PlantPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
