@@ -4,4 +4,8 @@ class PlantPolicy < ApplicationPolicy
       scope.all
     end
   end
+
+  def index?
+    true
+  end
 end
