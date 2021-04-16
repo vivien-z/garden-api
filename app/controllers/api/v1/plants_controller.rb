@@ -1,4 +1,5 @@
 class Api::V1::PlantsController < Api::V1::BaseController
+  acts_as_token_authentication_handler_for User, except: [ :index, :show ]
   before_action :set_plant, only: [:show, :update]
   def index
     @plants = policy_scope(Plant)
@@ -7,9 +8,21 @@ class Api::V1::PlantsController < Api::V1::BaseController
 
   def show
   end
-
+  # API does not need new and edit method.
   def update
     if @plant.update(plant_params)
+      render :show
+    else
+      render_error
+    end
+  end
+
+  def create
+    @plant = Plant.new(plant_params)
+    @plant.user = current_user
+    authorize @plant
+
+    if @plant.save
       render :show
     else
       render_error
@@ -19,7 +32,7 @@ class Api::V1::PlantsController < Api::V1::BaseController
   private
 
   def set_plant
-    @plant = Plant.find(params[:id])
+    @plant = policy_scope(Plant).find(params[:id])
     authorize @plant
   end
 
