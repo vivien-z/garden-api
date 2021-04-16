@@ -8,4 +8,11 @@ class Api::V1::PlantsController < Api::V1::BaseController
     @plant = Plant.find(params[:id])
     authorize @plant
   end
+
+  def update
+  end
+
+  private
+
+
 end
