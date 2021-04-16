@@ -12,4 +12,8 @@ class PlantPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def update?
+    return show?
+  end
 end
