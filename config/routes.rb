@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
+
+  resources :plants, only: [:index, :show, :create]
 end
