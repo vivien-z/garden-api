@@ -5,6 +5,7 @@ class PlantsController < ApplicationController
 
   def show
     @plant = Plant.find(params[:id])
+    authorize(@plant)
   end
 
   def new
