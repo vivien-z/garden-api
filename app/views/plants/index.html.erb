@@ -1,19 +1,8 @@
-<div id="container">
+<div class="container">
 
   <div class="cards">
     <% @plants.each do |plant| %>
-
-      <div class="">
-        <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>
-        <p class="card-description"><%= plant.description %></p>
-        <p class="card-address"><%= plant.address %></p>
-        <div class="card-people-price">
-          <p class="card-people"><i class="fas fa-users"></i> <%= plant.number_people %></p>
-          <p class="card-price"><%= number_to_currency(theme.price) %></p>
-          <span class="stars"><i class="fas fa-star"></i> <%= theme.rating %></span>
-        </div>
-      </div>
-
+      <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>
     <% end %>
   </div>
 
