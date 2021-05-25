@@ -11,5 +11,10 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'api' => 'pages#api_instruction'
 
-  resources :plants, only: [:index, :show, :new, :create]
+  resources :zones, only: [:create]
+  resources :plants, only: [:index, :show, :new, :create] do
+    resources :plant_info_by_zones, only: [ :index, :create ]
+  end
+  resources :plant_info_by_zones, only: [ :show, :update, :edit ]
+
 end

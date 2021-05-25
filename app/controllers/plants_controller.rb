@@ -28,10 +28,6 @@ class PlantsController < ApplicationController
   private
 
   def plant_params
-    params.require(:plant).permit(:id, :name, :user,
-                                  :indoor_seed_date, :indoor_seed_date_end,
-                                  :direct_seed_date, :direct_seed_date_end,
-                                  :transplant_date, :transplant_date_end)
+    params.require(:plant).permit(:id, :name, :light, :size)
   end
-
 end

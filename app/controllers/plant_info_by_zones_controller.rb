@@ -1,0 +1,2 @@
+class PlantInfoByZonesController < ApplicationController
+end
