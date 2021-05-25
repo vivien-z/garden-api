@@ -1,5 +1,5 @@
 <div class="container">
-
+  <strong><%= link_to "add new", new_plant_path %></strong>
   <div class="cards">
     <% @plants.each do |plant| %>
       <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>

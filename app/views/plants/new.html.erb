@@ -1,0 +1,17 @@
+<div class="container py-5 mt-3 card">
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <h4 class="mb-3">Add a plant</h4>
+      <%= simple_form_for(@plant) do |f| %>
+        <%= f.input :name %>
+        <%= f.input :indoor_seed_date %>
+        <%= f.input :indoor_seed_date_end %>
+        <%= f.input :direct_seed_date %>
+        <%= f.input :direct_seed_date_end %>
+        <%= f.input :transplant_date %>
+        <%= f.input :transplant_date_end %>
+        <%= f.button :submit, class: "btn btn-info mt-3 w-100" %>
+      <% end %>
+    </div>
+  </div>
+</div>

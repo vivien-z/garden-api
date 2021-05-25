@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'api' => 'pages#api_instruction'
 
-  resources :plants, only: [:index, :show, :create]
+  resources :plants, only: [:index, :show, :new, :create]
 end

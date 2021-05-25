@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_16_210047) do
+ActiveRecord::Schema.define(version: 2021_05_25_184009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,17 +24,25 @@ ActiveRecord::Schema.define(version: 2021_04_16_210047) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
-  create_table "plants", force: :cascade do |t|
-    t.string "name"
-    t.date "indoor_seed_date"
-    t.date "direct_seed_date"
-    t.date "transplant_date"
+  create_table "plant_info_by_zones", force: :cascade do |t|
+    t.bigint "zone_id", null: false
+    t.bigint "plant_id", null: false
+    t.boolean "indoor_seeding"
+    t.date "seeding_date"
+    t.string "transplant_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "indoor_seed_date_end"
-    t.date "direct_seed_date_end"
-    t.date "transplant_date_end"
+    t.index ["plant_id"], name: "index_plant_info_by_zones_on_plant_id"
+    t.index ["zone_id"], name: "index_plant_info_by_zones_on_zone_id"
+  end
+
+  create_table "plants", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id", null: false
+    t.string "light"
+    t.float "size"
     t.index ["user_id"], name: "index_plants_on_user_id"
   end
 
@@ -52,7 +60,16 @@ ActiveRecord::Schema.define(version: 2021_04_16_210047) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "zones", force: :cascade do |t|
+    t.string "zone_code"
+    t.float "temperature"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "collections", "plants"
   add_foreign_key "collections", "users"
+  add_foreign_key "plant_info_by_zones", "plants"
+  add_foreign_key "plant_info_by_zones", "zones"
   add_foreign_key "plants", "users"
 end
