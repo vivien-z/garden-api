@@ -1,8 +1,12 @@
-<div class="container">
-  <strong><%= link_to "add new", new_plant_path %></strong>
+<div class="container py-3">
   <div class="cards">
-    <% @plants.each do |plant| %>
-      <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>
+    <% if @plants == [] %>
+      <p>Start contributing to the community...</p><strong><%= link_to "Add a plant", new_plant_path %></strong>
+    <% else %>
+      <strong><%= link_to "Add a plant", new_plant_path %></strong>
+      <% @plants.each do |plant| %>
+        <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>
+      <% end %>
     <% end %>
   </div>
 
