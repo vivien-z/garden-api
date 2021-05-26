@@ -10,6 +10,9 @@ class PlantsController < ApplicationController
 
   def new
     @plant = Plant.new
+    @plant_info_by_zone = PlantInfoByZone.new
+    @plant.plant_info_by_zones << @plant_info_by_zone
+    @zones = policy_scope(Zone)
     authorize(@plant)
   end
 

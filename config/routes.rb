@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :zones, only: [:create]
   resources :plants, only: [:index, :show, :new, :create] do
-    resources :plant_info_by_zones, only: [ :index, :create ]
+    resources :plant_info_by_zones, only: [ :index, :new, :create ]
   end
   resources :plant_info_by_zones, only: [ :show, :update, :edit ]
 

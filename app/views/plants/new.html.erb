@@ -4,12 +4,17 @@
       <h4 class="mb-3">Add a plant</h4>
       <%= simple_form_for(@plant) do |f| %>
         <%= f.input :name %>
-        <%= f.input :indoor_seed_date %>
-        <%= f.input :indoor_seed_date_end %>
-        <%= f.input :direct_seed_date %>
-        <%= f.input :direct_seed_date_end %>
-        <%= f.input :transplant_date %>
-        <%= f.input :transplant_date_end %>
+        <%= f.input :light %>
+        <%= f.input :size %>
+
+        <%= f.simple_fields_for(@plant_info_by_zone) do |df| %>
+
+          <%= df.association :zone, collection: @zones %>
+          <%= df.input :indoor_seeding %>
+          <%= df.input :seeding_date, as: :date %>
+          <%= df.input :transplant_date, as: :date %>
+
+        <% end %>
         <%= f.button :submit, class: "btn btn-info mt-3 w-100" %>
       <% end %>
     </div>
