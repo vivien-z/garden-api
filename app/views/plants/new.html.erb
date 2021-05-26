@@ -9,7 +9,7 @@
 
         <%= f.simple_fields_for(@plant_info_by_zone) do |df| %>
 
-          <%= df.association :zone, collection: @zones %>
+          <%= df.association :zone, collection: @zone_codes %>
           <%= df.input :indoor_seeding %>
           <%= df.input :seeding_date, as: :date %>
           <%= df.input :transplant_date, as: :date %>
