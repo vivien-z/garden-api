@@ -4,6 +4,7 @@ class Api::V1::PlantsController < Api::V1::BaseController
   def index
     @plants = policy_scope(Plant)
     @plant_info_by_zones = policy_scope(PlantInfoByZone)
+    @zones = policy_scope(Zone)
     authorize @plants
 
     # render_success('Loaded all plants', [plants: @plants, plant_info_by_zones: @plant_info_by_zones])

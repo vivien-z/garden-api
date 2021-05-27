@@ -1,4 +1,8 @@
-json.array! @plants do |plant|
-  json.extract! plant, :id, :name, :light, :size,
-                        plant_info_by_zone: @plant_info_by_zone
+json.all_plants(@plants) do |plant|
+    json.extract! plant, :id, :name, :light, :size
+
+    json.plant_info_by_zones(plant.plant_info_by_zones) do |info|
+      json.zone @zones.find(info.zone_id).zone_code
+      json.extract! info, :zone_id, :indoor_seeding, :seeding_date, :transplant_date
+    end
 end
