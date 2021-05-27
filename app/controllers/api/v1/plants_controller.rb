@@ -3,16 +3,16 @@ class Api::V1::PlantsController < Api::V1::BaseController
   before_action :set_plant, only: [:show, :update]
   def index
     @plants = policy_scope(Plant)
+    @plant_info_by_zones = policy_scope(PlantInfoByZone)
     authorize @plants
 
-    render_success('Loaded all plants', @plants)
+    # render_success('Loaded all plants', [plants: @plants, plant_info_by_zones: @plant_info_by_zones])
   end
 
   def show
     @plant = Plant.find(params[:id])
     @plant_info_by_zones = @plant.plant_info_by_zones
-    render_success('Loaded requested plant', @plant)
-    # data = [@plant, @plant_info_by_zones]
+    @zones = policy_scope(Zone)
     # render_success('Loaded requested plant', data)
   end
 
@@ -51,10 +51,7 @@ class Api::V1::PlantsController < Api::V1::BaseController
   end
 
   def plant_params
-    params.require(:plant).permit(:id, :name, :user_id,
-                                  :indoor_seed_date, :indoor_seed_date_end,
-                                  :direct_seed_date, :direct_seed_date_end,
-                                  :transplant_date, :transplant_date_end)
+    params.require(:plant).permit(:id, :name, :light, :size, :plant_info_by_zone)
   end
 
   def render_error
