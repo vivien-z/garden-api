@@ -10,8 +10,10 @@ class Api::V1::PlantsController < Api::V1::BaseController
 
   def show
     @plant = Plant.find(params[:id])
-
+    @plant_info_by_zones = @plant.plant_info_by_zones
     render_success('Loaded requested plant', @plant)
+    # data = [@plant, @plant_info_by_zones]
+    # render_success('Loaded requested plant', data)
   end
 
   def create

@@ -1,9 +1,41 @@
-<div class="container">
+<div class="container border">
+    <div class="row d-flex justify-content-center">
+      <div>
+        <div class="cards p-3">
+          <h4><strong><%= @plant.name.capitalize %></strong></h4>
+          <p>Light: <%= @plant.light %></p>
+          <p>Size: <%= @plant.size %>cm</p>
+        </div>
+        <div>
+          <p><%= @plant.plant_info_by_zones.count %></p>
+          <% @plant.plant_info_by_zones.each do |p| %>
+            <p><%= p.zone.zone_code %></p>
+            <% if p.indoor_seeding %>
+              <p>Start seeding indoor</p>
+              <p>Best seeding date: <%= p.seeding_date %></p>
+              <p>Best transplanting date: <%= p.transplant_date %></p>
+            <% else %>
+              <p>Start seeding outdoor</p>
+              <p>Best seeding date: <%= p.seeding_date %></p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
 
-  <div class="cards">
-    <p><strong><%= @plant.name.capitalize %></strong></p>
-    <p>Light: <%= @plant.light %></p>
-    <p>Size: <%= @plant.size %>cm</p>
-  </div>
-
+      <div class="border p-3 w-50">
+        <h5>Add plant info based on zone</h5>
+        <%= simple_form_for([@plant, @plant_info_by_zone]) do |f| %>
+          <%= f.association :zone, collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
+                                   :include_blank => "Pick a zone"
+                                   %>
+          <%= f.input :indoor_seeding %>
+          <%= f.input :seeding_date %>
+          <%= f.input :transplant_date %>
+          <%= f.button :submit, class: "btn btn-info mt-3 w-100" %>
+        <% end %>
+      </div>
+    </div>
 </div>
+<!-- simple_fields_for --><!--
+f.association :zone, collection: Zone.all.map { |zone| zone.zone_code },
+                                   :include_blank => "Select a zone matches your local" -->

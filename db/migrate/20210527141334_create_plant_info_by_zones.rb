@@ -5,7 +5,7 @@ class CreatePlantInfoByZones < ActiveRecord::Migration[6.0]
       t.references :plant, null: false, foreign_key: true
       t.boolean :indoor_seeding
       t.date :seeding_date
-      t.string :transplant_date
+      t.date :transplant_date
 
       t.timestamps
     end
