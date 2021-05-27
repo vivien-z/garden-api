@@ -6,15 +6,12 @@ class Api::V1::PlantsController < Api::V1::BaseController
     @plant_info_by_zones = policy_scope(PlantInfoByZone)
     @zones = policy_scope(Zone)
     authorize @plants
-
-    # render_success('Loaded all plants', [plants: @plants, plant_info_by_zones: @plant_info_by_zones])
   end
 
   def show
     @plant = Plant.find(params[:id])
     @plant_info_by_zones = @plant.plant_info_by_zones
     @zones = policy_scope(Zone)
-    # render_success('Loaded requested plant', data)
   end
 
   def create
