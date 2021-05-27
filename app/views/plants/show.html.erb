@@ -7,15 +7,16 @@
           <p>Size: <%= @plant.size %>cm</p>
         </div>
         <div>
+          <h5>Plant detailed info by zone:</h5>
           <p><%= @plant.plant_info_by_zones.count %></p>
           <% @plant.plant_info_by_zones.each do |p| %>
-            <p><%= p.zone.zone_code %></p>
+            <p>Zone Code: <%= p.zone.zone_code %></p>
             <% if p.indoor_seeding %>
-              <p>Start seeding indoor</p>
+              <p>Indoor seeding</p>
               <p>Best seeding date: <%= p.seeding_date %></p>
               <p>Best transplanting date: <%= p.transplant_date %></p>
             <% else %>
-              <p>Start seeding outdoor</p>
+              <p>Outdoor seeding</p>
               <p>Best seeding date: <%= p.seeding_date %></p>
             <% end %>
           <% end %>
