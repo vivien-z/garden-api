@@ -3,6 +3,9 @@
       <div>
         <div class="cards p-3">
           <h4><strong><%= @plant.name.capitalize %></strong></h4>
+          <% if @plant.photo.attached? %>
+            <%= cl_image_tag @plant.photo.key, height:160, width: 200, crop: :fill %>
+          <% end %>
           <p>Light: <%= @plant.light %></p>
           <p>Size: <%= @plant.size %>cm</p>
         </div>

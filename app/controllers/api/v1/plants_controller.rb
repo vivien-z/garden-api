@@ -49,7 +49,7 @@ class Api::V1::PlantsController < Api::V1::BaseController
   end
 
   def plant_params
-    params.require(:plant).permit(:id, :name, :light, :size, :plant_info_by_zone)
+    params.require(:plant).permit(:id, :name, :light, :size, :plant_info_by_zone, :photo)
   end
 
   def render_error

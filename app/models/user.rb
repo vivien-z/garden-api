@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :collections
   has_many :plants
   has_many :plants, through: :collections
+  has_one_attached :avatar
 
   acts_as_token_authenticatable
 end
