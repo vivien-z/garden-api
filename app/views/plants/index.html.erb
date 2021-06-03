@@ -16,7 +16,8 @@
             </div>
           <% else %>
             <div class="card p-3"
-                 style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3))">
+                 style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+                 url(<%= cl_image_path "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:160, width: 200, crop: :fill %>)">
               <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>
             </div>
           <% end %>
