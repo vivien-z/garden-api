@@ -1,8 +1,14 @@
 <div class="container border">
     <div class="row d-flex justify-content-center">
+
       <div>
         <div class="cards p-3">
           <h4><strong><%= @plant.name.capitalize %></strong></h4>
+          <div class="">
+            <%= simple_form_for([@plant, @collection]) do |f| %>
+              <%= f.button :submit,"Add to my collection", class: "btn btn-info my-1 w-100" %>
+            <% end %>
+          </div>
           <% if @plant.photo.attached? %>
             <%= cl_image_tag @plant.photo.key, height:160, width: 200, crop: :fill %>
           <% end %>

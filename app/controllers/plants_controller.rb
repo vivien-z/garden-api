@@ -7,6 +7,7 @@ class PlantsController < ApplicationController
     @plant = Plant.find(params[:id])
     @plant_info_by_zone = PlantInfoByZone.new
     @zone_codes = policy_scope(Zone).map { |zone| zone.zone_code }
+    @collection = Collection.new
     authorize(@plant)
   end
 
