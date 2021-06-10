@@ -1,15 +1,13 @@
-<div>
-  <div class="container d-flex justify-content-center">
-    <div class="card p-3 my-5 mx-2">
-      <p>Manage your garden</p>
-      <%= link_to "Plants on site", plants_path %>
-    </div>
-
-    <div class="card p-3 my-5 mx-2">
-      <p>Access plants API</p>
-      <%= link_to "Plants API", api_path %>
-    </div>
+<div class="container d-flex justify-content-center w-50">
+  <div class="button-lg d-flex justify-content-center">
+    <%= link_to plants_path, class: "card-link" do %>
+      <h5>Build your garden plan</h5>
+    <% end %>
   </div>
 
+  <div class="button-lg d-flex justify-content-center">
+    <%= link_to api_path, class: "card-link" do %>
+      <h5>Access our plants API</h5>
+    <% end %>
+  </div>
 </div>
-

@@ -1,5 +1,5 @@
 .banner-home {
-  height: 420px;
+  height: 320px;
   background-size: cover;
   background-position: 50% 8%;
   display: flex;
@@ -11,7 +11,7 @@
 .banner-text {
   color: white;
   h1 {
-    font-family: $m-banner;
+    font-family: $m-title;
     font-size: 68px;
   }
 }

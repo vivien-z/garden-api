@@ -1,0 +1,30 @@
+.button-lg {
+  border-radius: 4px;
+  background: #141414;
+  box-shadow: 5px 10px 10px lightgrey;
+  height: 140px;
+  width: 280px;
+  // padding: 20px;
+  margin: 30px 20px;
+  font-family: $body-font;
+  display: flex;
+  align-items: center;
+  .card-title {
+    // text-shadow: 1px 1px 10px grey;
+    color: white;
+  }
+}
+
+.card-link {
+  padding-bottom: 4px;
+  font-weight: bold;
+  color: white;
+  &:hover {
+    padding-bottom: 4px;
+    color: $yellow;
+    border-bottom: 1px solid $yellow;
+  }
+  // h5 {
+  //   font-family: $m-title;
+  // }
+}
