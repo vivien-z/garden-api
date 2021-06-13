@@ -1,4 +1,8 @@
 .card {
-  // height: 100px;
-  // width: 120px;
+  height: 160px;
+  width: 200px;
+  .card-text {
+    color: white;
+    font-weight: bold;
+  }
 }

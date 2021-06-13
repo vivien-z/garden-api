@@ -1,24 +1,30 @@
+<div class="container">
+  <button class="btn btn-warning button-m">
+    <%= link_to new_plant_path do %>
+      <i class="fas fa-plus"></i>
+    <% end %>
+  </button>
+</div>
 <div class="container py-3">
 
   <div class="row d-flex justify-content-center">
     <% if @plants == [] %>
-      <p>Start contributing to the community...</p><strong><%= link_to "Add a plant", new_plant_path %></strong>
+      <p>Start contributing to the community...</p>
     <% else %>
       <div>
-        <strong><%= link_to "Add a plant", new_plant_path %></strong>
         <% @plants.each do |plant| %>
 
           <% if plant.photo.attached? %>
             <div class="card p-3"
                  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
                  url(<%= cl_image_path plant.photo.key, height:160, width: 200, crop: :fill %>)">
-              <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>
+              <%= link_to "#{plant.name.capitalize}", plant_path(plant), class: "card-text" %>
             </div>
           <% else %>
             <div class="card p-3"
                  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
                  url(<%= cl_image_path "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:160, width: 200, crop: :fill %>)">
-              <%= link_to "#{plant.name.capitalize}", plant_path(plant) %>
+              <%= link_to "#{plant.name.capitalize}", plant_path(plant), class: "card-text" %>
             </div>
           <% end %>
 
