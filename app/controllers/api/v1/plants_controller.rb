@@ -1,6 +1,7 @@
 class Api::V1::PlantsController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: [:index, :show]
-  before_action :set_plant, only: [:show, :update, :destory]
+  before_action :set_plant, only: [:show, :update, :destroy]
+
   def index
     @plants = policy_scope(Plant)
     @plant_info_by_zones = policy_scope(PlantInfoByZone)
@@ -34,8 +35,8 @@ class Api::V1::PlantsController < Api::V1::BaseController
     end
   end
 
-  def destory
-    plant.destory
+  def destroy
+    @plant.destroy
     head :no_content # convention: 204 no content meaning deleted successfully
   end
 
