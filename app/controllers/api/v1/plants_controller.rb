@@ -1,6 +1,6 @@
 class Api::V1::PlantsController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: [:index, :show]
-  before_action :set_plant, only: [:show, :update]
+  before_action :set_plant, only: [:show, :update, :destory]
   def index
     @plants = policy_scope(Plant)
     @plant_info_by_zones = policy_scope(PlantInfoByZone)
@@ -9,7 +9,7 @@ class Api::V1::PlantsController < Api::V1::BaseController
   end
 
   def show
-    @plant = Plant.find(params[:id])
+    # @plant = Plant.find(params[:id])
     @plant_info_by_zones = @plant.plant_info_by_zones
     @zones = policy_scope(Zone)
   end
@@ -20,7 +20,7 @@ class Api::V1::PlantsController < Api::V1::BaseController
     authorize @plant
 
     if @plant.save
-      render_success('Plant info saved', @plant)
+      render :show, status: :created # 201 created successfully
     else
       render_error
     end
@@ -28,17 +28,15 @@ class Api::V1::PlantsController < Api::V1::BaseController
 
   def update
     if @plant.update(plant_params)
-      render_success('Plant info updated', @plant)
+      render :show # 200 success
     else
       render_error
     end
   end
 
   def destory
-    @plant = Plant.find(params[:id])
     plant.destory
-
-    render_success('Plant info deleted', @plant)
+    head :no_content # convention: 204 no content meaning deleted successfully
   end
 
   private
@@ -54,14 +52,6 @@ class Api::V1::PlantsController < Api::V1::BaseController
 
   def render_error
     render json: { status: 'ERROR', message: 'Issue occurred when trying to save info for the plant', data: @plant.errors.full_message },
-           status: :unprocessable_entity
-  end
-
-  def render_success(msg, data)
-    render json: {
-      status: 'SUCCESS',
-      messages: msg,
-      data: data
-    }, status: :ok
+           status: :unprocessable_entity # 422
   end
 end
