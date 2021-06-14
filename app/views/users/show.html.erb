@@ -1,19 +1,24 @@
-<div class="container">
+<div class="container py-5">
 
-  <div>
+  <div class="my-3">
     <h3><strong>My Garden</strong></h3>
   </div>
 
-  <div>
-    <h5>Plants' Data Contribution</h5>
+  <div class="mb-3">
+    <h4>API authentication token</h4>
+    <p><%= current_user.authentication_token %></p>
+  </div>
+
+  <div class="mb-3">
+    <h4>Plants' Data Contribution</h4>
     <div>
       <% @plants.each do |plant| %>
         <%= plant.name if plant.user_id == current_user.id %>
       <% end %>
     </div>
   </div>
-  <div>
-    <h5>My Plant Collection</h5>
+  <div class="mb-3">
+    <h4>My Plant Collection</h4>
     <div>
       <% @user.collections.each do |collection| %>
         <%= collection.plant.name %>

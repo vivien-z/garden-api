@@ -1,23 +1,24 @@
-<div class="pt-3 container flex-column justify-content-center">
-  <div>
-    <h2 class="p-3"><strong>Garden API</strong></h2>
-    The Garden API is based on simple REST principles. The endpoints return data in JSON format about plant detail.
+<div class="py-5 container flex-column justify-content-center">
+  <div class="my-3">
+    <h2 class="py-3"><strong>About Garden API</strong></h2>
+    Garden Plan API is based on simple REST principles. The endpoints return plant related data in JSON format.
   </div>
-  <div class="w-50">
-    <h2 class="p-3"><strong>API Requests</strong></h2>
-    <p>access API data through:</p>
-    <p>list of all plants: domain/api/v1/plants</p>
-    <p>detail of one plant: domain/api/v1/[:plant]/[:id]</p>
-    <div class="p-3">
+
+  <div class="my-3 w-50">
+    <h2 class="py-3"><strong>API endpoints: </strong></h2>
+    <p>List all plants: /api/v1/plants</p>
+    <p>List one specific plant: /api/v1/plants/[:id]</p>
+    <div class="py-3">
         <strong>METHOD  ACTION</strong><hr>
-        GET Retrieves resources<hr>
-        POST  Creates resources<hr>
-        PUT Changes and/or replaces resources or collections<hr>
-        DELETE  Deletes resources
+        <strong>GET</strong> Retrieves resources<hr>
+        <strong>POST</strong>  Creates resources (authentication needed)<hr>
+        <strong>PATCH</strong> Edit and update resources (authentication needed)<hr>
+        <strong>DELETE</strong>  Deletes resources (authentication needed)
     </div>
   </div>
-  <div>
-    <h2 class="p-3"><strong>Authentication</strong></h2>
-    content to be added
+
+  <div class="my-3">
+    <h2 class="py-3"><strong>Authentication</strong></h2>
+    Your authentication token can be found on <strong>My garden</strong> page.
   </div>
 </div>
