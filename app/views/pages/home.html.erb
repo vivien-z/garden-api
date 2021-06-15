@@ -1,13 +1,48 @@
-<div class="container d-flex justify-content-center w-50">
-  <div class="button-lg d-flex justify-content-center align-items-center">
-    <%= link_to plants_path, class: "button-text" do %>
-      <h5>Build your garden plan</h5>
-    <% end %>
+<div class="container d-flex justify-content-center">
+  <div class="py-5 container flex-column justify-content-center">
+    <div class="my-3">
+      <h2 class="py-3"><strong>About Garden API</strong></h2>
+      <p>Garden Plan API is based on simple REST principles. The endpoints return plant related data in JSON format.</p>
+      <p>To access data through <strong>API</strong>, please follow the instruction below.</p>
+      <p>
+        <strong>Onsite garden planning</strong> is also available.
+        <span class="ml-3">
+          <%= link_to plants_path, class: "button-b" do %>
+            Plan garden onsite
+          <% end %>
+        </span>
+      </p>
+    </div>
+
+    <div class="pt-5">
+      <h2 class="pt-3"><strong>API Access Instruction</strong></h2>
+      <div class="my-3 w-50">
+        <h4 class="py-3">Available API Endpoints:</h4>
+        <p>List all plants: <span class="text-code">/api/v1/plants</span></p>
+        <p>List one specific plant: <span class="text-code">/api/v1/plants/[:id]</span></p>
+        <p><strong>METHOD  ACTION</strong></p><hr>
+        <table class="py-3">
+          <tr>
+            <td><strong class="mr-3">GET</strong></td><td>Retrieves resources</td>
+          </tr>
+          <tr>
+            <td><strong class="mr-3">POST</strong></td> <td>Creates resources (authentication needed)</td>
+          </tr>
+          <tr>
+            <td><strong class="mr-3">PATCH</strong></td><td>Edit and update resources (authentication needed)</td>
+          </tr>
+          <tr>
+            <td><strong class="mr-3">DELETE</strong></td> <td>Deletes resources (authentication needed)</td>
+          </tr>
+        </table>
+        <hr>
+      </div>
+
+      <div class="my-3">
+        <h4 class="py-3">Authentication</h4>
+        User can find the unique 30-digit authentication token on <strong>My garden</strong> page from the dropdown menu.
+      </div>
+    </div>
   </div>
 
-  <div class="button-lg d-flex justify-content-center align-items-center">
-    <%= link_to api_path, class: "button-text" do %>
-      <h5>Access our plants API</h5>
-    <% end %>
-  </div>
 </div>

@@ -1,26 +1,33 @@
-.button-lg {
+.button-b {
+  background: black;
+  padding: 12px 60px;
   border-radius: 4px;
-  background: #141414;
-  box-shadow: 5px 10px 10px lightgrey;
-  height: 140px;
-  width: 280px;
-  // padding: 20px;
-  margin: 30px 20px;
-  font-family: $body-font;
-}
-
-.button-text {
-  padding-bottom: 4px;
-  font-weight: bold;
   color: white;
-  border-bottom: 2px solid transparent;
+  font-family: 'Montserrat', sans-serif;
   &:hover {
+    // background: $m-ored;
     text-decoration: none;
-    padding-bottom: 4px;
     color: $yellow;
-    border-bottom: 2px solid $yellow;
   }
 }
+// .button-b {
+//   box-shadow: 5px 10px 10px lightgrey;
+//   padding: 20px;
+//   // margin: 30px 20px;
+//   font-family: $body-font;
+//   h5 {
+//     font-weight: 100;
+//     padding-bottom: 4px;
+//     color: white;
+//     border-bottom: 2px solid transparent;
+//     &:hover {
+//       padding-bottom: 4px;
+//       color: $yellow;
+//       border-bottom: 2px solid $yellow;
+//     }
+//   }
+// }
+
 
 .button-m {
   border-radius: 4px;

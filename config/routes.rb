@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
-  get 'api' => 'pages#api_instruction'
+  # get 'api' => 'pages#api_instruction'
 
   resources :users, only: [:show]
   resources :zones, only: [:create]
