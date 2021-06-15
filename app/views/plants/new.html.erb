@@ -1,13 +1,13 @@
-<div class="container py-5 mt-3 card">
+<div class="container form py-5 mt-3">
   <div class="row justify-content-center">
     <div class="col-8">
       <h4 class="mb-3">Add a plant</h4>
       <%= simple_form_for(@plant) do |f| %>
         <%= f.input :name %>
-        <%= f.input :light %>
-        <%= f.input :size %>
+        <%= f.input :light, :collection => ["low", "medium", "high"] %>
+        <%= f.input :size, :placeholder => "in cm" %>
         <%= f.input :photo %>
-        <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+        <%= f.button :submit, class: "btn btn-info mt-3 w-100" %>
       <% end %>
 
     </div>

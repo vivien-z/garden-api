@@ -1,34 +1,40 @@
 <div class="container border">
-    <div class="row d-flex justify-content-center">
+    <div class="row flex-column justify-content-center p-5">
 
       <div>
-        <div class="cards p-3">
-          <h4><strong><%= @plant.name.capitalize %></strong></h4>
-          <div class="">
-            <%= simple_form_for([@plant, @collection]) do |f| %>
-              <%= f.button :submit,"Add to my collection", class: "btn btn-info my-1 w-100" %>
+        <div class="d-flex justify-content-around mb-5">
+          <div class="mr-5" >
+            <h3><strong><%= @plant.name.capitalize %></strong></h3>
+            <div class="">
+              <%= simple_form_for([@plant, @collection]) do |f| %>
+                <%= f.button :submit,"Add to my collection", class: "btn btn-info my-1 w-100" %>
+              <% end %>
+            </div>
+            <p>Light: <%= @plant.light %></p>
+            <p>Size: <%= @plant.size %>cm</p>
+          </div>
+          <div>
+            <% if @plant.photo.attached? %>
+              <%= cl_image_tag @plant.photo.key, height:200, width: 280, crop: :fill %>
+            <% else %>
+              <%= cl_image_tag "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:200, width: 280, crop: :fill %>
             <% end %>
           </div>
-          <% if @plant.photo.attached? %>
-            <%= cl_image_tag @plant.photo.key, height:160, width: 200, crop: :fill %>
-          <% else %>
-            <%= cl_image_tag "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:160, width: 200, crop: :fill %>
-          <% end %>
-          <p>Light: <%= @plant.light %></p>
-          <p>Size: <%= @plant.size %>cm</p>
         </div>
+
         <div>
-          <h5>Plant detailed info by zone:</h5>
-          <p><%= @plant.plant_info_by_zones.count %></p>
+          <h4>Plant detailed info by zone:</h4>
+          <span><%= @plant.plant_info_by_zones.count %></span>
+
           <% @plant.plant_info_by_zones.each do |p| %>
-            <p>Zone Code: <%= p.zone.zone_code %></p>
+            <p>Zone Code: <span><%= p.zone.zone_code %></span></p>
             <% if p.indoor_seeding %>
               <p>Indoor seeding</p>
-              <p>Best seeding date: <%= p.seeding_date %></p>
-              <p>Best transplanting date: <%= p.transplant_date %></p>
+              <p>Best seeding date: <%= p.seeding_date.strftime("%b-%d") %></p>
+              <p>Best transplanting date: <%= p.transplant_date.strftime("%b-%d") %></p>
             <% else %>
               <p>Outdoor seeding</p>
-              <p>Best seeding date: <%= p.seeding_date %></p>
+              <p>Best seeding date: <%= p.seeding_date.strftime("%b-%d") %></p>
             <% end %>
           <% end %>
         </div>
@@ -41,8 +47,8 @@
                                    :include_blank => "Pick a zone"
                                    %>
           <%= f.input :indoor_seeding %>
-          <%= f.input :seeding_date %>
-          <%= f.input :transplant_date %>
+          <%= f.input :seeding_date, as: :date, start_year: 2020, end_year:2020, order: [:month, :day] %>
+          <%= f.input :transplant_date, as: :date, start_year: 2020, end_year:2020, order: [:month, :day] %>
           <%= f.button :submit, class: "btn btn-info mt-3 w-100" %>
         <% end %>
       </div>
