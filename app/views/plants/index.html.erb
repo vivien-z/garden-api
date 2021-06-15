@@ -1,36 +1,31 @@
-<div class="container">
-  <button class="btn btn-warning button-m">
-    <%= link_to new_plant_path do %>
+<div id="plant-index" class="container py-5">
+  <div class="">
+    <%= link_to new_plant_path, class: "btn btn-warning button-add" do %>
       <i class="fas fa-plus"></i>
     <% end %>
-  </button>
-</div>
-<div class="container py-3">
+  </div>
 
   <div class="">
-    <% if @plants == [] %>
-      <p>Start contributing to the community...</p>
-    <% else %>
-      <div>
-        <% @plants.each do |plant| %>
+    <h4 class="mb-5"><strong>Welcome to the community</strong></h4>
 
+    <div class="cards">
+      <% @plants.each do |plant| %>
+        <%= link_to plant_path(plant), class: "card-main" do %>
           <% if plant.photo.attached? %>
-            <div class="card cards p-3"
-                 style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-                 url(<%= cl_image_path plant.photo.key, height:160, width: 200, crop: :fill %>)">
-              <%= link_to "#{plant.name.capitalize}", plant_path(plant), class: "card-text" %>
+            <div class="card-m-img"
+                 style="background-image: url(<%= cl_image_path plant.photo.key, height:160, width: 220, crop: :fill %>)">
             </div>
           <% else %>
-            <div class="card cards p-3"
-                 style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-                 url(<%= cl_image_path "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:160, width: 200, crop: :fill %>)">
-              <%= link_to "#{plant.name.capitalize}", plant_path(plant), class: "card-text" %>
+            <div class="card-m-img"
+                 style="background-image: url(<%= cl_image_path "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:160, width: 220, crop: :fill %>)">
             </div>
           <% end %>
-
+          <div class="card-m-info">
+            <div class="card-m-text"><%= plant.name.capitalize %></div>
+          </div>
         <% end %>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 
 </div>

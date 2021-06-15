@@ -5,35 +5,30 @@
   color: white;
   font-family: 'Montserrat', sans-serif;
   &:hover {
-    // background: $m-ored;
     text-decoration: none;
     color: $yellow;
   }
 }
-// .button-b {
-//   box-shadow: 5px 10px 10px lightgrey;
-//   padding: 20px;
-//   // margin: 30px 20px;
-//   font-family: $body-font;
-//   h5 {
-//     font-weight: 100;
-//     padding-bottom: 4px;
-//     color: white;
-//     border-bottom: 2px solid transparent;
-//     &:hover {
-//       padding-bottom: 4px;
-//       color: $yellow;
-//       border-bottom: 2px solid $yellow;
-//     }
-//   }
-// }
 
+/* ==================
+  plants-index-page
+====================*/
+#plant-index {
+  position: relative;
+}
 
-.button-m {
-  border-radius: 4px;
-  border: 2px solid black;
-  padding: 8px 40px;
-  i {
-    color: black;
+.button-add {
+  position: absolute;
+  top: -32px;
+  right: 8px;
+  height: 68px;
+  width: 68px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 2px 4px lightgray;
+  &:hover {
+    box-shadow: 1px 2px 4px gray;
   }
 }
