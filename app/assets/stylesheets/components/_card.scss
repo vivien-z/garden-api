@@ -1,4 +1,22 @@
 /* ==================
+  plant-show-page
+====================*/
+.card-lg {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  height: 180px;
+  width: 300px;
+}
+.card-lg-t {
+  margin: 0 auto;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+  h5 {
+    margin: 0;
+  }
+}
+/* ==================
   plants-index-page
 ====================*/
 .card-main {

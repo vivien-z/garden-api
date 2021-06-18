@@ -23,19 +23,32 @@
         </div>
 
         <div>
-          <h4>Plant detailed info by zone:</h4>
+          <h4>Seeding detailed by zone:</h4>
           <span><%= @plant.plant_info_by_zones.count %></span>
 
           <% @plant.plant_info_by_zones.each do |p| %>
-            <p>Zone Code: <span><%= p.zone.zone_code %></span></p>
-            <% if p.indoor_seeding %>
-              <p>Indoor seeding</p>
-              <p>Best seeding date: <%= p.seeding_date.strftime("%b-%d") %></p>
-              <p>Best transplanting date: <%= p.transplant_date.strftime("%b-%d") %></p>
-            <% else %>
-              <p>Outdoor seeding</p>
-              <p>Best seeding date: <%= p.seeding_date.strftime("%b-%d") %></p>
-            <% end %>
+          <div class="card-lg p-3">
+            <div class="card-lg-t d-flex">
+              <h5><strong>Zone<span class="ml-1"><%= p.zone.zone_code %></span></strong></h5>
+            </div>
+            <div class="card-lg-b">
+              <!-- <h6 class="my-3">Seeding</h6> -->
+              <% if p.indoor_seeding %>
+                <p class="seeding-icon">Seed Indoor</p>
+                <table class="seeding-detail">
+                  <!-- <h6>Important Dates</h6> -->
+                  <tr class="ml-3"><td>Seeding date: </td> <td><%= p.seeding_date.strftime("%b-%d") %></td></tr>
+                  <tr class="ml-3"><td>Transplanting date: </td> <td><%= p.transplant_date.strftime("%b-%d") %></td></tr>
+                </table>
+              <% else %>
+                <p class="seeding-icon">Seed Outdoor</p>
+                <table class="seeding-detail">
+                  <!-- <h6>Important Date</h6> -->
+                  <tr class="ml-3"><td>Seeding date: </td> <td><%= p.seeding_date.strftime("%b-%d") %></td></tr>
+                </table>
+              <% end %>
+            </div>
+          </div>
           <% end %>
         </div>
       </div>
