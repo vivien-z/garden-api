@@ -18,6 +18,7 @@
               <%= simple_form_for([@plant, @collection]) do |f| %>
                 <%= f.button :submit,"Add to my collection", class: "btn btn-info my-1 w-100" %>
               <% end %>
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#zoneDetailFormModal">Add Detail by Zone</button>
             </div>
           </div>
         </div>
@@ -52,19 +53,30 @@
           <% end %>
         </div>
       </div>
+      <!-- Modal -->
+      <div id="zoneDetailFormModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Add plant info based on zone</h5>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <%= simple_form_for([@plant, @plant_info_by_zone]) do |f| %>
+                <%= f.association :zone, collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
+                                         :include_blank => "Pick a zone"
+                                         %>
+                <%= f.input :indoor_seeding %>
+                <%= f.input :seeding_date, as: :date, start_year: 2020, end_year:2020, order: [:month, :day] %>
+                <%= f.input :transplant_date, as: :date, start_year: 2020, end_year:2020, order: [:month, :day] %>
+                <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+              <% end %>
+            </div>
+          </div>
 
-      <div class="border p-3 w-50">
-        <h5>Add plant info based on zone</h5>
-        <%= simple_form_for([@plant, @plant_info_by_zone]) do |f| %>
-          <%= f.association :zone, collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
-                                   :include_blank => "Pick a zone"
-                                   %>
-          <%= f.input :indoor_seeding %>
-          <%= f.input :seeding_date, as: :date, start_year: 2020, end_year:2020, order: [:month, :day] %>
-          <%= f.input :transplant_date, as: :date, start_year: 2020, end_year:2020, order: [:month, :day] %>
-          <%= f.button :submit, class: "btn btn-info mt-3 w-100" %>
-        <% end %>
+        </div>
       </div>
+      <!-- Modal end -->
     </div>
 </div>
 <!-- simple_fields_for --><!--
