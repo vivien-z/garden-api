@@ -1,56 +1,52 @@
-<div class="container border">
-    <div class="row flex-column justify-content-center p-5">
+<div class="container w-50">
+    <div class="row flex-column justify-content-center py-5">
 
       <div>
-        <h2 class="text-center mb-5"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
-        <div class="d-flex justify-content-center mb-5">
-          <div class="">
+        <h2 class="container-title text-center mb-3"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
+        <div class="d-flex justify-content-around my-3">
+          <div class="container-image">
             <% if @plant.photo.attached? %>
               <%= cl_image_tag @plant.photo.key, height:200, width: 280, crop: :fill %>
             <% else %>
               <%= cl_image_tag "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:200, width: 280, crop: :fill %>
             <% end %>
           </div>
-          <div class="px-5 my-3 ml-5" >
-            <p>Light: <%= @plant.light %></p>
-            <p>Size: <%= @plant.size %>cm</p>
+          <div class="containter-info d-flex flex-column justify-content-center" >
+            <p><strong>Light:</strong> <%= @plant.light %></p>
+            <p><strong>Size:</strong><%= sprintf("%.2f",@plant.size) %> cm</p>
             <div class="">
               <%= simple_form_for([@plant, @collection]) do |f| %>
-                <%= f.button :submit,"Add to my collection", class: "btn btn-info my-1 w-100" %>
+                <%= f.button :submit,"Add to my collection", class: "button-b sm my-1 w-100" %>
               <% end %>
-              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#zoneDetailFormModal">Add Detail by Zone</button>
+              <button type="button" class="button-b sm w-100" data-toggle="modal" data-target="#zoneDetailFormModal">Add Detail by Zone</button>
             </div>
           </div>
         </div>
 
-        <div>
-          <h4>Seeding detailed by zone:</h4>
-          <span><%= @plant.plant_info_by_zones.count %></span>
-
-          <% @plant.plant_info_by_zones.each do |p| %>
-          <div class="card-lg p-3">
-            <div class="card-lg-title">
-              <h5><strong>Zone<span class="ml-1"><%= p.zone.zone_code %></span></strong></h5>
-            </div>
-            <div class="card-lg-detail">
-              <!-- <h6 class="my-3">Seeding</h6> -->
-              <% if p.indoor_seeding %>
-                <p class="seeding-icon">Seed Indoor</p>
-                <table class="seeding-detail">
-                  <!-- <h6>Important Dates</h6> -->
-                  <tr class="ml-3"><td>Seeding date: </td> <td><%= p.seeding_date.strftime("%b-%d") %></td></tr>
-                  <tr class="ml-3"><td>Transplanting date: </td> <td><%= p.transplant_date.strftime("%b-%d") %></td></tr>
-                </table>
-              <% else %>
-                <p class="seeding-icon">Seed Outdoor</p>
-                <table class="seeding-detail">
-                  <!-- <h6>Important Date</h6> -->
-                  <tr class="ml-3"><td>Seeding date: </td> <td><%= p.seeding_date.strftime("%b-%d") %></td></tr>
-                </table>
-              <% end %>
-            </div>
+        <div class="container-list">
+          <div class="card-lg-list">
+            <% @plant.plant_info_by_zones.each do |p| %>
+              <div class="card-lg">
+                <div class="card-lg-title">
+                  <h5><strong>Zone<span class="ml-3"><%= p.zone.zone_code %></span></strong></h5>
+                </div>
+                <div class="card-lg-detail">
+                  <% if p.indoor_seeding %>
+                    <p class="seeding-icon indoor">Seed Indoor</p>
+                    <table class="seeding-detail">
+                      <tr><td><strong>Seeding:</strong></td> <td class="ml-3"><%= p.seeding_date.strftime("%b-%d") %></td></tr>
+                      <tr><td><strong>Transplant:</strong></td> <td class="ml-3"><%= p.transplant_date.strftime("%b-%d") %></td></tr>
+                    </table>
+                  <% else %>
+                    <p class="seeding-icon outdoor">Seed Outdoor</p>
+                    <table class="seeding-detail">
+                      <tr><td><strong>Seeding:</strong></td> <td class="ml-3"><%= p.seeding_date.strftime("%b-%d") %></td></tr>
+                    </table>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
       </div>
       <!-- Modal -->

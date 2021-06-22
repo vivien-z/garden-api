@@ -1,15 +1,20 @@
 .button-b {
   background: black;
-  padding: 12px 60px;
+  border-color: black;
   border-radius: 4px;
+  padding: 12px 60px;
   color: white;
   font-family: 'Montserrat', sans-serif;
   &:hover {
     text-decoration: none;
-    color: $yellow;
+    background: #343a40;
+    // border-color: #343a40;
+    // color: $yellow;
   }
 }
-
+.button-b.sm {
+  padding: 8px 60px;
+}
 /* ==================
   plants-index-page
 ====================*/

@@ -3,21 +3,20 @@
 ====================*/
 .card-lg {
   display: flex;
-  // flex-direction: column;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border: 1px solid lightgray;
-  height: 100px;
-  width: 500px;
+  border-radius: 8px;
+  height: 120px;
+  width: 280px;
+  padding-bottom: 5px;
 }
 
 .card-lg-title {
-  // margin: 0 auto;
   padding: 10px;
   display: flex;
   align-items: center;
-  // border-bottom: 1px solid lightgray;
-  h5 {
-    margin: 0;
-  }
 }
 
 .card-lg-detail {
@@ -25,14 +24,31 @@
 }
 
 .seeding-icon {
-  background: $yellow;
   padding: 10px 15px;
-  border-radius: 10px;
+  border-radius: 6px;
   height: 48px;
   width: 60px;
+  font-size: 12px;
   font-weight: bold;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 1rem;
+  margin-bottom: 0;
+}
+.seeding-icon.indoor {
+  background: $yellow;
+}
+.seeding-icon.outdoor {
+  background: $lightblue;
+  color: white;
+}
+.seeding-detail {
+  margin-left: 12px;
+}
+.card-lg-list {
+  padding: 0 0.5rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 1.75rem;
 }
