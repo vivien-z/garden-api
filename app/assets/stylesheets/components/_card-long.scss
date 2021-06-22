@@ -1,0 +1,38 @@
+/* ==================
+  plant-show-page
+====================*/
+.card-lg {
+  display: flex;
+  // flex-direction: column;
+  border: 1px solid lightgray;
+  height: 100px;
+  width: 500px;
+}
+
+.card-lg-title {
+  // margin: 0 auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  // border-bottom: 1px solid lightgray;
+  h5 {
+    margin: 0;
+  }
+}
+
+.card-lg-detail {
+  display: flex;
+}
+
+.seeding-icon {
+  background: $yellow;
+  padding: 10px 15px;
+  border-radius: 10px;
+  height: 48px;
+  width: 60px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}

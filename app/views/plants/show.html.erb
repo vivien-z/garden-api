@@ -28,10 +28,10 @@
 
           <% @plant.plant_info_by_zones.each do |p| %>
           <div class="card-lg p-3">
-            <div class="card-lg-t d-flex">
+            <div class="card-lg-title">
               <h5><strong>Zone<span class="ml-1"><%= p.zone.zone_code %></span></strong></h5>
             </div>
-            <div class="card-lg-b">
+            <div class="card-lg-detail">
               <!-- <h6 class="my-3">Seeding</h6> -->
               <% if p.indoor_seeding %>
                 <p class="seeding-icon">Seed Indoor</p>
