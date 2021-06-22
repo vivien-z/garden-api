@@ -2,23 +2,23 @@
     <div class="row flex-column justify-content-center p-5">
 
       <div>
+        <h2 class="text-center mb-5"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
         <div class="d-flex justify-content-around mb-5">
-          <div class="mr-5" >
-            <h3><strong><%= @plant.name.capitalize %></strong></h3>
-            <div class="">
-              <%= simple_form_for([@plant, @collection]) do |f| %>
-                <%= f.button :submit,"Add to my collection", class: "btn btn-info my-1 w-100" %>
-              <% end %>
-            </div>
-            <p>Light: <%= @plant.light %></p>
-            <p>Size: <%= @plant.size %>cm</p>
-          </div>
           <div>
             <% if @plant.photo.attached? %>
               <%= cl_image_tag @plant.photo.key, height:200, width: 280, crop: :fill %>
             <% else %>
               <%= cl_image_tag "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:200, width: 280, crop: :fill %>
             <% end %>
+          </div>
+          <div class="mr-5" >
+            <p>Light: <%= @plant.light %></p>
+            <p>Size: <%= @plant.size %>cm</p>
+            <div class="">
+              <%= simple_form_for([@plant, @collection]) do |f| %>
+                <%= f.button :submit,"Add to my collection", class: "btn btn-info my-1 w-100" %>
+              <% end %>
+            </div>
           </div>
         </div>
 
