@@ -5,7 +5,7 @@
   width: 80%;
 }
 
-.nav-link {
+.nav-tabs .nav-link {
   width: 76%;
   color: black;
   &:hover {
@@ -16,7 +16,7 @@
   }
 }
 
-.nav-link.active {
+.nav-tabs .nav-link.active {
   border-radius: 8px 8px 0 0;
   background: black !important;
   color: white !important;
