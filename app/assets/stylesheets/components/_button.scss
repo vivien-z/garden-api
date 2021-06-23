@@ -2,14 +2,13 @@
   background: black;
   border-color: black;
   border-radius: 4px;
-  padding: 12px 60px;
+  padding: 10px 50px;
   color: white;
   font-family: 'Montserrat', sans-serif;
   &:hover {
     text-decoration: none;
     background: #343a40;
-    // border-color: #343a40;
-    // color: $yellow;
+    color: white;
   }
 }
 .button-b.sm {
