@@ -1,4 +1,7 @@
 <div class="token mb-3">
   <h4 class="py-3">API authentication token</h4>
-  <p><%= current_user.authentication_token %></p>
+  <div type="text" value="api_token" id="apiToken">
+    <span><%= current_user.authentication_token %></span>
+    <button onclick="onclickToClipboard">Copy</button>
+  </div>
 </div>

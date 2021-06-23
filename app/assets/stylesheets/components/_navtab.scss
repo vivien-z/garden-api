@@ -1,0 +1,23 @@
+/* =======================
+  My garden page nav tabs
+=========================*/
+.container.tab {
+  width: 80%;
+}
+
+.nav-link {
+  width: 76%;
+  color: black;
+  &:hover {
+    border-radius: 8px 8px 0 0;
+    background: black !important;
+    color: white !important;
+    opacity: 0.75;
+  }
+}
+
+.nav-link.active {
+  border-radius: 8px 8px 0 0;
+  background: black !important;
+  color: white !important;
+}
