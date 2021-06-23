@@ -1,0 +1,18 @@
+<div>
+  <div class="mb-3">
+    <h4>Plants' Data Contribution</h4>
+    <div>
+      <% @plants.each do |plant| %>
+        <%= plant.name if plant.user_id == current_user.id %>
+      <% end %>
+    </div>
+  </div>
+  <div class="mb-3">
+    <h4>My Plant Collection</h4>
+    <div>
+      <% @user.collections.each do |collection| %>
+        <%= collection.plant.name %>
+      <% end %>
+    </div>
+  </div>
+</div>

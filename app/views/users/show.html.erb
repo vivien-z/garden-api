@@ -1,29 +1,36 @@
-<div class="container my-garden py-5">
-
-  <div class="title my-3">
+<div class="container my-garden py-3">
+  <div class="title mt-3 mb-1">
     <h3><strong>My Garden</strong></h3>
   </div>
+</div>
 
-  <div class="token mb-3">
-    <h4>API authentication token</h4>
-    <p><%= current_user.authentication_token %></p>
-  </div>
+<div class="tab-bar">
+  <div class="container">
+    <div class="nav-fill">
 
-  <div class="mb-3">
-    <h4>Plants' Data Contribution</h4>
-    <div>
-      <% @plants.each do |plant| %>
-        <%= plant.name if plant.user_id == current_user.id %>
-      <% end %>
+      <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link" id="api-info-tab" data-toggle="tab" href="#api-info" role="tab" aria-controls="api-info" aria-selected="false">API</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" id="garden-plans-tab" data-toggle="tab" href="#garden-plans" role="tab" aria-controls="garden-plans" aria-selected="true">My Garden Plans</a>
+        </li>
+      </ul>
+
     </div>
   </div>
-  <div class="mb-3">
-    <h4>My Plant Collection</h4>
-    <div>
-      <% @user.collections.each do |collection| %>
-        <%= collection.plant.name %>
-      <% end %>
-    </div>
-  </div>
+</div>
 
+<div class="container my-garden py-5">
+  <div class="nav-fill">
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade" id="api-info" role="tabpanel" aria-labelledby="api-info-tab">
+        <%= render("api_info") %>
+      </div>
+      <div class="tab-pane fade show active" id="garden-plans" role="tabpanel" aria-labelledby="garden-plans-tab">
+        <%= render("my_garden_plans") %>
+      </div>
+    </div>
+
+  </div>
 </div>
