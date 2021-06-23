@@ -1,32 +1,13 @@
-.zone-icon {
-  // background: lightblue;
-  // padding: 10px;
-  // margin: 5px;
-  // border-radius: 10px;
-  // height: 48px;
-  // width: 128px;
-  // font-weight: bold;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
+.container-plant-show {
+  width: 630px;
+}
+.container-plant-show .container-title {
+  margin: 0 auto 1.5rem;
 }
 
-// .seeding-icon {
-//   background: $yellow;
-//   padding: 10px 15px;
-//   border-radius: 10px;
-//   height: 48px;
-//   width: 128px;
-//   font-weight: bold;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
-
-// table {
-//   border-spacing: 15px 0;
-// }
-
-// td {
-//  padding: 0 10px;
-// }
+.container-plant-show .container-image {
+  box-shadow: 2px 4px 4px #dee2e6;
+  img {
+    border-radius: 4px;
+  }
+}

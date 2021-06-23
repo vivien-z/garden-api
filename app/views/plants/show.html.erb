@@ -1,8 +1,8 @@
-<div class="container w-50">
+<div class="container container-plant-show">
     <div class="row flex-column justify-content-center py-5">
 
       <div>
-        <h2 class="container-title text-center mb-3"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
+        <h2 class="container-title text-center"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
         <div class="d-flex justify-content-around my-3">
           <div class="container-image">
             <% if @plant.photo.attached? %>
@@ -18,7 +18,7 @@
               <%= simple_form_for([@plant, @collection]) do |f| %>
                 <%= f.button :submit,"Add to my collection", class: "button-b sm my-1 w-100" %>
               <% end %>
-              <button type="button" class="button-b sm w-100" data-toggle="modal" data-target="#zoneDetailFormModal">Add Detail by Zone</button>
+              <button type="button" class="button-b sm w-100" data-toggle="modal" data-target="#zoneDetailFormModal">Add zone detail</button>
             </div>
           </div>
         </div>
