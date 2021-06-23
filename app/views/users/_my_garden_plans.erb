@@ -3,9 +3,11 @@
     <h4>Plants' Data Contribution</h4>
     <div class="plants-list my-3">
       <% @plants.each do |plant| %>
-        <div class="cards-list-ms" style="height: <%= (plant.size)*5.to_i %>px; width: <%= (plant.size)*5.to_i %>px">
-          <%= plant.name if plant.user_id == current_user.id %>
-        </div>
+        <%= link_to plant_path(plant) do %>
+          <div class="cards-list-ms light-brown" style="height: <%= (plant.size)*5.to_i %>px; width: <%= (plant.size)*5.to_i %>px">
+            <%= plant.name.capitalize if plant.user_id == current_user.id %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -14,9 +16,11 @@
     <h4>My Plant Collection</h4>
     <div class="plants-list my-3">
       <% @user.collections.each do |collection| %>
-        <div class="cards-list-ms" style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px">
-          <%= collection.plant.name %>
-        </div>
+        <%= link_to plant_path(collection.plant) do %>
+          <div class="cards-list-ms" style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px">
+            <%= collection.plant.name.capitalize %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

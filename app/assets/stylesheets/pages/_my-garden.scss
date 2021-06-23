@@ -28,4 +28,11 @@
 .plants-list {
   display: flex;
   flex-wrap: wrap;
+  a {
+    color: black;
+    &:hover {
+      font-size: 1.25rem;
+      text-decoration: none;
+    }
+  }
 }
