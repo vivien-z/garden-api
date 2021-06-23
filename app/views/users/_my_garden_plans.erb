@@ -1,17 +1,22 @@
 <div>
   <div class="mb-3">
     <h4>Plants' Data Contribution</h4>
-    <div>
+    <div class="plants-list my-3">
       <% @plants.each do |plant| %>
-        <%= plant.name if plant.user_id == current_user.id %>
+        <div class="cards-list-ms" style="height: <%= (plant.size)*5.to_i %>px; width: <%= (plant.size)*5.to_i %>px">
+          <%= plant.name if plant.user_id == current_user.id %>
+        </div>
       <% end %>
     </div>
   </div>
+
   <div class="mb-3">
     <h4>My Plant Collection</h4>
-    <div>
+    <div class="plants-list my-3">
       <% @user.collections.each do |collection| %>
-        <%= collection.plant.name %>
+        <div class="cards-list-ms" style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px">
+          <%= collection.plant.name %>
+        </div>
       <% end %>
     </div>
   </div>
