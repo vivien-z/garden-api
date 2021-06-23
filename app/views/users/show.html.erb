@@ -5,15 +5,15 @@
 </div>
 
 <div class="tab-bar">
-  <div class="container">
+  <div class="container tab">
     <div class="nav-fill">
 
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link" id="api-info-tab" data-toggle="tab" href="#api-info" role="tab" aria-controls="api-info" aria-selected="false">API</a>
+          <a class="nav-link active" id="garden-plans-tab" data-toggle="tab" href="#garden-plans" role="tab" aria-controls="garden-plans" aria-selected="true">My Garden Plans</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" id="garden-plans-tab" data-toggle="tab" href="#garden-plans" role="tab" aria-controls="garden-plans" aria-selected="true">My Garden Plans</a>
+          <a class="nav-link" id="api-info-tab" data-toggle="tab" href="#api-info" role="tab" aria-controls="api-info" aria-selected="false">API</a>
         </li>
       </ul>
 
@@ -24,11 +24,11 @@
 <div class="container my-garden py-5">
   <div class="nav-fill">
     <div class="tab-content" id="myTabContent">
-      <div class="tab-pane fade" id="api-info" role="tabpanel" aria-labelledby="api-info-tab">
-        <%= render("api_info") %>
-      </div>
       <div class="tab-pane fade show active" id="garden-plans" role="tabpanel" aria-labelledby="garden-plans-tab">
         <%= render("my_garden_plans") %>
+      </div>
+      <div class="tab-pane fade" id="api-info" role="tabpanel" aria-labelledby="api-info-tab">
+        <%= render("api_info") %>
       </div>
     </div>
 
