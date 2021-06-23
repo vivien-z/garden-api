@@ -2,8 +2,8 @@
     <div class="row flex-column justify-content-center py-5">
 
       <div>
-        <h2 class="container-title text-center"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
-        <div class="d-flex justify-content-around my-3">
+        <h2 class="container-title"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
+        <div class="container-detail">
           <div class="container-image">
             <% if @plant.photo.attached? %>
               <%= cl_image_tag @plant.photo.key, height:200, width: 280, crop: :fill %>
@@ -49,6 +49,7 @@
           </div>
         </div>
       </div>
+
       <!-- Modal -->
       <div id="zoneDetailFormModal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-lg">
