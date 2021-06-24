@@ -15,10 +15,13 @@
   }
 }
 .card-m-info {
-  // text-align: left;
+  height: 60px;
   padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   .card-m-text {
-    color: black;
+    color: $m-brown-d;
     font-weight: bold;
     font-size: 20px;
   }
