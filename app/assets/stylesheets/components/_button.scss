@@ -1,13 +1,12 @@
 .button-b {
-  background: black;
-  border-color: black;
-  border-radius: 4px;
+  background: $m-brown-d;
+  border-color: $m-brown-d;
   padding: 10px 50px;
   color: white;
   font-family: 'Montserrat', sans-serif;
   &:hover {
     text-decoration: none;
-    background: #343a40;
+    background: $m-brown;
     color: white;
   }
 }
