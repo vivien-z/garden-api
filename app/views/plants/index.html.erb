@@ -1,14 +1,7 @@
-<div id="plant-index" class="container py-5">
-  <div class="">
-    <%= link_to new_plant_path, class: "btn btn-warning button-add" do %>
-      <i class="fas fa-plus"></i>
-    <% end %>
-  </div>
-
+<div class="container py-5">
   <div class="row d-flex flex-column align-items-center justify-content-center">
     <h2 class="my-3"><strong>All Plants</strong></h2>
-
-    <div class="cards">
+    <div id="plants-list" class="cards border-top">
       <% @plants.each do |plant| %>
         <%= link_to plant_path(plant), class: "card-main" do %>
           <% if plant.photo.attached? %>
@@ -25,6 +18,11 @@
           </div>
         <% end %>
       <% end %>
+      <div class="">
+        <%= link_to new_plant_path, class: "btn btn-warning button-add" do %>
+          <i class="fas fa-plus"></i>
+        <% end %>
+      </div>
     </div>
   </div>
 
