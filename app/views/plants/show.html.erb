@@ -3,7 +3,7 @@
 
       <div>
         <h2 class="container-title my-3"><strong><%= @plant.name.capitalize %></strong></h2 class="text-center mb-5">
-        <div class="container-detail pt-3">
+        <div class="container-detail border-top pt-3">
           <div class="container-image">
             <% if @plant.photo.attached? %>
               <%= cl_image_tag @plant.photo.key, height:200, width: 280, crop: :fill %>
