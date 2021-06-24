@@ -1,9 +1,9 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-garden">
+<div class="navbar navbar-expand-sm navbar-dark <%= yield(:navbar_home) %>">
 
   <div class="nav-icon">
     <%= link_to "/", class: "navbar-brand" do %>
-      <%= image_tag "icon.png" %>
-      <!-- <span class="ml-3">Garden Plan API</span> -->
+      <!-- < image_tag "icon.png", class: yield(:navbar_icon_home) %> -->
+      <span class="ml-3 <%= yield(:navbar_icon_home) %>">Garden Plan API</span>
     <% end %>
   </div>
 

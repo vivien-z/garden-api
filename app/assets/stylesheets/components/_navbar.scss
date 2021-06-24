@@ -1,31 +1,37 @@
-/* ==================
-  page top navbar
-====================*/
 .navbar {
-  padding: 0.5rem 1.5rem;
-}
-
-.navbar-garden {
+  padding: 1.25rem 1.75rem;
   justify-content: space-between;
-  background: white;
+  background: $m-brown-d;
 }
 
-.navbar-garden .navbar-collapse {
+.navbar .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-garden .nav-icon {
+.navbar .nav-icon {
   img {
     width: 40px;
     margin-left: 5px;
+    -webkit-filter: drop-shadow(5px 5px 8px white);
+    filter: drop-shadow(5px 5px 8px white);
   }
   span {
     font-family: $m-title;
-    font-size: 1.5em;
+    font-size: 1.25em;
   }
 }
 
 .nav-item {
   margin-left: 30px;
   font-weight: bold;
+}
+
+.navbar-home {
+  background: transparent;
+  position: absolute;
+  width: 100%;
+}
+.navbar-icon-home {
+  height: 0;
+  color: transparent;
 }
