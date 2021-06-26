@@ -25,10 +25,14 @@
   }
 }
 
+#plants-list-container {
+  position: relative;
+  width: 100%;
+}
+
 .plants-list {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
   min-height: 155px;
   a {
     color: black;
