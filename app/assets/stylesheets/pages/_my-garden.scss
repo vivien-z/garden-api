@@ -28,6 +28,7 @@
 .plants-list {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   a {
     color: black;
     &:hover {
