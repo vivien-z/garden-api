@@ -1,4 +1,4 @@
-class PlantInfoByZonePolicy < ApplicationPolicy
+class GardenPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
@@ -6,11 +6,11 @@ class PlantInfoByZonePolicy < ApplicationPolicy
   end
 
   def index?
-    true
+    record.user == user
   end
 
   def show?
-    true
+    index?
   end
 
   def create?
@@ -20,5 +20,9 @@ class PlantInfoByZonePolicy < ApplicationPolicy
 
   def update?
     record.user == user
+  end
+
+  def destroy?
+    update?
   end
 end

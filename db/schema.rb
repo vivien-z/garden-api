@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_144814) do
+ActiveRecord::Schema.define(version: 2021_08_05_133500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 2021_06_01_144814) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
+  create_table "gardens", force: :cascade do |t|
+    t.string "name"
+    t.float "width"
+    t.float "length"
+    t.bigint "user_id", null: false
+    t.bigint "zone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_gardens_on_user_id"
+    t.index ["zone_id"], name: "index_gardens_on_zone_id"
+  end
+
   create_table "plant_info_by_zones", force: :cascade do |t|
     t.bigint "zone_id", null: false
     t.bigint "plant_id", null: false
@@ -55,6 +67,17 @@ ActiveRecord::Schema.define(version: 2021_06_01_144814) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["plant_id"], name: "index_plant_info_by_zones_on_plant_id"
     t.index ["zone_id"], name: "index_plant_info_by_zones_on_zone_id"
+  end
+
+  create_table "plant_positions", force: :cascade do |t|
+    t.float "positionX"
+    t.float "positionY"
+    t.bigint "plant_id", null: false
+    t.bigint "garden_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["garden_id"], name: "index_plant_positions_on_garden_id"
+    t.index ["plant_id"], name: "index_plant_positions_on_plant_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -91,7 +114,11 @@ ActiveRecord::Schema.define(version: 2021_06_01_144814) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "collections", "plants"
   add_foreign_key "collections", "users"
+  add_foreign_key "gardens", "users"
+  add_foreign_key "gardens", "zones"
   add_foreign_key "plant_info_by_zones", "plants"
   add_foreign_key "plant_info_by_zones", "zones"
+  add_foreign_key "plant_positions", "gardens"
+  add_foreign_key "plant_positions", "plants"
   add_foreign_key "plants", "users"
 end
