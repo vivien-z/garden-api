@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :gardens, only: [ :index, :new, :create ]
   end
-  resources :gardens, only: [:edit, :update, :destroy]
+  resources :gardens, only: [:show, :edit, :update, :destroy]
 
   resources :zones, only: [:create]
   resources :plants, only: [:index, :show, :new, :create] do

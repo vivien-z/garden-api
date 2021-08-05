@@ -30,11 +30,11 @@
     <button type="button" class="btn btn-warning button-add-sm" data-toggle="modal" data-target="#newGardenFormModal"><i class="fas fa-plus"></i></button>
     <div class="plants-list my-3">
       <% @user.gardens.each do |garden| %>
-
-        <div class="cards-list-ms" style="height: <%= (garden.width)*5.to_i %>px; width: <%= (garden.length)*5.to_i %>px">
-          <%= garden.name.capitalize %>
-        </div>
-
+        <%= link_to garden_path(garden) do %>
+          <div class="" >
+            <%= garden.name.capitalize %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
@@ -53,8 +53,8 @@
                                      :include_blank => "Pick a zone"
                                      %>
             <%= f.input :name %>
-            <%= f.input :width, as: :float %>
-            <%= f.input :length, as: :float %>
+            <%= f.input :width, :placeholder => "in cm", input_html: { min: 0, step: 0.5 } %>
+            <%= f.input :length, :placeholder => "in cm", input_html: { min: 0, step: 0.5 } %>
             <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
           <% end %>
         </div>

@@ -5,7 +5,7 @@ class GardensController < ApplicationController
 
   def show
     @garden = Garden.find(params[:id])
-    @zone_codes = policy_scope(Zone).map { |zone| zone.zone_code }
+    @user = current_user
     # @plant_info_by_zone = PlantInfoByZone.new
     # @position = Collection.new
     authorize(@garden)
@@ -24,7 +24,7 @@ class GardensController < ApplicationController
     authorize(@garden)
 
     if @garden.save
-      redirect_to plant_path(@garden)
+      redirect_to garden_path(@garden)
     else
       render 'new'
     end
@@ -33,6 +33,6 @@ class GardensController < ApplicationController
   private
 
   def garden_params
-    params.require(:garden).permit(:id, :name, :size)
+    params.require(:garden).permit(:id, :name, :width, :length)
   end
 end

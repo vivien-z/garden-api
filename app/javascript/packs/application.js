@@ -12,7 +12,9 @@ require("channels")
 
 import "bootstrap";
 import { onclickToClipboard } from "../components/onclick_to_clipboard";
+import { draggableDiv } from "../components/draggable_div";
 
 document.addEventListener('turbolinks:load', () => {
   onclickToClipboard();
+  draggableDiv();
 });
