@@ -19,7 +19,6 @@ class PlantInfoByZonePolicy < ApplicationPolicy
   end
 
   def update?
-    # currently open to all users, to be adjusted later
-    show?
+    record.user == user
   end
 end
