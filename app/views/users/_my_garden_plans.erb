@@ -24,4 +24,23 @@
       <% end %>
     </div>
   </div>
+
+  <div class="mb-3">
+    <h4>My Garden Collection</h4>
+    <div class="">
+      <%= link_to new_user_garden_path(@user), class: "btn btn-warning button-add-sm" do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    </div>
+    <div class="plants-list my-3">
+      <% @user.gardens.each do |garden| %>
+
+        <div class="cards-list-ms" style="height: <%= (garden.width)*5.to_i %>px; width: <%= (garden.length)*5.to_i %>px">
+          <%= garden.name.capitalize %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+
 </div>
