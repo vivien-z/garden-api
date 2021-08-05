@@ -1,7 +1,33 @@
 <div class="token mb-3">
-  <h4 class="py-3">API authentication token</h4>
-  <div class="content token">
-    <span type="text" value="api_token" id="apiToken"><%= current_user.authentication_token %></span>
-    <button id="apiTokenBtn">Copy</button>
+
+  <div class="mb-3">
+    <h4 class="pb-4">API authentication token</h4>
+    <div class="content token">
+      <span type="text" value="api_token" id="apiToken"><%= current_user.authentication_token %></span>
+      <button id="apiTokenBtn">Copy</button>
+    </div>
   </div>
+  <div class="my-3">
+    <h4 class="py-4">Available API Endpoints:</h4>
+    <p>List all plants: <span class="text-code">/api/v1/plants</span></p>
+    <p>List one specific plant: <span class="text-code">/api/v1/plants/[:id]</span></p>
+    <p><strong>METHOD  ACTION</strong></p><hr>
+    <table class="py-3">
+      <tr>
+        <td><strong class="mr-3">GET</strong></td><td>Retrieves resources</td>
+      </tr>
+      <tr>
+        <td><strong class="mr-3">POST</strong></td> <td>Creates resources (authentication needed)</td>
+      </tr>
+      <tr>
+        <td><strong class="mr-3">PATCH</strong></td><td>Edit and update resources (authentication needed)</td>
+      </tr>
+      <tr>
+        <td><strong class="mr-3">DELETE</strong></td> <td>Deletes resources (authentication needed)</td>
+      </tr>
+    </table>
+    <hr>
+    <%= image_tag "api-img.png", style: "width:100%; max-width: 620px" %>
+  </div>
+
 </div>
