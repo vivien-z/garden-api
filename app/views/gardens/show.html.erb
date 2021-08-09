@@ -13,15 +13,14 @@
         <h4>My Plant Collection</h4>
         <div class="plants-list my-3">
           <% @user.collections.each do |collection| %>
-            <%= link_to plant_path(collection.plant) do %>
-            <%= collection.plant.id %>
-              <div
-                class="draggable cards-list-ms"
-                style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px; position: absolute "
-              >
+            <div
+              class="draggable cards-list-ms"
+              style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px; position: absolute "
+            >
+              <%= link_to plant_path(collection.plant) do %>
                 <%= collection.plant.name.capitalize %>
-              </div>
-            <% end %>
+              <% end %>
+            </div>
           <% end %>
         </div>
       </div>
