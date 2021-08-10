@@ -1,5 +1,6 @@
 const draggableDiv = () => {
-  dragElement(document.querySelector(".draggable"))
+  dragElement(document.querySelectorAll(".draggable:not(.plantCopy)"))
+  console.log(document.querySelectorAll(".draggable:not(.plantCopy)"))
 }
 
 function dragElement(elmnt) {
@@ -11,9 +12,11 @@ function dragElement(elmnt) {
   //   document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
   // } else {
   //   // otherwise, move the DIV from anywhere inside the DIV:
-  elmnt ? (elmnt.onmousedown = dragMouseDown) : null;
-  // }
 
+  // elmnt ? (elmnt.onmousedown = dragMouseDown) : null;
+  elmnt.onmousedown = dragMouseDown
+  // }
+  console.log("elmnt")
   function dragMouseDown(e) {
     e = e || window.event
     e.preventDefault()
