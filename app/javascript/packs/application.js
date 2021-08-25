@@ -12,11 +12,13 @@ require("channels")
 
 import "bootstrap";
 import { onclickToClipboard } from "../components/onclick_to_clipboard";
-import { draggableDiv } from "../components/draggable_div";
+import { mousedownToDrag } from "../components/mousedown_to_drag";
 import { duplicateDivOnclick } from "../components/duplicate_div_onclick";
 
 document.addEventListener('turbolinks:load', () => {
   onclickToClipboard()
-  draggableDiv()
-  duplicateDivOnclick()
+  mousedownToDrag()
+
+  // draggableDiv()
+  // duplicateDivOnclick()
 });
