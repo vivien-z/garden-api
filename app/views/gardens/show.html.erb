@@ -2,8 +2,12 @@
   <div class="row">
     <div class="col-xs-12 my-5">
       <h2 class="my-3"><%= @garden.name %></h2>
-      <div class="garden-field border" style="height: <%= (@garden.width)*15.to_i %>px; width: <%= (@garden.length)*15.to_i %>px">
-
+      <div id="garden-field"
+           ondrop="drop(event)"
+           ondragover="allowDrop(event)"
+           class="border"
+           style="height: <%= (@garden.width)*15.to_i %>px; width: <%= (@garden.length)*15.to_i %>px"
+      >
       </div>
     </div>
   </div>
@@ -12,10 +16,13 @@
       <div class="mb-3">
         <h4>My Plant Collection</h4>
         <div class="plants-list my-3">
-          <% @user.collections.each do |collection| %>
+          <% @user.collections.each_with_index do |collection, i| %>
             <div
+              id=i
               class="cards-list-ms draggable plantOrigin"
-              style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px; position: absolute "
+              draggable="true"
+              ondragstart="drag(event)"
+              style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px "
             >
               <%= link_to plant_path(collection.plant) do %>
                 <%= collection.plant.name.capitalize %>

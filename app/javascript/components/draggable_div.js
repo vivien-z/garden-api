@@ -1,21 +1,19 @@
 const draggableDiv = () => {
+  let items = document.querySelectorAll(".draggable:not(.plantCopy)")
+  items.forEach((item, i) => {
+    dragElement(item, i)
+  })
   dragElement(document.querySelectorAll(".draggable:not(.plantCopy)"))
   console.log(document.querySelectorAll(".draggable:not(.plantCopy)"))
 }
 
 function dragElement(elmnt) {
+
   let offX
   let offY
-  // let offY
-  // if (document.getElementById(elmnt.id + "header")) {
-  //   // if present, the header is where you move the DIV from:
-  //   document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-  // } else {
-  //   // otherwise, move the DIV from anywhere inside the DIV:
 
-  // elmnt ? (elmnt.onmousedown = dragMouseDown) : null;
   elmnt.onmousedown = dragMouseDown
-  // }
+
   console.log("elmnt")
   function dragMouseDown(e) {
     e = e || window.event
@@ -31,6 +29,7 @@ function dragElement(elmnt) {
     e = e || window.event
     e.preventDefault()
 
+    elmnt.style.cursor = 'move'
     elmnt.style.position = 'absolute'
     elmnt.style.top = (e.clientY - offY) + "px"
     elmnt.style.left = (e.clientX - offX) + "px"
