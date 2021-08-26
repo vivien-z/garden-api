@@ -1,25 +1,29 @@
+<head>
+  <script type="text/javascript" scr="mousedown_to_drag.js"></script>
+</head>
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12 my-5">
       <h2 class="my-3"><%= @garden.name %></h2>
 <!--            ondrop="drop(e)"
            ondragover="allowDrop(e)" -->
-      <div id="garden-field"
-           class="border"
+      <section
+           class="drop-field border"
            style="height: <%= (@garden.width)*15.to_i %>px; width: <%= (@garden.length)*15.to_i %>px"
       >
-      </div>
+      </section>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 my-5">
       <div class="mb-3">
         <h4>My Plant Collection</h4>
-        <div class="plants-list my-3">
+        <section class="drag-target plants-list my-3">
           <% @user.collections.each_with_index do |collection, i| %>
-              <!-- ondragstart="drag(e)" -->
+              <!-- ondragstart="mousedownToDrag()" -->
             <div
-              id=i
+              id=<%= i %>
               class="cards-list-ms draggable plantOrigin"
               draggable="true"
               style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px "
@@ -29,7 +33,7 @@
               <% end %>
             </div>
           <% end %>
-        </div>
+        </section>
       </div>
 
     </div>

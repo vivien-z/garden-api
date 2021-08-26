@@ -17,7 +17,7 @@ import { duplicateDivOnclick } from "../components/duplicate_div_onclick";
 
 document.addEventListener('turbolinks:load', () => {
   onclickToClipboard()
-  mousedownToDrag()
+  // mousedownToDrag()
 
   // draggableDiv()
   // duplicateDivOnclick()
