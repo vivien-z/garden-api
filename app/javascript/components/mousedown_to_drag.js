@@ -37,7 +37,9 @@ dragTarget.onmousedown = (event) => {
     console.log(clone)
     // dragged.parentNode.removeChild(dragged)
     // document.body.append(dragged);
-
+    clone.style.opacity = 0.5
+    dragged.style.opacity = 0.8
+    dragged.style.cursor = 'move'
     dragged.classList.remove("plantOrigin", "m-3")
     dragged.classList.add("plantCopy")
     dragged.style.zIndex = 1000
@@ -65,6 +67,8 @@ dragTarget.onmousedown = (event) => {
       dropField.appendChild(dragged)
       moveAt(dragged, e.pageX, e.pageY)
       document.removeEventListener('mousemove', onMouseMove)
+      clone.style.opacity = ''
+      dragged.style.opacity = ''
       dragged.onmouseup = null
     }
   }
