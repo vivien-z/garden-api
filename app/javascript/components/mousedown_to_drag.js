@@ -39,7 +39,7 @@ dragTarget.onmousedown = (event) => {
     // document.body.append(dragged);
     clone.style.opacity = 0.5
     dragged.style.opacity = 0.8
-    dragged.style.cursor = 'move'
+    dragged.style.cursor = 'copy'
     dragged.classList.remove("plantOrigin", "m-3")
     dragged.classList.add("plantCopy")
     dragged.style.zIndex = 1000
