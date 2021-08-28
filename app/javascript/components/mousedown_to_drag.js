@@ -12,12 +12,14 @@ const dropField = document.querySelector('.drop-field');
 
 dragTarget.ondragstart = () => { return false }
 
-dragTarget.onmousedown = (e) => {
-  e = e || window.event
+dragTarget.onmousedown = (event) => {
+  e = event || window.event
   e.preventDefault()
-  const target = e.target
 
-  if (target && target.classList.contains("draggable")) {
+  const dragged = e.target
+  if (dragged && dragged.classList.contains("draggable")) {
+    let shiftX = e.clientX - dragged.getBoundingClientRect().left;
+    let shiftY = e.clientY - dragged.getBoundingClientRect().top;
 
     function duplicateDiv(originDiv) {
       let clone = originDiv.cloneNode(true)
@@ -29,51 +31,42 @@ dragTarget.onmousedown = (e) => {
       return clone
     }
 
-    const clone = duplicateDiv(target)
-    target.parentNode.insertBefore(clone, target)
-    // target.parentNode.removeChild(target)
-    target.classList.remove("plantOrigin", "m-3")
-    target.classList.add("plantCopy")
-    document.body.append(target);
+    const clone = duplicateDiv(dragged)
+    dragged.parentNode.insertBefore(clone, dragged)
+    console.log(dragged)
+    console.log(clone)
+    // dragged.parentNode.removeChild(dragged)
+    // document.body.append(dragged);
 
-    let shiftX = e.clientX - target.getBoundingClientRect().left;
-    let shiftY = e.clientY - target.getBoundingClientRect().top;
-    console.log(shiftX)
-    console.log(e.clientX)
-    console.log(e.pageX)
-    console.log(target)
-    console.log(target.getBoundingClientRect())
-    console.log(clone.getBoundingClientRect())
-    target.style.position = 'absolute';
-    target.style.zIndex = 1000;
+    dragged.classList.remove("plantOrigin", "m-3")
+    dragged.classList.add("plantCopy")
+    dragged.style.zIndex = 1000
+    dragged.style.position = 'absolute'
 
-    moveAt(target, e);
 
-    // moves the target at (pageX, pageY) coordinates
+    moveAt(dragged, e)
+
+    // moves the dragged at (pageX, pageY) coordinates
     // taking initial shifts into account
     function moveAt(elmnt, e) {
-      elmnt.style.left = e.pageX + shiftX + 'px';
-      elmnt.style.top = e.pageY + shiftY + 'px';
-      // console.log(e.pageX)
-      // console.log(e.clientX)
-      // console.log(shiftX)
+      elmnt.style.left = e.pageX - shiftX + 'px'
+      elmnt.style.top = e.pageY - shiftY + 'px'
     }
 
     function onMouseMove(e) {
-      moveAt(target, e)
+      moveAt(dragged, e)
     }
 
+    // move the dragged on mousemove
+    document.addEventListener('mousemove', onMouseMove)
 
-    // move the target on mousemove
-    document.addEventListener('mousemove', onMouseMove);
-
-    // drop the target, remove unneeded handlers
-    target.onmouseup = function() {
-      dropField.appendChild(target)
-      moveAt(target, e.pageX, e.pageY)
-      document.removeEventListener('mousemove', onMouseMove);
-      target.onmouseup = null;
-    };
+    // drop the dragged, remove unneeded handlers
+    dragged.onmouseup = function() {
+      dropField.appendChild(dragged)
+      moveAt(dragged, e.pageX, e.pageY)
+      document.removeEventListener('mousemove', onMouseMove)
+      dragged.onmouseup = null
+    }
   }
 }
 
