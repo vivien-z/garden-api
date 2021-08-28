@@ -1,83 +1,202 @@
-let dragged;
-
-function duplicateDiv(originDiv) {
-  let clone = originDiv.cloneNode(true)
-  clone.classList.add("plantCopy")
-  clone.classList.remove("plantOrigin")
-  originDiv.parentNode.appendChild(clone)
-  clone.style.zIndex = "100"
-  return clone
-}
-
-function onDragOver(e) {
-  e.preventDefault()
-}
-
-// function onDragLeave(e) {
-//   e.target.style.background = ''
-// }
-
-function onDragEnter(e) {
-  const target = e.target
-
-  if (target && dragged) {
-      e.preventDefault()
-      // Set the dropEffect to move
-      e.dataTransfer.dropEffect = 'move'
-      // target.style.background = '#1f904e'
-  }
-}
-
-function onDrop(e) {
-  const target = e.target
-
-
-  if (target && dragged) {
-    // target.style.backgroundColor = ''
-    e.preventDefault()
-    // Add the moved element to the target's DOM
-    const clone = duplicateDiv(dragged)
-    clone.style.opacity = ''
-    dragged.parentNode.insertBefore(clone, dragged)
-    dragged.parentNode.removeChild(dragged)
-    dragged.style.opacity = ''
-    target.appendChild(dragged)
-  }
-}
-
-
-function onDragStart(e) {
-  let target = e.target
-
-  if (target && target.classList.contains("draggable")) { // If target is an image
-      dragged = target
-      // dragged = duplicateDiv(dragged)
-      e.dataTransfer.setData('text', target.id)
-      console.log("target.id")
-      console.log(target.id)
-      e.dataTransfer.dropEffect = 'move'
-      e.target.style.opacity = 0.6
-  }
-}
-
-function onDragEnd(event) {
-  if (event.target && event.target.classList.contains("draggable")) {
-      event.target.style.opacity = ''
-      dragged = null
-  }
-}
-
 // define sections for different action
 const dragTarget = document.querySelector('.drag-target');
 const dropField = document.querySelector('.drop-field');
 
 // Adding event listeners
-dragTarget.addEventListener('dragstart', onDragStart);
-dragTarget.addEventListener('dragend', onDragEnd);
-dropField.addEventListener('drop', onDrop);
-dropField.addEventListener('dragenter', onDragEnter);
+// dragTarget.addEventListener('dragstart', onDragStart);
+// dragTarget.addEventListener('dragend', onDragEnd);
+// dropField.addEventListener('drop', onDrop);
+// dropField.addEventListener('dragenter', onDragEnter);
 // dropField.addEventListener('dragleave', onDragLeave);
-dropField.addEventListener('dragover', onDragOver);
+// dropField.addEventListener('dragover', onDragOver);
+
+dragTarget.ondragstart = () => { return false }
+
+dragTarget.onmousedown = (e) => {
+  e = e || window.event
+  e.preventDefault()
+  const target = e.target
+
+  if (target && target.classList.contains("draggable")) {
+
+    function duplicateDiv(originDiv) {
+      let clone = originDiv.cloneNode(true)
+      // clone.classList.add("plantCopy")
+      // clone.classList.remove("plantOrigin", "m-3")
+      // originDiv.parentNode.appendChild(clone)
+      // clone.style.zIndex = "100"
+      // clone.style.position = 'absolute'
+      return clone
+    }
+
+    const clone = duplicateDiv(target)
+    target.parentNode.insertBefore(clone, target)
+    // target.parentNode.removeChild(target)
+    target.classList.remove("plantOrigin", "m-3")
+    target.classList.add("plantCopy")
+    document.body.append(target);
+
+    let shiftX = e.clientX - target.getBoundingClientRect().left;
+    let shiftY = e.clientY - target.getBoundingClientRect().top;
+    console.log(shiftX)
+    console.log(e.clientX)
+    console.log(e.pageX)
+    console.log(target)
+    console.log(target.getBoundingClientRect())
+    console.log(clone.getBoundingClientRect())
+    target.style.position = 'absolute';
+    target.style.zIndex = 1000;
+
+    moveAt(target, e);
+
+    // moves the target at (pageX, pageY) coordinates
+    // taking initial shifts into account
+    function moveAt(elmnt, e) {
+      elmnt.style.left = e.pageX + shiftX + 'px';
+      elmnt.style.top = e.pageY + shiftY + 'px';
+      // console.log(e.pageX)
+      // console.log(e.clientX)
+      // console.log(shiftX)
+    }
+
+    function onMouseMove(e) {
+      moveAt(target, e)
+    }
+
+
+    // move the target on mousemove
+    document.addEventListener('mousemove', onMouseMove);
+
+    // drop the target, remove unneeded handlers
+    target.onmouseup = function() {
+      dropField.appendChild(target)
+      moveAt(target, e.pageX, e.pageY)
+      document.removeEventListener('mousemove', onMouseMove);
+      target.onmouseup = null;
+    };
+  }
+}
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////
+// let dragged, shiftX, shiftY, positionX, positionY
+
+// function duplicateDiv(originDiv) {
+//   let clone = originDiv.cloneNode(true)
+//   clone.classList.add("plantCopy")
+//   clone.classList.remove("plantOrigin", "m-3")
+//   originDiv.parentNode.appendChild(clone)
+//   clone.style.zIndex = "100"
+//   clone.style.position = 'absolute'
+//   return clone
+// }
+
+// function onMouseUp(e) {
+//   e.preventDefault()
+//   // positionX = e.pageX - shiftX + 'px'
+//   // positionY = e.pageY - shiftY + 'px'
+//   // console.log("move target")
+//   // console.log(positionX)
+//   // console.log(positionY)
+// }
+
+// function onDragOver(e) {
+//   e.preventDefault()
+// }
+
+// function onDragLeave(e) {
+//   e.target.style.background = ''
+// }
+
+// function onDragEnter(e) {
+//   const target = e.target
+
+//   if (target && dragged) {
+//       e.preventDefault()
+//       // Set the dropEffect to move
+//       e.dataTransfer.dropEffect = 'move'
+//       target.style.borderColor = '#1f904e'
+//   }
+// }
+
+// function onDrop(e) {
+//   const target = e.target
+
+//   if (target && dragged) {
+//     // target.style.backgroundColor = ''
+//     e.preventDefault()
+
+//     // Add the moved element to the target's DOM
+//     const clone = duplicateDiv(dragged)
+//     clone.style.opacity = ''
+
+//     clone.style.left = dragged.getBoundingClientRect().left
+//     clone.style.top = dragged.getBoundingClientRect().top
+
+//     target.onmouseup = (e) => {
+//       e = e || window.event
+//       e.preventDefault()
+
+//       console.log('mouseUp')
+//       console.log(e.target)
+
+//     }
+//     // document.removeEventListener('mousemove', onMouseMove)
+//     // dragged.parentNode.insertBefore(clone, dragged)
+//     // dragged.parentNode.removeChild(dragged)
+//     dragged.style.opacity = ''
+
+//     target.appendChild(clone)
+//     // moveAt(clone, shiftX, shiftY)
+//   }
+// }
+
+// function onDragStart(e) {
+//   let target = e.target
+//   shiftX = e.clientX - target.getBoundingClientRect().left
+//   shiftY = e.clientY - target.getBoundingClientRect().top
+
+//   if (target && target.classList.contains("draggable")) {
+//       dragged = target
+//       // document.addEventListener('mousemove', onMouseMove(e))
+//       // dragged = duplicateDiv(dragged)
+//       e.dataTransfer.setData('text', target.id)
+//       e.dataTransfer.dropEffect = 'move'
+//       e.target.style.opacity = 0.6
+//   }
+// }
+
+// function onDragEnd(event) {
+//   if (event.target && event.target.classList.contains("draggable")) {
+//       event.target.style.opacity = ''
+//       dragged = null
+//       shiftX = null
+//       shiftY = null
+//   }
+// }
+
+// // define sections for different action
+// const dragTarget = document.querySelector('.drag-target');
+// const dropField = document.querySelector('.drop-field');
+
+// // Adding event listeners
+// dragTarget.addEventListener('dragstart', onDragStart);
+// dragTarget.addEventListener('dragend', onDragEnd);
+// dropField.addEventListener('drop', onDrop);
+// dropField.addEventListener('dragenter', onDragEnter);
+// dropField.addEventListener('dragleave', onDragLeave);
+// dropField.addEventListener('dragover', onDragOver);
+
+///////////////////////////////////////////////////////////////
+
 
 // const mousedownToDrag = () => {
 //   let targets = document.querySelectorAll(".draggable")
