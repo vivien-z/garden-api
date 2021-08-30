@@ -33,8 +33,6 @@ dragTarget.onmousedown = (event) => {
 
     const clone = duplicateDiv(dragged)
     dragged.parentNode.insertBefore(clone, dragged)
-    console.log(dragged)
-    console.log(clone)
     // dragged.parentNode.removeChild(dragged)
     // document.body.append(dragged);
     clone.style.opacity = 0.5
@@ -45,7 +43,6 @@ dragTarget.onmousedown = (event) => {
     dragged.style.zIndex = 1000
     dragged.style.position = 'absolute'
 
-
     moveAt(dragged, e)
 
     // moves the dragged at (pageX, pageY) coordinates
@@ -53,6 +50,30 @@ dragTarget.onmousedown = (event) => {
     function moveAt(elmnt, e) {
       elmnt.style.left = e.pageX - shiftX + 'px'
       elmnt.style.top = e.pageY - shiftY + 'px'
+    }
+
+    function adjustToDropZone(elmnt) {
+      const rectField = dropField.getBoundingClientRect()
+      const rectElmnt = elmnt.getBoundingClientRect()
+      console.log('adjust')
+      console.log(rectField)
+      console.log(rectElmnt)
+      if (rectField.left > rectElmnt.left) {
+        console.log('left')
+        elmnt.style.left = rectField.left + 'px'
+      }
+      if (rectField.right < rectElmnt.right) {
+        console.log('right')
+        elmnt.style.left = rectField.right - rectElmnt.width + 'px'
+      }
+      if (rectField.top > rectElmnt.top) {
+        console.log('top')
+        elmnt.style.top = rectField.top + 'px'
+      }
+      if (rectField.bottom < rectElmnt.bottom) {
+        console.log('bottom')
+        elmnt.style.top = rectField.bottom - rectElmnt.height + 'px'
+      }
     }
 
     function onMouseMove(e) {
@@ -64,8 +85,10 @@ dragTarget.onmousedown = (event) => {
 
     // drop the dragged, remove unneeded handlers
     dragged.onmouseup = function() {
+      dragged.parentNode.removeChild(dragged)
       dropField.appendChild(dragged)
-      moveAt(dragged, e.pageX, e.pageY)
+      // moveAt(dragged, e.pageX, e.pageY)
+      adjustToDropZone(dragged)
       document.removeEventListener('mousemove', onMouseMove)
       clone.style.opacity = ''
       dragged.style.opacity = ''
