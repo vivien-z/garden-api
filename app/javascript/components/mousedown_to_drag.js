@@ -27,7 +27,7 @@ function dragItem(event) {
       const clone = duplicateDiv(dragged)
       dragged.parentNode.insertBefore(clone, dragged)
       dragged.classList.remove("plantOrigin", "m-3")
-      dragged.classList.add("plantCopy")
+      dragged.classList.add("plantCopy", "yellow")
     }
     if (dragged.classList.contains("plantCopy")) {
       console.log('copy')

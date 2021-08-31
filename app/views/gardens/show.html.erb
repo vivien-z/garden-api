@@ -26,7 +26,9 @@
               id=<%= i %>,
               class="cards-list-ms draggable plantOrigin m-3"
               draggable="true"
-              style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px "
+              style="height: <%= (collection.plant.size)*5.to_i %>px;
+                     width: <%= (collection.plant.size)*5.to_i %>px;
+                     cursor: copy "
             >
               <%= link_to plant_path(collection.plant) do %>
                 <%= collection.plant.name.capitalize %>
