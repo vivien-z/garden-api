@@ -23,7 +23,7 @@
           <% @user.collections.each_with_index do |collection, i| %>
               <!-- ondragstart="mousedownToDrag()" -->
             <div
-              id=<%= i %>,
+              id=<%= i %>;
               class="cards-list-ms draggable plantOrigin m-3"
               draggable="true"
               style="height: <%= (collection.plant.size)*5.to_i %>px;

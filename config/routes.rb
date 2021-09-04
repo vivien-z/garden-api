@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
+  # root to: 'plants#index'
   # get 'api' => 'pages#api_instruction'
 
   resources :users, only: [:show] do
