@@ -1,0 +1,14 @@
+.scrolling-container {
+  display: flex;
+  align-items: center;
+}
+
+.scrolling-wrapper {
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+
+  .card-main {
+    display: inline-block;
+  }
+}

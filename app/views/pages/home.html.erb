@@ -21,9 +21,9 @@
   <div class="container py-5">
     <div class="row d-flex flex-column align-items-center justify-content-center">
       <h2 class="my-3"><strong>All Plants</strong></h2>
-      <div class="carousel">
+      <div class="scrolling-container ">
         <i class="fas fa-chevron-left"></i>
-        <div class="py-3 cards cd-grid-home border">
+        <div class="scrolling-wrapper py-3 border">
           <% @plants.each_with_index do |plant, index| %>
             <% if index < 6 %>
               <%= link_to plant_path(plant), class: "card-main" do %>
