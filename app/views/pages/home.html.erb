@@ -21,25 +21,29 @@
   <div class="container py-5">
     <div class="row d-flex flex-column align-items-center justify-content-center">
       <h2 class="my-3"><strong>All Plants</strong></h2>
-      <div id="plants-list-container" class="py-3 cards cd-grid-home border">
-        <% @plants.each_with_index do |plant, index| %>
-          <% if index < 6 %>
-            <%= link_to plant_path(plant), class: "card-main" do %>
-              <% if plant.photo.attached? %>
-                <div class="card-m-img"
-                     style="background-image: url(<%= cl_image_path plant.photo.key, height:160, width: 220, crop: :fill %>)">
-                </div>
-              <% else %>
-                <div class="card-m-img"
-                     style="background-image: url(<%= cl_image_path "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:160, width: 220, crop: :fill %>)">
+      <div class="carousel">
+        <i class="fas fa-chevron-left"></i>
+        <div class="py-3 cards cd-grid-home border">
+          <% @plants.each_with_index do |plant, index| %>
+            <% if index < 6 %>
+              <%= link_to plant_path(plant), class: "card-main" do %>
+                <% if plant.photo.attached? %>
+                  <div class="card-m-img"
+                       style="background-image: url(<%= cl_image_path plant.photo.key, height:160, width: 220, crop: :fill %>)">
+                  </div>
+                <% else %>
+                  <div class="card-m-img"
+                       style="background-image: url(<%= cl_image_path "utamb4q9bjfe5st9zumg0wxlxo2r.jpg", height:160, width: 220, crop: :fill %>)">
+                  </div>
+                <% end %>
+                <div class="card-m-info">
+                  <div class="card-m-text"><%= plant.name.capitalize %></div>
                 </div>
               <% end %>
-              <div class="card-m-info">
-                <div class="card-m-text"><%= plant.name.capitalize %></div>
-              </div>
             <% end %>
           <% end %>
-        <% end %>
+        </div>
+        <i class="fas fa-chevron-right"></i>
       </div>
     </div>
 
