@@ -1,3 +1,18 @@
+/* ==================
+  homepage btn
+====================*/
+.button-w {
+  background-color: white;
+  border-radius: 8px;
+  margin: 2.5rem 2.25rem 0;
+  a {
+    color: black;
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-family: $m-title;
+  }
+}
+
 .button-b {
   background: $m-brown-d;
   border: none;
