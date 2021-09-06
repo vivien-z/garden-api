@@ -2,13 +2,15 @@
                            url(<%= asset_path 'banner.jpg' %>)">
   <div  class="banner-text">
     <h1>Garden plan API</h1>
-    <div class="d-flex justify-content-center">
-      <div class="button-w">
-        <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+    <% if !user_signed_in? %>
+      <div class="d-flex justify-content-center">
+        <div class="button-w">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </div>
+        <div class="button-w">
+          <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+        </div>
       </div>
-      <div class="button-w">
-        <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
-      </div>
-    </div>
+    <% end %>
   </div>
 </div>
