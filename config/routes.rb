@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   end
 
   root to: 'pages#home'
+  get 'api' => 'pages#api_doc'
   # root to: 'plants#index'
-  # get 'api' => 'pages#api_instruction'
 
   resources :users, only: [:show] do
     resources :gardens, only: [ :index, :new, :create ]
