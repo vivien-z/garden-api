@@ -1,11 +1,13 @@
-const btnLeft = document.getElementById('scrollLeft')
-const btnRight = document.getElementById('scrollRight')
+const scrollLeft = document.getElementById('scrollLeft')
+const scrollRight = document.getElementById('scrollRight')
+const scrollContent = document.getElementById('scrollContent')
 
-btnLeft.onclick = function() {
-  console.log('left')
-  document.getElementsByClassName('scrolling-container').scrollLeft += 20;
+scrollLeft.onclick = function(e) {
+  scrollContent.scrollLeft += 56;
+  e.preventDefault();
 }
-btnRight.onclick = function() {
-  console.log(document.getElementsByClassName('scrolling-container'))
-  document.getElementsByClassName('scrolling-container').scrollRight += 20;
+
+scrollRight.onclick = function(e) {
+  scrollContent.scrollLeft -= 56;
+  e.preventDefault();
 }

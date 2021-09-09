@@ -27,7 +27,7 @@
       <h2 class="my-3"><strong>Plants List</strong></h2>
       <div class="scrolling-container">
         <i id="scrollLeft" class="arrow left fas fa-chevron-left"></i>
-        <div class="scrolling-wrapper py-3">
+        <div id="scrollContent" class="scrolling-wrapper py-3">
           <% @plants.each_with_index do |plant, index| %>
             <% if index < 6 %>
               <%= link_to plant_path(plant), class: "card-main" do %>
