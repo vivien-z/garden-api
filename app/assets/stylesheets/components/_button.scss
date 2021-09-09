@@ -14,6 +14,7 @@
 }
 
 .button-b {
+  border-radius: 4px;
   background: $m-brown-d;
   border: none;
   padding: 10px 50px;
@@ -21,8 +22,8 @@
   font-family: 'Montserrat', sans-serif;
   &:hover {
     text-decoration: none;
-    background: $m-brown;
-    color: white;
+    background: $m-yellow;
+    color: $m-brown-d;
   }
 }
 .button-b.sm {

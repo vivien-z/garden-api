@@ -5,7 +5,8 @@
   .arrow {
     font-size: 1.5rem;
     &:hover {
-      color: $m-green;
+      // color: $m-green;
+      text-shadow: 2px 2px 18px green;
     }
   }
   .left {
