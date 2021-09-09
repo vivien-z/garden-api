@@ -4,6 +4,9 @@
   width: 100%;
   .arrow {
     font-size: 1.5rem;
+    &:hover {
+      color: $m-green;
+    }
   }
   .left {
     margin-right: 1rem;
@@ -17,8 +20,13 @@
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
 
   .card-main {
     display: inline-block;
   }
+}
+.scrolling-wrapper::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
 }
