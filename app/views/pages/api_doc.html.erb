@@ -1,0 +1,34 @@
+  <div class="pt-5">
+    <h2 class="pt-3 text-center"><strong>API Access</strong></h2>
+    <div class="my-3">
+      <p>Garden Plan API is based on simple REST principles. The endpoints return plant related data in JSON format. An authentication code will be assigned to each user to control data access.</p>
+      <p>To access data through <strong>API</strong>, please follow detailed documentation.</p>
+    </div>
+    <div class="my-3">
+      <h4 class="py-3">Authentication</h4>
+      User can find the unique 30-digit authentication token on <strong>My garden</strong> page from the dropdown menu.
+    </div>
+    <div class="my-3">
+      <h4 class="py-3">Available API Endpoints:</h4>
+      <p>List all plants: <span class="text-code">/api/v1/plants</span></p>
+      <p>List one specific plant: <span class="text-code">/api/v1/plants/[:id]</span></p>
+      <p><strong>METHOD  ACTION</strong></p><hr>
+      <table class="py-3">
+        <tr>
+          <td><strong class="mr-3">GET</strong></td><td>Retrieves resources</td>
+        </tr>
+        <tr>
+          <td><strong class="mr-3">POST</strong></td> <td>Creates resources (authentication needed)</td>
+        </tr>
+        <tr>
+          <td><strong class="mr-3">PATCH</strong></td><td>Edit and update resources (authentication needed)</td>
+        </tr>
+        <tr>
+          <td><strong class="mr-3">DELETE</strong></td> <td>Deletes resources (authentication needed)</td>
+        </tr>
+      </table>
+      <hr>
+      <%= image_tag "api-img.png", style: "width:100%; max-width: 620px" %>
+    </div>
+  </div>
+</div>
