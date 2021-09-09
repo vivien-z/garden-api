@@ -29,7 +29,7 @@
         <i id="scrollLeft" class="arrow left fas fa-chevron-left"></i>
         <div id="scrollContent" class="scrolling-wrapper py-3">
           <% @plants.each_with_index do |plant, index| %>
-            <% if index < 6 %>
+            <% if index < 10 %>
               <%= link_to plant_path(plant), class: "card-main" do %>
                 <% if plant.photo.attached? %>
                   <div class="card-m-img"
