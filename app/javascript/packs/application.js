@@ -18,7 +18,7 @@ import { mousedownToDrag } from "../components/mousedown_to_drag";
 
 document.addEventListener('turbolinks:load', () => {
   onclickToClipboard()
-  // mousedownToDrag()
+  mousedownToDrag()
 
   // draggableDiv()
   // duplicateDivOnclick()

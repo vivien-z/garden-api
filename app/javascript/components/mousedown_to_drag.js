@@ -1,84 +1,91 @@
-const dragTarget = document.querySelector('.drag-target')
-const dropField = document.querySelector('.drop-field')
-const moveTarget = dropField.querySelector('.plantCopy')
+const mousedownToDrag = () => {
+  const dragTarget = document.getElementsByClassName('drag-target')[0]
 
-if (dropField) {
-  dragTarget.ondragstart = () => { return false }
-  dropField.ondragstart = () => { return false }
+  if (dragTarget) {
+    const dropField = document.getElementsByClassName('drop-field')[0]
+    const moveTarget = dropField.getElementsByClassName('plantCopy')[0]
 
-  dragTarget.onmousedown = dragItem
-  dropField.onmousedown = dragItem
+    dragTarget.ondragstart = () => { return false }
+    dropField.ondragstart = () => { return false }
 
-  function dragItem(event) {
-    e = event || window.event
-    e.preventDefault()
+    dragTarget.onmousedown = dragItem
+    dropField.onmousedown = dragItem
 
-    const dragged = e.target
-    if (dragged && dragged.classList.contains("draggable")) {
-      let shiftX = e.clientX - dragged.getBoundingClientRect().left;
-      let shiftY = e.clientY - dragged.getBoundingClientRect().top;
+    function dragItem(event) {
+      event = event || window.event
+      event.preventDefault()
 
-      function duplicateDiv(originDiv) {
-        let clone = originDiv.cloneNode(true)
-        return clone
-      }
+      const dragged = event.target
+      if (dragged && dragged.classList.contains("draggable")) {
+        let shiftX = event.clientX - dragged.getBoundingClientRect().left;
+        let shiftY = event.clientY - dragged.getBoundingClientRect().top;
 
-      if (dragged.classList.contains("plantOrigin")) {
-        const clone = duplicateDiv(dragged)
-        dragged.parentNode.insertBefore(clone, dragged)
-        dragged.classList.remove("plantOrigin", "m-3")
-        dragged.classList.add("plantCopy", "yellow")
-      }
-      if (dragged.classList.contains("plantCopy")) {
-      }
-
-      dragged.style.opacity = 0.7
-      dragged.style.cursor = 'grabbing'
-      dragged.style.zIndex = 1000
-      dragged.style.position = 'absolute'
-
-      moveAt(dragged, e)
-
-      function moveAt(elmnt, e) {
-        elmnt.style.left = e.pageX - shiftX + 'px'
-        elmnt.style.top = e.pageY - shiftY + 'px'
-      }
-
-      function adjustToDropZone(elmnt) {
-        const rectField = dropField.getBoundingClientRect()
-        const rectElmnt = elmnt.getBoundingClientRect()
-
-        if (rectField.left > rectElmnt.left) {
-          elmnt.style.left = rectField.left + 'px'
+        function duplicateDiv(originDiv) {
+          let clone = originDiv.cloneNode(true)
+          return clone
         }
-        if (rectField.right < rectElmnt.right) {
-          elmnt.style.left = rectField.right - rectElmnt.width + 'px'
-        }
-        if (rectField.top > rectElmnt.top) {
-          elmnt.style.top = rectField.top + 'px'
-        }
-        if (rectField.bottom < rectElmnt.bottom) {
-          elmnt.style.top = rectField.bottom - rectElmnt.height + 'px'
-        }
-      }
 
-      function onMouseMove(e) {
-        moveAt(dragged, e)
-      }
+        if (dragged.classList.contains("plantOrigin")) {
+          const clone = duplicateDiv(dragged)
+          dragged.parentNode.insertBefore(clone, dragged)
+          dragged.classList.remove("plantOrigin", "m-3")
+          dragged.classList.add("plantCopy", "yellow")
+        }
+        if (dragged.classList.contains("plantCopy")) {
+        }
 
-      // move the dragged on mousemove
-      document.addEventListener('mousemove', onMouseMove)
+        dragged.style.opacity = 0.7
+        dragged.style.cursor = 'grabbing'
+        dragged.style.zIndex = 1000
+        dragged.style.position = 'absolute'
 
-      // drop the dragged, remove unneeded handlers
-      dragged.onmouseup = function() {
-        dragged.parentNode.removeChild(dragged)
-        dropField.appendChild(dragged)
-        adjustToDropZone(dragged)
-        document.removeEventListener('mousemove', onMouseMove)
-        dragged.style.opacity = ''
-        dragged.style.cursor = 'grab'
-        dragged.onmouseup = null
+        moveAt(dragged, event)
+
+        function moveAt(elmnt, event) {
+          elmnt.style.left = event.pageX - shiftX + 'px'
+          elmnt.style.top = event.pageY - shiftY + 'px'
+        }
+
+        function adjustToDropZone(elmnt) {
+          const rectField = dropField.getBoundingClientRect()
+          const rectElmnt = elmnt.getBoundingClientRect()
+
+          if (rectField.left > rectElmnt.left) {
+            elmnt.style.left = rectField.left + 'px'
+          }
+          if (rectField.right < rectElmnt.right) {
+            elmnt.style.left = rectField.right - rectElmnt.width + 'px'
+          }
+          if (rectField.top > rectElmnt.top) {
+            elmnt.style.top = rectField.top + 'px'
+          }
+          if (rectField.bottom < rectElmnt.bottom) {
+            elmnt.style.top = rectField.bottom - rectElmnt.height + 'px'
+          }
+        }
+
+        function onMouseMove(e) {
+          moveAt(dragged, e)
+        }
+
+        // move the dragged on mousemove
+        document.addEventListener('mousemove', onMouseMove)
+
+        // drop the dragged, remove unneeded handlers
+        dragged.onmouseup = function() {
+          dragged.parentNode.removeChild(dragged)
+          dropField.appendChild(dragged)
+          adjustToDropZone(dragged)
+          document.removeEventListener('mousemove', onMouseMove)
+          dragged.style.opacity = ''
+          dragged.style.cursor = 'grab'
+          dragged.onmouseup = null
+        }
       }
     }
   }
+
 }
+
+export { mousedownToDrag };
+
