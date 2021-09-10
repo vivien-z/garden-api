@@ -19,7 +19,7 @@
     <div class="col-xs-12 my-5">
       <div class="mb-3">
         <h4>My Plant Collection</h4>
-        <section class="drag-target plants-list my-3">
+        <section id="plantsToDrag" class="drag-target plants-list my-3">
           <% @user.collections.each_with_index do |collection, i| %>
               <!-- ondragstart="mousedownToDrag()" -->
             <div
