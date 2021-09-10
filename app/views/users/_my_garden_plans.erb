@@ -58,12 +58,29 @@
         </div>
         <div class="modal-body">
           <%= simple_form_for([@user, @garden]) do |f| %>
-            <%= f.association :zone, collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
-                                     :include_blank => "Pick a zone"
-                                     %>
+            <%= f.association :zone,
+                              collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
+                              :include_blank => "Pick a zone"
+                            %>
             <%= f.input :name %>
-            <%= f.input :width, :placeholder => "in cm", input_html: { min: 0, step: 0.5 } %>
-            <%= f.input :length, :placeholder => "in cm", input_html: { min: 0, step: 0.5 } %>
+            <div class="range-slider">
+              <%= f.input :width,
+                          id: 'fieldWidth',
+                          label: 'Width (in cm)',
+                          :placeholder => "in cm",
+                          input_html: { class: "range-slider__range", type: "range", value: "100", min: 0, max: 300 }
+                        %>
+              <span class="range-slider__value">0</span>
+            </div>
+            <div class="range-slider">
+              <%= f.input :length,
+                          id: 'fieldLength',
+                          label: 'Length (in cm)',
+                          :placeholder => "in cm",
+                          input_html: { class: "range-slider__range", type: "range", value: "100", min: 0, max: 300 }
+                        %>
+              <span class="range-slider__value">0</span>
+            </div>
             <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
           <% end %>
         </div>
