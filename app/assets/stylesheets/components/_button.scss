@@ -6,7 +6,7 @@
   border-radius: 8px;
   margin: 2.5rem 2.25rem 0;
   a {
-    color: black;
+    color: $m-brown-d;
     font-size: 1.25rem;
     font-weight: bold;
     font-family: $m-title;
@@ -15,7 +15,7 @@
 
 .button-b {
   border-radius: 4px;
-  background: $m-brown-d;
+  background: $m-brown;
   border: none;
   padding: 10px 50px;
   color: white;
@@ -23,7 +23,7 @@
   &:hover {
     text-decoration: none;
     background: $m-yellow;
-    color: $m-brown-d;
+    color: $m-brown;
   }
 }
 .button-b.sm {

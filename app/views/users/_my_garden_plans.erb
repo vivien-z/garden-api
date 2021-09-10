@@ -26,8 +26,17 @@
   </div>
 
   <div class="mb-3">
-    <h4>My Garden Collection</h4>
-    <button type="button" class="btn btn-warning button-add-sm" data-toggle="modal" data-target="#newGardenFormModal"><i class="fas fa-plus"></i></button>
+    <div class="d-flex">
+      <h4 class="mr-5">My Garden Collection</h4>
+      <button
+        type="button"
+        class="btn btn-warning button-add-sm"
+        data-toggle="modal"
+        data-target="#newGardenFormModal"
+      >
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
     <div class="plants-list my-3">
       <% @user.gardens.each do |garden| %>
         <%= link_to garden_path(garden) do %>
