@@ -35,7 +35,7 @@
   flex-wrap: wrap;
   min-height: 155px;
   a {
-    color: black !important;
+    color: $m-brown-d !important;
     &:hover {
       font-size: 1.25rem;
       text-decoration: none;
@@ -56,7 +56,7 @@
   font-weight: bold;
   text-shadow: 1px 1px 5px white;
   a {
-    color: black !important;
+    color: $m-brown-d !important;
     &:hover {
       font-size: 1.25rem;
       text-decoration: none;
