@@ -1,7 +1,9 @@
 // Base Colors
 $shade-10: $m-brown !default;
-$shade-1: #d7dcdf !default;
+$shade-1: rgba(252, 191, 73, 0.25) !default;
 $shade-0: #fff !default;
+//$m-yellow
+//$m-brown 0.4
 
 // Range Slider
 $range-width: 100% !default;
@@ -21,6 +23,13 @@ $range-label-width: 60px !default;
   width: $range-width;
   display: flex;
   align-items: flex-end;
+  .form-control {
+    border: none !important;
+    &:focus {
+      border-color: $m-yellow !important;
+      box-shadow: 0 0 0 0.3rem rgba(88, 47, 14, 0.40) !important;
+    }
+  }
 }
 
 .range-slider__range {
@@ -33,6 +42,7 @@ $range-label-width: 60px !default;
   outline: none;
   padding: 0;
   margin: 0;
+
 
   // Range Handle
   &::-webkit-slider-thumb {
@@ -73,7 +83,6 @@ $range-label-width: 60px !default;
 
   // Focus state
   &:focus {
-
     &::-webkit-slider-thumb {
       box-shadow: 0 0 0 3px $shade-0,
                   0 0 0 6px $m-yellow;
@@ -121,3 +130,6 @@ input::-moz-focus-outer {
   border: 0;
 }
 
+input[type=range]:focus::-ms-fill-lower {
+    background: $m-yellow;
+}
