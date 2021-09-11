@@ -58,31 +58,52 @@
         </div>
         <div class="modal-body">
           <%= simple_form_for([@user, @garden]) do |f| %>
-            <%= f.association :zone,
-                              collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
-                              :include_blank => "Pick a zone"
-                            %>
-            <%= f.input :name %>
+            <div class="row w-100">
+              <%= f.input :name, wrapper_html: { class: "col-md-6 w-100" } %>
+              <%= f.association :zone,
+                                wrapper_html: { class: "col-md-4 w-100" },
+                                collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
+                                :include_blank => "Pick a zone"
+              %>
+            </div>
+            <div class="row w-100">
+              <div class="range-slider col-md-11">
+                <%= f.input :width,
+                          id: 'fieldWidth',
+                          label: 'Width (in cm)',
+                          :placeholder => "in cm",
+                          input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 300, step: 5 },
+                          wrapper_html: { class: 'w-100' }
+                          %>
+                <span class="range-slider__value border">0</span>
+              </div>
 
-            <div class="range-slider">
-            <%= f.input :width,
-                        id: 'fieldWidth',
-                        label: 'Width (in cm)',
-                        :placeholder => "in cm",
-                        input_html: { class: "range-slider__range", type: "range", value: "100", min: 0, max: 300, step: 0.5 }
-                        # wrapper_html: { class: 'range-slider' }
-                        %>
-              <span class="range-slider__value">0</span>
+              <div class="range-slider col-md-11">
+                <%= f.input :length,
+                            id: 'fieldLength',
+                            label: 'Length (in cm)',
+                            :placeholder => "in cm",
+                            input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 300, step: 5 },
+                            wrapper_html: { class: 'w-100' }
+                          %>
+                <span class="range-slider__value">0</span>
+              </div>
             </div>
 
-            <div class="range-slider">
-              <%= f.input :length,
-                          id: 'fieldLength',
-                          label: 'Length (in cm)',
-                          :placeholder => "in cm",
-                          input_html: { class: "range-slider__range", type: "range", value: "100", min: 0, max: 300, step: 0.5 }
-                        %>
-              <span class="range-slider__value">0</span>
+            <div class="row">
+              <div class="garden-field-display-max border">
+                <div class="garden-field-display-input border"></div>
+              </div>
+            </div>
+
+            <div class="garden-field d-flex border">
+              <div class="garden-field-setting w-50">
+
+
+              </div>
+
+              <div class="garden-field-display border">
+              </div>
             </div>
             <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
           <% end %>
