@@ -129,7 +129,3 @@ input::-moz-focus-inner,
 input::-moz-focus-outer {
   border: 0;
 }
-
-input[type=range]:focus::-ms-fill-lower {
-    background: $m-yellow;
-}
