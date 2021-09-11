@@ -67,7 +67,7 @@
               %>
             </div>
             <div class="row w-100">
-              <div class="range-slider col-md-11">
+              <div class="range-slider col-md-12">
                 <%= f.input :width,
                           id: 'fieldWidth',
                           label: 'Width (in cm)',
@@ -78,7 +78,7 @@
                 <span class="range-slider__value border">0</span>
               </div>
 
-              <div class="range-slider col-md-11">
+              <div class="range-slider col-md-12">
                 <%= f.input :length,
                             id: 'fieldLength',
                             label: 'Length (in cm)',
@@ -89,22 +89,13 @@
                 <span class="range-slider__value">0</span>
               </div>
             </div>
-
+<!--
             <div class="row">
-              <div class="garden-field-display-max border">
-                <div class="garden-field-display-input border"></div>
+              <div class="garden-field-display__max border">
+                <div class="garden-field-display__input border"></div>
               </div>
-            </div>
+            </div> -->
 
-            <div class="garden-field d-flex border">
-              <div class="garden-field-setting w-50">
-
-
-              </div>
-
-              <div class="garden-field-display border">
-              </div>
-            </div>
             <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
           <% end %>
         </div>
