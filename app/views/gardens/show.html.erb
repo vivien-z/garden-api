@@ -3,18 +3,19 @@
 </head>
 
 <div class="container">
-  <div class="row">
-    <div class="col-xs-12 my-5">
-      <h2 class="my-3"><%= @garden.name.capitalize %></h2>
-      <section
-           class="drop-field garden-field"
-           style="height: <%= (@garden.width)*2.to_i %>rem; width: <%= (@garden.length)*2.to_i %>rem"
-      >
-      </section>
-    </div>
+  <div class="row w-100">
+    <div class="col-md-12 my-5 d-flex flex-column align-item-center justify-content-center">
+      <h2 class="my-3" style="margin: 0 auto"><%= @garden.name.capitalize %></h2>
+      <div class="garden-field-container">
+        <section
+             class="drop-field garden-field"
+             style="height: <%= (@garden.width)*(0.25).to_f %>rem; width: <%= (@garden.length)*(0.25).to_f %>rem"
+        >
+        </section>
+      </div>
   </div>
   <div class="row">
-    <div class="col-xs-12 my-5">
+    <div class="col-md-12 my-5">
       <div class="mb-3">
         <h4>My Plant Collection</h4>
         <section id="plantsToDrag" class="drag-target plants-list my-3">
@@ -24,8 +25,8 @@
               id=<%= i %>;
               class="cards-list-ms draggable plantOrigin yellow m-3"
               draggable="true"
-              style="height: <%= (collection.plant.size)*2.to_i %>rem;
-                     width: <%= (collection.plant.size)*2.to_i %>rem;
+              style="height: <%= (collection.plant.size)*(0.25).to_f %>rem;
+                     width: <%= (collection.plant.size)*(0.25).to_f %>rem;
                      cursor: copy "
             >
               <%= link_to plant_path(collection.plant) do %>

@@ -1,6 +1,5 @@
 const mousedownToDrag = () => {
   const dragTarget = document.getElementsByClassName('drag-target')[0]
-
   if (dragTarget) {
     const dropField = document.getElementsByClassName('drop-field')[0]
     const moveTarget = dropField.getElementsByClassName('plantCopy')[0]
@@ -14,6 +13,7 @@ const mousedownToDrag = () => {
     function dragItem(event) {
       event = event || window.event
       event.preventDefault()
+      console.log('mousedown to drag')
 
       const dragged = event.target
       if (dragged && dragged.classList.contains("draggable")) {
