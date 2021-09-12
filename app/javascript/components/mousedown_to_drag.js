@@ -28,8 +28,8 @@ const mousedownToDrag = () => {
         if (dragged.classList.contains("plantOrigin")) {
           const clone = duplicateDiv(dragged)
           dragged.parentNode.insertBefore(clone, dragged)
-          dragged.classList.remove("plantOrigin", "m-3")
-          dragged.classList.add("plantCopy", "yellow")
+          dragged.classList.remove("plantOrigin","yellow", "m-3")
+          dragged.classList.add("plantCopy")
         }
         if (dragged.classList.contains("plantCopy")) {
         }
