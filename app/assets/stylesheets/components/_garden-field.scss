@@ -1,5 +1,11 @@
+.garden-field-container {
+  width: 100%;
+  overflow-x: scroll;
+  padding: 1rem;
+}
+
 .garden-field {
-  border: 4px solid rgb(88, 47, 14);
+  border: 6px solid rgb(88, 47, 14);
   border-radius: 26px;
   background: rgba(88, 47, 14, 0.85);
 }
