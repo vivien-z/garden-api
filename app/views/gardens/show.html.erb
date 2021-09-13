@@ -3,27 +3,29 @@
 </head>
 
 <div class="container">
-  <div class="row w-100">
-    <div class="col-md-12 my-5 d-flex flex-column align-item-center justify-content-center">
-      <h2 class="my-3" style="margin: 0 auto"><%= @garden.name.capitalize %></h2>
-      <div class="garden-field-container">
-        <div
+  
+  <div class="row">
+    <div class="col-xs-12 my-5">
+      <h2 class="my-3"><%= @garden.name %></h2>
+      <div class="garden-field-container border">
+        <section
              class="drop-field garden-field"
              style="height: <%= (@garden.width)*(0.25).to_f %>rem; width: <%= (@garden.length)*(0.25).to_f %>rem"
         >
-        </div>
+        </section>
       </div>
+    </div>
   </div>
+  
   <div class="row">
     <div class="col-md-12 my-5">
       <div class="mb-3">
         <h4>My Plant Collection</h4>
         <div id="plantsToDrag" class="drag-target plants-list my-3">
           <% @user.collections.each_with_index do |collection, i| %>
-              <!-- ondragstart="mousedownToDrag()" -->
             <div
               id=<%= i %>;
-              class="cards-list-ms draggable plantOrigin yellow m-3"
+              class="cards-list-ms draggable plantOrigin m-3 yellow"
               draggable="true"
               style="height: <%= (collection.plant.size)*(0.25).to_f %>rem;
                      width: <%= (collection.plant.size)*(0.25).to_f %>rem;
