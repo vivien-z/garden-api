@@ -13,11 +13,12 @@
           <% @user.collections.each_with_index do |collection, i| %>
             <div
               id=<%= i %>;
-              class="cards-list-ms draggable plantOrigin m-3 yellow"
+              class="cards-list sq draggable plantOrigin m-3 yellow"
               draggable="true"
-              style="height: <%= (collection.plant.size)*(0.25).to_f %>rem;
-                     width: <%= (collection.plant.size)*(0.25).to_f %>rem;
-                     cursor: copy "
+              style="
+     /*           height: <%= (collection.plant.size)*(0.25).to_f %>rem;
+                width: <%= (collection.plant.size)*(0.25).to_f %>rem;*/
+                cursor: copy "
             >
               <%= link_to plant_path(collection.plant) do %>
                 <%= collection.plant.name.capitalize %>
