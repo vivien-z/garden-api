@@ -23,7 +23,7 @@
           <% @user.collections.each_with_index do |collection, i| %>
             <div
               id=<%= i %>;
-              class="cards-list-ms draggable plantOrigin m-3"
+              class="cards-list-ms draggable plantOrigin m-3 yellow"
               draggable="true"
               style="height: <%= (collection.plant.size)*(0.25).to_f %>rem;
                      width: <%= (collection.plant.size)*(0.25).to_f %>rem;
