@@ -4,7 +4,7 @@
     <div class="plants-list my-3">
       <% @plants.each do |plant| %>
         <%= link_to plant_path(plant) do %>
-          <div class="cards-list-ms m-3 yellow" style="height: <%= (plant.size)*5.to_i %>px; width: <%= (plant.size)*5.to_i %>px">
+          <div class="cards-list-ms m-3 yellow" style="height: <%= (plant.size)*(0.25).to_f %>rem; width: <%= (plant.size)*(0.25).to_f %>rem">
             <%= plant.name.capitalize if plant.user_id == current_user.id %>
           </div>
         <% end %>
@@ -17,7 +17,7 @@
     <div class="plants-list my-3">
       <% @user.collections.each do |collection| %>
         <%= link_to plant_path(collection.plant) do %>
-          <div class="cards-list-ms m-3" style="height: <%= (collection.plant.size)*5.to_i %>px; width: <%= (collection.plant.size)*5.to_i %>px">
+          <div class="cards-list-ms m-3" style="height: <%= (collection.plant.size)*(0.25).to_f %>rem; width: <%= (collection.plant.size)*(0.25).to_f %>rem">
             <%= collection.plant.name.capitalize %>
           </div>
         <% end %>
@@ -70,9 +70,9 @@
               <div class="range-slider col-md-12">
                 <%= f.input :width,
                           id: 'fieldWidth',
-                          label: 'Width (in cm)',
+                          label: 'Width (Max 100cm)',
                           :placeholder => "in cm",
-                          input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 300, step: 5 },
+                          input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 100, step: 5 },
                           wrapper_html: { class: 'w-100' }
                           %>
                 <span class="range-slider__value border">0</span>
@@ -81,9 +81,9 @@
               <div class="range-slider col-md-12">
                 <%= f.input :length,
                             id: 'fieldLength',
-                            label: 'Length (in cm)',
+                            label: 'Length (Max 200cm)',
                             :placeholder => "in cm",
-                            input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 300, step: 5 },
+                            input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 200, step: 5 },
                             wrapper_html: { class: 'w-100' }
                           %>
                 <span class="range-slider__value">0</span>
