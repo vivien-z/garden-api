@@ -49,6 +49,7 @@ const mousedownToDrag = () => {
         function adjustToDropZone(elmnt, event) {
           const rectField = dropField.getBoundingClientRect()
           const rectElmnt = elmnt.getBoundingClientRect()
+          const diff = event.pageY - event.clientY
 
           if ((rectField.left + 6) > rectElmnt.left) {
             elmnt.style.left = (rectField.left + 6) + 'px'
@@ -57,10 +58,10 @@ const mousedownToDrag = () => {
             elmnt.style.left = (rectField.right - 6 - rectElmnt.width) + 'px'
           }
           if ((rectField.top + 6) > rectElmnt.top) {
-            elmnt.style.top = (event.pageY - event.clientY) + (rectField.top + 6) + 'px'
+            elmnt.style.top = (diff + rectField.top + 6) + 'px'
           }
           if ((rectField.bottom - 6) < rectElmnt.bottom) {
-            elmnt.style.top = (event.pageY - event.clientY) + (rectField.bottom - 6 - rectElmnt.height) + 'px'
+            elmnt.style.top = (diff + rectField.bottom - 6 - rectElmnt.height) + 'px'
           }
         }
 
