@@ -50,18 +50,28 @@ const mousedownToDrag = () => {
           const rectField = dropField.getBoundingClientRect()
           const rectElmnt = elmnt.getBoundingClientRect()
 
-          if (rectField.left > rectElmnt.left) {
-            elmnt.style.left = rectField.left + 'px'
-          }
-          if (rectField.right < rectElmnt.right) {
-            elmnt.style.left = rectField.right - rectElmnt.width + 'px'
-          }
-          if (rectField.top > rectElmnt.top) {
-            elmnt.style.top = rectField.top + 'px'
-          }
-          if (rectField.bottom < rectElmnt.bottom) {
-            elmnt.style.top = rectField.bottom - rectElmnt.height + 'px'
-          }
+          // const leftIn = rectField.left > rectElmnt.left
+          // const rightIn = rectField.right < rectElmnt.right
+          // const topIn = rectField.top > rectElmnt.top
+          // const bottomIn = rectField.bottom < rectElmnt.bottom
+
+          // while ( !(leftIn && rightIn && topIn && bottomIn) ) {
+
+            if ((rectField.left + 6) > rectElmnt.left) {
+              elmnt.style.left = (rectField.left + 6) + 'px'
+            }
+            if ((rectField.right - 6) < rectElmnt.right) {
+              elmnt.style.left = (rectField.right - 6 - rectElmnt.width) + 'px'
+            }
+            if ((rectField.top + 6) > rectElmnt.top) {
+              elmnt.style.top = (rectField.top + 6) + 'px'
+            }
+            if ((rectField.bottom - 6) < rectElmnt.bottom) {
+              elmnt.style.top = (rectField.bottom - 6 - rectElmnt.height) + 'px'
+            }
+
+          // }
+
         }
 
         function onMouseMove(e) {
