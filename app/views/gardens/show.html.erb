@@ -3,6 +3,7 @@
 </head>
 
 <div class="container">
+  
   <div class="row">
     <div class="col-xs-12 my-5">
       <h2 class="my-3"><%= @garden.name %></h2>
@@ -12,14 +13,15 @@
              style="height: <%= (@garden.width)*(0.25).to_f %>rem; width: <%= (@garden.length)*(0.25).to_f %>rem"
         >
         </section>
-    </div>
+      </div>
     </div>
   </div>
+  
   <div class="row">
-    <div class="col-xs-12 my-5">
+    <div class="col-md-12 my-5">
       <div class="mb-3">
         <h4>My Plant Collection</h4>
-        <section id="plantsToDrag" class="drag-target plants-list my-3">
+        <div id="plantsToDrag" class="drag-target plants-list my-3">
           <% @user.collections.each_with_index do |collection, i| %>
             <div
               id=<%= i %>;
@@ -34,7 +36,7 @@
               <% end %>
             </div>
           <% end %>
-        </section>
+        </div>
       </div>
 
     </div>
