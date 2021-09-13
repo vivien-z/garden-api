@@ -46,32 +46,22 @@ const mousedownToDrag = () => {
           elmnt.style.top = event.pageY - shiftY + 'px'
         }
 
-        function adjustToDropZone(elmnt) {
+        function adjustToDropZone(elmnt, event) {
           const rectField = dropField.getBoundingClientRect()
           const rectElmnt = elmnt.getBoundingClientRect()
 
-          // const leftIn = rectField.left > rectElmnt.left
-          // const rightIn = rectField.right < rectElmnt.right
-          // const topIn = rectField.top > rectElmnt.top
-          // const bottomIn = rectField.bottom < rectElmnt.bottom
-
-          // while ( !(leftIn && rightIn && topIn && bottomIn) ) {
-
-            if ((rectField.left + 6) > rectElmnt.left) {
-              elmnt.style.left = (rectField.left + 6) + 'px'
-            }
-            if ((rectField.right - 6) < rectElmnt.right) {
-              elmnt.style.left = (rectField.right - 6 - rectElmnt.width) + 'px'
-            }
-            if ((rectField.top + 6) > rectElmnt.top) {
-              elmnt.style.top = (rectField.top + 6) + 'px'
-            }
-            if ((rectField.bottom - 6) < rectElmnt.bottom) {
-              elmnt.style.top = (rectField.bottom - 6 - rectElmnt.height) + 'px'
-            }
-
-          // }
-
+          if ((rectField.left + 6) > rectElmnt.left) {
+            elmnt.style.left = (rectField.left + 6) + 'px'
+          }
+          if ((rectField.right - 6) < rectElmnt.right) {
+            elmnt.style.left = (rectField.right - 6 - rectElmnt.width) + 'px'
+          }
+          if ((rectField.top + 6) > rectElmnt.top) {
+            elmnt.style.top = (event.pageY - event.clientY) + (rectField.top + 6) + 'px'
+          }
+          if ((rectField.bottom - 6) < rectElmnt.bottom) {
+            elmnt.style.top = (event.pageY - event.clientY) + (rectField.bottom - 6 - rectElmnt.height) + 'px'
+          }
         }
 
         function onMouseMove(e) {
@@ -82,10 +72,10 @@ const mousedownToDrag = () => {
         document.addEventListener('mousemove', onMouseMove)
 
         // drop the dragged, remove unneeded handlers
-        dragged.onmouseup = function() {
+        dragged.onmouseup = function(e) {
           dragged.parentNode.removeChild(dragged)
           dropField.appendChild(dragged)
-          adjustToDropZone(dragged)
+          adjustToDropZone(dragged, e)
           document.removeEventListener('mousemove', onMouseMove)
           dragged.style.opacity = ''
           dragged.style.cursor = 'grab'
