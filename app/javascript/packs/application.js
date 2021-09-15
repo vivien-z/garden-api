@@ -21,7 +21,7 @@ document.addEventListener('turbolinks:load', () => {
   onclickToClipboard();
   mousedownToDrag();
   rangeSlider();
-
+  clickToScroll();
   // draggableDiv()
   // duplicateDivOnclick()
 });
