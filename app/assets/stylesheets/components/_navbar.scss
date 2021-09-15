@@ -35,3 +35,18 @@
   height: 0;
   color: transparent;
 }
+
+.dropdown-menu {
+  border-radius: 6px;
+  border: none !important;
+  .dropdown-item {
+    font-weight: 600 !important;
+    &:hover, &:focus {
+      background: rgba(255, 198, 90, 0.6);
+    }
+  }
+}
+
+.dropdown-divider {
+  margin: 0.2rem 0 !important;
+}

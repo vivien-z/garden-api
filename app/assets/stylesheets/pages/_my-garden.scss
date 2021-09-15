@@ -43,27 +43,3 @@
   }
 }
 
-/* ==================
-    Garden plans
-====================*/
-.cards-list-ms {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: $m-green-l;
-  border-radius: 50%;
-  // margin: 1.25rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 5px white;
-  a {
-    color: $m-brown-d !important;
-    &:hover {
-      font-size: 1.25rem;
-      text-decoration: none;
-    }
-  }
-}
-
-.cards-list-ms.yellow {
-  background: $m-yellow;
-}

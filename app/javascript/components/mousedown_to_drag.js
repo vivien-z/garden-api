@@ -82,6 +82,9 @@ const mousedownToDrag = () => {
           document.removeEventListener('mousemove', onMouseMove)
           dragged.style.opacity = ''
           dragged.style.cursor = 'grab'
+          console.log(e.pageX)
+          console.log(e.pageY)
+          console.log(dragged.getBoundingClientRect())
           dragged.onmouseup = null
         }
       }
