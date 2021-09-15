@@ -1,25 +1,20 @@
 const mousedownToDrag = () => {
   const dragTarget = document.getElementsByClassName('drag-target').item(0)
-      console.log(dragTarget)
-
 
   if (dragTarget) {
     const dropField = document.getElementsByClassName('drop-field').item(0)
     const moveTarget = dropField.getElementsByClassName('plantCopy').item(0)
-      console.log(dropField)
 
 // Define drag event
     function dragItem(e) {
       e = e || window.event
       e.preventDefault()
-      console.log('mousedown to drag')
 
       const dragged = e.target
 
       if (dragged && dragged.classList.contains("draggable")) {
         let shiftX = e.clientX - dragged.getBoundingClientRect().left;
         let shiftY = e.clientY - dragged.getBoundingClientRect().top;
-        console.log(dragged)
 
         function duplicateDiv(originDiv) {
           let clone = originDiv.cloneNode(true)
@@ -43,9 +38,10 @@ const mousedownToDrag = () => {
         moveAt(dragged, e)
 
         function moveAt(elmnt, event) {
-          console.log('moved')
           elmnt.style.left = event.pageX - shiftX + 'px'
           elmnt.style.top = event.pageY - shiftY + 'px'
+          // let offX = elmnt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
+          // let offY = elmnt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
         }
 
         function adjustToDropZone(elmnt, event) {
@@ -82,9 +78,9 @@ const mousedownToDrag = () => {
           document.removeEventListener('mousemove', onMouseMove)
           dragged.style.opacity = ''
           dragged.style.cursor = 'grab'
-          console.log(e.pageX)
-          console.log(e.pageY)
-          console.log(dragged.getBoundingClientRect())
+          let offX = dragged.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
+          let offY = dragged.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
+
           dragged.onmouseup = null
         }
       }

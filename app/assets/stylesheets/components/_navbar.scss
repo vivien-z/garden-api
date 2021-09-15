@@ -36,9 +36,10 @@
   color: transparent;
 }
 
-.dropdown-menu {
+.dropdown-menu.show {
   border-radius: 6px;
   border: none !important;
+  padding: 0.5rem 0 !important;
   .dropdown-item {
     font-weight: 600 !important;
     &:hover, &:focus {
