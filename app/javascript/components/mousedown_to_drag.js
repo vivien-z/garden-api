@@ -1,24 +1,25 @@
 const mousedownToDrag = () => {
-  const dragTarget = document.getElementsByClassName('drag-target')[0]
+  const dragTarget = document.getElementsByClassName('drag-target').item(0)
+      console.log(dragTarget)
+
 
   if (dragTarget) {
-    const dropField = document.getElementsByClassName('drop-field')[0]
-    const moveTarget = dropField.getElementsByClassName('plantCopy')[0]
+    const dropField = document.getElementsByClassName('drop-field').item(0)
+    const moveTarget = dropField.getElementsByClassName('plantCopy').item(0)
+      console.log(dropField)
 
-    dragTarget.ondragstart = () => { return false }
-    dropField.ondragstart = () => { return false }
+// Define drag event
+    function dragItem(e) {
+      e = e || window.event
+      e.preventDefault()
+      console.log('mousedown to drag')
 
-    dragTarget.onmousedown = dragItem
-    dropField.onmousedown = dragItem
+      const dragged = e.target
 
-    function dragItem(event) {
-      event = event || window.event
-      event.preventDefault()
-
-      const dragged = event.target
       if (dragged && dragged.classList.contains("draggable")) {
-        let shiftX = event.clientX - dragged.getBoundingClientRect().left;
-        let shiftY = event.clientY - dragged.getBoundingClientRect().top;
+        let shiftX = e.clientX - dragged.getBoundingClientRect().left;
+        let shiftY = e.clientY - dragged.getBoundingClientRect().top;
+        console.log(dragged)
 
         function duplicateDiv(originDiv) {
           let clone = originDiv.cloneNode(true)
@@ -39,9 +40,10 @@ const mousedownToDrag = () => {
         dragged.style.zIndex = 1000
         dragged.style.position = 'absolute'
 
-        moveAt(dragged, event)
+        moveAt(dragged, e)
 
         function moveAt(elmnt, event) {
+          console.log('moved')
           elmnt.style.left = event.pageX - shiftX + 'px'
           elmnt.style.top = event.pageY - shiftY + 'px'
         }
@@ -49,6 +51,7 @@ const mousedownToDrag = () => {
         function adjustToDropZone(elmnt, event) {
           const rectField = dropField.getBoundingClientRect()
           const rectElmnt = elmnt.getBoundingClientRect()
+          const diff = event.pageY - event.clientY
 
           if ((rectField.left + 6) > rectElmnt.left) {
             elmnt.style.left = (rectField.left + 6) + 'px'
@@ -57,10 +60,10 @@ const mousedownToDrag = () => {
             elmnt.style.left = (rectField.right - 6 - rectElmnt.width) + 'px'
           }
           if ((rectField.top + 6) > rectElmnt.top) {
-            elmnt.style.top = (event.pageY - event.clientY) + (rectField.top + 6) + 'px'
+            elmnt.style.top = (diff + rectField.top + 6) + 'px'
           }
           if ((rectField.bottom - 6) < rectElmnt.bottom) {
-            elmnt.style.top = (event.pageY - event.clientY) + (rectField.bottom - 6 - rectElmnt.height) + 'px'
+            elmnt.style.top = (diff + rectField.bottom - 6 - rectElmnt.height) + 'px'
           }
         }
 
@@ -86,6 +89,13 @@ const mousedownToDrag = () => {
         }
       }
     }
+
+// Action -- define drag and drop
+    dragTarget.ondragstart = () => { return false }
+    dropField.ondragstart = () => { return false }
+
+    dragTarget.onmousedown = dragItem
+    dropField.onmousedown = dragItem
   }
 
 }
