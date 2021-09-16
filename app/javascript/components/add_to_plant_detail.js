@@ -1,7 +1,16 @@
 const addToPlantDetailList = (draggedElmt) => {
-  console.log(draggedElmt.getElementsByClassName("plant-detail__name")[0])
-  console.log(draggedElmt.getElementsByClassName("plant-detail__light")[0])
-  console.log(draggedElmt.getElementsByClassName("plant-detail__size")[0])
+
+  function divValueByClassName(div, className) {
+    return div.getElementsByClassName(className)[0]
+  }
+  // plant info data variable
+  const name = divValueByClassName(draggedElmt, "plant-detail__name")
+  const light = divValueByClassName(draggedElmt, "plant-detail__light")
+  const size = divValueByClassName(draggedElmt, "plant-detail__size")
+  console.log(name)
+  console.log(light)
+  console.log(size)
+
   const dropField = document.getElementsByClassName('drop-field').item(0)
   let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
   let offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
