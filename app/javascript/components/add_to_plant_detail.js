@@ -7,7 +7,8 @@ const addToPlantDetailList = (draggedElmt) => {
     }
   }
   // plant info data variable
-  const name = divValueByClassName(draggedElmt, "plant-detail__name"),
+  const plantId = divValueByClassName(draggedElmt, "plant-detail__id"),
+        name = divValueByClassName(draggedElmt, "plant-detail__name"),
         light = divValueByClassName(draggedElmt, "plant-detail__light"),
         size = divValueByClassName(draggedElmt, "plant-detail__size"),
         indoorSeeding = divValueByClassName(draggedElmt, "plant-detail__inSeeding") ? 'True' : 'Flase',
@@ -20,7 +21,17 @@ const addToPlantDetailList = (draggedElmt) => {
   let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left,
       offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
 
-  const plantInfo = `<tr><td>${name}</td><td>${light}</td><td>${size}</td><td>${indoorSeeding}</td><td>${seedDate}</td><td>${transDate}</td></tr>`
+  const plantInfo = `
+                    <tr class="plantId_${plantId}">
+                      <td>${name}</td>
+                      <td>${light}</td>
+                      <td>${size}</td>
+                      <td>${indoorSeeding}</td>
+                      <td>${seedDate}</td>
+                      <td>${transDate}</td>
+                      <td class="positionX">${offX}</td>
+                      <td class="positionY">${offY}</td>
+                    </tr>`
   tableContent.insertAdjacentHTML('beforeend',plantInfo)
 }
 

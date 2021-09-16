@@ -27,6 +27,7 @@
                 <div class="plant-detail__data" style="display: none;">
                   <% listPlant = collection.plant %>
                   <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.zone} %>
+                  <div class="plant-detail__id"><%= i %></div>
                   <div class="plant-detail__name"><%= listPlant.name %></div>
                   <div class="plant-detail__light"><%= listPlant.light %></div>
                   <div class="plant-detail__size"><%= listPlant.size %></div>
@@ -70,6 +71,8 @@
               <th>Indoor Seeding</th>
               <th>Seeding Date</th>
               <th>Transplant Date</th>
+              <th>Positiion X</th>
+              <th>Positiion Y</th>
             </tr>
             <tr>
               <td>Plant 1</td>
@@ -78,6 +81,8 @@
               <td>True/False</td>
               <td>Date_s 1</td>
               <td>Date_t 1</td>
+              <td>X</td>
+              <td>Y</td>
             </tr>
             <tr>
               <td>Plant 2</td>
@@ -86,6 +91,8 @@
               <td>True/False</td>
               <td>Date_s 2</td>
               <td>Date_t 2</td>
+              <td>X</td>
+              <td>Y</td>
             </tr>
           </tbody>
 
