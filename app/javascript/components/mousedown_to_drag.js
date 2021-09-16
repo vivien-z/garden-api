@@ -78,10 +78,22 @@ const mousedownToDrag = () => {
           document.removeEventListener('mousemove', onMouseMove)
           dragged.style.opacity = ''
           dragged.style.cursor = 'grab'
-          let offX = dragged.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
-          let offY = dragged.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
 
+          // let offX = dragged.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
+          // let offY = dragged.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
+          listPlantDetail(dragged)
           dragged.onmouseup = null
+        }
+
+        function listPlantDetail(draggedElmt) {
+          const tableContent = document.getElementsByClassName("plant-detail_content")[0]
+          const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
+
+          let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
+          let offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
+          console.log(tableContent)
+          // tableContent.insertAdjacentHTML('beforeend', '<div>test</div>')
+          // console.log(tableContent)
         }
       }
     }
