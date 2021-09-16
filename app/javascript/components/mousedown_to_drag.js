@@ -53,17 +53,19 @@ const mousedownToDrag = () => {
           const tableContent = table.getElementsByTagName('tbody')[0]
           const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
 
-          const plantPosition = `<tr><td>${plantName}</td><td>${'ture'}</td><td>${new Date()}</td></tr>`
+          const plantPosition = `<tr><td>${plantName}</td><td>${plantName}</td><td>${plantName}</td><td>${'ture'}</td><td>${new Date()}</td><td>${new Date()}</td></tr>`
           tableContent.insertAdjacentHTML('beforeend',plantPosition)
         }
 
         // when dragged item is newly added to field
         if (dragged.classList.contains("plantOrigin")) {
           newDrag = true
+          // setting
           const clone = duplicateDiv(dragged)
           dragged.parentNode.insertBefore(clone, dragged)
           dragged.classList.remove("plantOrigin", "yellow", "m-3")
           dragged.classList.add("plantCopy")
+          // get plant data
         }
 
         // style dragged item
