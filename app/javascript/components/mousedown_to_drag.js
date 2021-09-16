@@ -1,3 +1,5 @@
+import { addToPlantDetailList } from "../components/add_to_plant_detail";
+
 const mousedownToDrag = () => {
   const dragTarget = document.getElementsByClassName('drag-target').item(0)
 
@@ -45,17 +47,20 @@ const mousedownToDrag = () => {
         function onMouseMove(e) {
           moveAt(dragged, e)
         }
-        function addToPlantDetailList(draggedElmt) {
-          let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
-          let offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
+        // function addToPlantDetailList(draggedElmt) {
+        //   console.log(draggedElmt.getElementsByClassName("plant-detail__name")[0])
+        //   console.log(draggedElmt.getElementsByClassName("plant-detail__light")[0])
+        //   console.log(draggedElmt.getElementsByClassName("plant-detail__size")[0])
+        //   let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
+        //   let offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
 
-          const table = document.getElementsByClassName("plant-detail__table")[0]
-          const tableContent = table.getElementsByTagName('tbody')[0]
-          const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
+        //   const table = document.getElementsByClassName("plant-detail__table")[0]
+        //   const tableContent = table.getElementsByTagName('tbody')[0]
+        //   const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
 
-          const plantPosition = `<tr><td>${plantName}</td><td>${plantName}</td><td>${plantName}</td><td>${'ture'}</td><td>${new Date()}</td><td>${new Date()}</td></tr>`
-          tableContent.insertAdjacentHTML('beforeend',plantPosition)
-        }
+        //   const plantPosition = `<tr><td>${plantName}</td><td>${plantName}</td><td>${plantName}</td><td>${'ture'}</td><td>${new Date()}</td><td>${new Date()}</td></tr>`
+        //   tableContent.insertAdjacentHTML('beforeend',plantPosition)
+        // }
 
         // when dragged item is newly added to field
         if (dragged.classList.contains("plantOrigin")) {
