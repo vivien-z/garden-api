@@ -9,10 +9,10 @@ const mousedownToDrag = () => {
     function dragItem(e) {
       e = e || window.event
       e.preventDefault()
-
       const dragged = e.target
 
       if (dragged && dragged.classList.contains("draggable")) {
+        let newDrag = false
         let shiftX = e.clientX - dragged.getBoundingClientRect().left;
         let shiftY = e.clientY - dragged.getBoundingClientRect().top;
 
@@ -20,30 +20,10 @@ const mousedownToDrag = () => {
           let clone = originDiv.cloneNode(true)
           return clone
         }
-
-        if (dragged.classList.contains("plantOrigin")) {
-          const clone = duplicateDiv(dragged)
-          dragged.parentNode.insertBefore(clone, dragged)
-          dragged.classList.remove("plantOrigin", "yellow", "m-3")
-          dragged.classList.add("plantCopy")
-        }
-        if (dragged.classList.contains("plantCopy")) {
-        }
-
-        dragged.style.opacity = 0.7
-        dragged.style.cursor = 'grabbing'
-        dragged.style.zIndex = 1000
-        dragged.style.position = 'absolute'
-
-        moveAt(dragged, e)
-
         function moveAt(elmnt, event) {
           elmnt.style.left = event.pageX - shiftX + 'px'
           elmnt.style.top = event.pageY - shiftY + 'px'
-          // let offX = elmnt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
-          // let offY = elmnt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
         }
-
         function adjustToDropZone(elmnt, event) {
           const rectField = dropField.getBoundingClientRect()
           const rectElmnt = elmnt.getBoundingClientRect()
@@ -62,30 +42,10 @@ const mousedownToDrag = () => {
             elmnt.style.top = (diff + rectField.bottom - 6 - rectElmnt.height) + 'px'
           }
         }
-
         function onMouseMove(e) {
           moveAt(dragged, e)
         }
-
-        // move the dragged on mousemove
-        document.addEventListener('mousemove', onMouseMove)
-
-        // drop the dragged, remove unneeded handlers
-        dragged.onmouseup = function(e) {
-          dragged.parentNode.removeChild(dragged)
-          dropField.appendChild(dragged)
-          adjustToDropZone(dragged, e)
-          document.removeEventListener('mousemove', onMouseMove)
-          dragged.style.opacity = ''
-          dragged.style.cursor = 'grab'
-
-          // let offX = dragged.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
-          // let offY = dragged.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
-          listPlantDetail(dragged)
-          dragged.onmouseup = null
-        }
-
-        function listPlantDetail(draggedElmt) {
+        function addToPlantDetailList(draggedElmt) {
           let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
           let offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
 
@@ -94,11 +54,45 @@ const mousedownToDrag = () => {
           const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
 
           const plantPosition = `<tr><td>${plantName}</td><td>${'ture'}</td><td>${new Date()}</td></tr>`
+          tableContent.insertAdjacentHTML('beforeend',plantPosition)
+        }
 
-          tableContent.insertAdjacentHTML(
-            'beforeend',
-            plantPosition
-          )
+        // when dragged item is newly added to field
+        if (dragged.classList.contains("plantOrigin")) {
+          newDrag = true
+          const clone = duplicateDiv(dragged)
+          dragged.parentNode.insertBefore(clone, dragged)
+          dragged.classList.remove("plantOrigin", "yellow", "m-3")
+          dragged.classList.add("plantCopy")
+        }
+
+        // style dragged item
+        dragged.style.opacity = 0.7
+        dragged.style.zIndex = 1000
+        dragged.style.cursor = 'grabbing'
+        dragged.style.position = 'absolute'
+
+        moveAt(dragged, e)
+
+        // move the dragged on mousemove
+        document.addEventListener('mousemove', onMouseMove)
+
+        // drop the dragged, remove unneeded handlers
+        dragged.onmouseup = function(e) {
+          // style
+          dragged.style.opacity = ''
+          dragged.style.cursor = 'grab'
+
+          // setting + action
+          dragged.parentNode.removeChild(dragged)
+          dropField.appendChild(dragged)
+          adjustToDropZone(dragged, e)
+          document.removeEventListener('mousemove', onMouseMove)
+          if (newDrag) {
+            addToPlantDetailList(dragged)
+            newDrag = false
+          }
+          dragged.onmouseup = null
         }
       }
     }
@@ -110,8 +104,6 @@ const mousedownToDrag = () => {
     dragTarget.onmousedown = dragItem
     dropField.onmousedown = dragItem
   }
-
 }
 
 export { mousedownToDrag };
-
