@@ -25,6 +25,20 @@
                   <%= collection.plant.name.capitalize %>
                 <% end %>
               </div>
+
+              <div class="plant-detail__data">
+                <% listPlant = collection.plant %>
+                <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.zone} %>
+                <div><%= listPlant.name %></div>
+                <div><%= listPlant.light %></div>
+                <div><%= listPlant.size %></div>
+                <% if plantInfo && !plantInfo.empty? %>
+                  <div><%= plantInfo.indoor_seeding %></div>
+                  <div><%= plantInfo.seeding_date %></div>
+                  <div><%= plantInfo.transplant_date %></div>
+                <% end %>
+              </div>
+
             <% end %>
           </section>
         </div>
@@ -48,23 +62,33 @@
       <div class="col-xs-12">
         <h4 class="my-3">Detail</h4>
         <table class="plant-detail__table">
-          <tr>
-            <th>Plant</th>
-            <th>Indoor Seeding</th>
-            <th>Seeding Date</th>
-          </tr>
-          <div class="plant-detail_content">
+          <tbody>
             <tr>
-              <td>plant1</td>
-              <td>t/f</td>
-              <td>date</td>
+              <th>Plant</th>
+              <th>Light</th>
+              <th>Size</th>
+              <th>Indoor Seeding</th>
+              <th>Seeding Date</th>
+              <th>Transplant Date</th>
             </tr>
             <tr>
-              <td>plant2</td>
-              <td>t/f</td>
-              <td>date</td>
+              <td>Plant 1</td>
+              <td>Light 1</td>
+              <td>Size 1</td>
+              <td>True/False</td>
+              <td>Date_s 1</td>
+              <td>Date_t 1</td>
             </tr>
-          </div>
+            <tr>
+              <td>Plant 2</td>
+              <td>Light 2</td>
+              <td>Size 2</td>
+              <td>True/False</td>
+              <td>Date_s 2</td>
+              <td>Date_t 2</td>
+            </tr>
+          </tbody>
+
         </table>
       </div>
     </div>
