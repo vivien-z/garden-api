@@ -86,14 +86,19 @@ const mousedownToDrag = () => {
         }
 
         function listPlantDetail(draggedElmt) {
-          const tableContent = document.getElementsByClassName("plant-detail_content")[0]
-          const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
-
           let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
           let offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
-          console.log(tableContent)
-          // tableContent.insertAdjacentHTML('beforeend', '<div>test</div>')
-          // console.log(tableContent)
+
+          const table = document.getElementsByClassName("plant-detail__table")[0]
+          const tableContent = table.getElementsByTagName('tbody')[0]
+          const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
+
+          const plantPosition = `<tr><td>${plantName}</td><td>${'ture'}</td><td>${new Date()}</td></tr>`
+
+          tableContent.insertAdjacentHTML(
+            'beforeend',
+            plantPosition
+          )
         }
       }
     }
