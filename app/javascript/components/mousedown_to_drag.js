@@ -14,9 +14,9 @@ const mousedownToDrag = () => {
       const dragged = e.target
 
       if (dragged && dragged.classList.contains("draggable")) {
-        let newDrag = false
-        let shiftX = e.clientX - dragged.getBoundingClientRect().left;
-        let shiftY = e.clientY - dragged.getBoundingClientRect().top;
+        let isNewDrag = false;
+        const shiftX = e.clientX - dragged.getBoundingClientRect().left,
+              shiftY = e.clientY - dragged.getBoundingClientRect().top;
 
         function duplicateDiv(originDiv) {
           let clone = originDiv.cloneNode(true)
@@ -47,24 +47,10 @@ const mousedownToDrag = () => {
         function onMouseMove(e) {
           moveAt(dragged, e)
         }
-        // function addToPlantDetailList(draggedElmt) {
-        //   console.log(draggedElmt.getElementsByClassName("plant-detail__name")[0])
-        //   console.log(draggedElmt.getElementsByClassName("plant-detail__light")[0])
-        //   console.log(draggedElmt.getElementsByClassName("plant-detail__size")[0])
-        //   let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left;
-        //   let offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
-
-        //   const table = document.getElementsByClassName("plant-detail__table")[0]
-        //   const tableContent = table.getElementsByTagName('tbody')[0]
-        //   const plantName = draggedElmt.getElementsByTagName('a')[0].innerText
-
-        //   const plantPosition = `<tr><td>${plantName}</td><td>${plantName}</td><td>${plantName}</td><td>${'ture'}</td><td>${new Date()}</td><td>${new Date()}</td></tr>`
-        //   tableContent.insertAdjacentHTML('beforeend',plantPosition)
-        // }
 
         // when dragged item is newly added to field
         if (dragged.classList.contains("plantOrigin")) {
-          newDrag = true
+          isNewDrag = true
           // setting
           const clone = duplicateDiv(dragged)
           dragged.parentNode.insertBefore(clone, dragged)
@@ -95,9 +81,9 @@ const mousedownToDrag = () => {
           dropField.appendChild(dragged)
           adjustToDropZone(dragged, e)
           document.removeEventListener('mousemove', onMouseMove)
-          if (newDrag) {
-            addToPlantDetailList(dragged)
-            newDrag = false
+          addToPlantDetailList(dragged, isNewDrag)
+          if (isNewDrag) {
+            isNewDrag = false
           }
           dragged.onmouseup = null
         }
