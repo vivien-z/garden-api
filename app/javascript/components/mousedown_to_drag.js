@@ -14,7 +14,7 @@ const mousedownToDrag = () => {
       const dragged = e.target
 
       if (dragged && dragged.classList.contains("draggable")) {
-        let newDrag = false;
+        let isNewDrag = false;
         const shiftX = e.clientX - dragged.getBoundingClientRect().left,
               shiftY = e.clientY - dragged.getBoundingClientRect().top;
 
@@ -50,7 +50,7 @@ const mousedownToDrag = () => {
 
         // when dragged item is newly added to field
         if (dragged.classList.contains("plantOrigin")) {
-          newDrag = true
+          isNewDrag = true
           // setting
           const clone = duplicateDiv(dragged)
           dragged.parentNode.insertBefore(clone, dragged)
@@ -81,9 +81,9 @@ const mousedownToDrag = () => {
           dropField.appendChild(dragged)
           adjustToDropZone(dragged, e)
           document.removeEventListener('mousemove', onMouseMove)
-          addToPlantDetailList(dragged, newDrag)
-          if (newDrag) {
-            newDrag = false
+          addToPlantDetailList(dragged, isNewDrag)
+          if (isNewDrag) {
+            isNewDrag = false
           }
           dragged.onmouseup = null
         }

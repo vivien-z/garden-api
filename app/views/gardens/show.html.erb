@@ -13,7 +13,6 @@
           <section id="plantsToDrag" class="drag-target plants-list">
             <% @user.collections.each_with_index do |collection, i| %>
               <div
-                id=<%= i %>;
                 class="cards-list rd draggable plantOrigin m-3 yellow"
                 draggable="true"
                 style="
@@ -27,7 +26,7 @@
                 <div class="plant-detail__data" style="display: none;">
                   <% listPlant = collection.plant %>
                   <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.zone} %>
-                  <div class="plant-detail__id"><%= i %></div>
+                  <div class="plant-detail__index"><%= i %></div>
                   <div class="plant-detail__name"><%= listPlant.name %></div>
                   <div class="plant-detail__light"><%= listPlant.light %></div>
                   <div class="plant-detail__size"><%= listPlant.size %></div>
