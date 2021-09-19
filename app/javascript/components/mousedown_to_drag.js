@@ -81,8 +81,8 @@ const mousedownToDrag = () => {
           dropField.appendChild(dragged)
           adjustToDropZone(dragged, e)
           document.removeEventListener('mousemove', onMouseMove)
+          addToPlantDetailList(dragged, newDrag)
           if (newDrag) {
-            addToPlantDetailList(dragged)
             newDrag = false
           }
           dragged.onmouseup = null

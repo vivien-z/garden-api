@@ -1,4 +1,4 @@
-const addToPlantDetailList = (draggedElmt) => {
+const addToPlantDetailList = (draggedElmt, newDrag) => {
 
   function divValueByClassName(elmt, className) {
     const div = elmt.getElementsByClassName(className)[0]
@@ -22,7 +22,7 @@ const addToPlantDetailList = (draggedElmt) => {
       offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
 
   const plantInfo = `
-                    <tr class="plantId_${plantId}">
+                    <tr class="plantId_git ${plantId}">
                       <td>${name}</td>
                       <td>${light}</td>
                       <td>${size}</td>
@@ -32,7 +32,11 @@ const addToPlantDetailList = (draggedElmt) => {
                       <td class="positionX">${offX}</td>
                       <td class="positionY">${offY}</td>
                     </tr>`
-  tableContent.insertAdjacentHTML('beforeend',plantInfo)
+  if (newDrag) {
+    tableContent.insertAdjacentHTML('beforeend',plantInfo)
+  } else {
+    console.log('test')
+  }
 }
 
 export { addToPlantDetailList };
