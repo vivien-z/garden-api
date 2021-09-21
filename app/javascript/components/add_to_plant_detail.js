@@ -14,16 +14,9 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
   }
 
   function isRepeatPlant(plantIndex) {
-    const plantHTMLCollection = tableContent.getElementsByTagName('tr')
-    const plantInfoArr = [].slice.call( plantHTMLCollection )
-    let plantIndexList = []
-
-    plantInfoArr.forEach(function callback(plantInfo, index) {
-      plantIndexList.push(plantInfo.classList.value)
-      // console.log(plantInfo.classList.value)
-
-    })
-    console.log(plantIndexList)
+    const targetDivClass = `plantIndex__${plantIndex}`
+    console.log(plantIndexList.includes(targetDivClass))
+    return plantIndexList.includes(targetDivClass)
 
   }
 
@@ -36,6 +29,18 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
         seedDate = divValueByClassName(draggedElmt, "plant-detail__seedDate") || 'n/a',
         transDate = divValueByClassName(draggedElmt, "plant-detail__transDate") || 'n/a';
 
+  // array: plant index list
+  const plantHTMLCollection = tableContent.getElementsByTagName('tr')
+  const plantInfoArr = [].slice.call( plantHTMLCollection )
+  let plantIndexList = []
+
+  plantInfoArr.forEach(function callback(plantInfo, index) {
+    const divClass = plantInfo.classList.value
+    if (divClass.includes("plantIndex")) {
+      plantIndexList.push(divClass)
+    }
+    // console.log(plantInfo.classList.value)
+  })
 
   const plantInfo = `
                     <tr class="plantIndex__${plantIndex}">
