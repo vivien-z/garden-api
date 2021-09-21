@@ -13,9 +13,17 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
     }
   }
 
-  function isRepeatPlant = (plantIndex) => {
-    const plantList = tableContent.getElementsByTagName('tr')
-    console.log(plantList)
+  function isRepeatPlant(plantIndex) {
+    const plantHTMLCollection = tableContent.getElementsByTagName('tr')
+    const plantInfoArr = [].slice.call( plantHTMLCollection )
+    let plantIndexList = []
+
+    plantInfoArr.forEach(function callback(plantInfo, index) {
+      plantIndexList.push(plantInfo.classList.value)
+      // console.log(plantInfo.classList.value)
+
+    })
+    console.log(plantIndexList)
 
   }
 
@@ -43,7 +51,7 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
   if (isNewDrag) {
     tableContent.insertAdjacentHTML('beforeend',plantInfo)
   } else {
-    console.log('test')
+    isRepeatPlant(plantIndex)
   }
 }
 
