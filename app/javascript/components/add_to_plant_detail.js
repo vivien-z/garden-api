@@ -13,10 +13,9 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
     }
   }
 
-  function isRepeatPlant = (plantIndex) => {
-    const plantList = tableContent.getElementsByTagName('tr')
-    console.log(plantList)
-
+  function isRepeatPlant(plantIndex) {
+    const targetDivClass = `plantIndex__${plantIndex}`
+    return plantIndexList.includes(targetDivClass)
   }
 
   // plant info data variable
@@ -28,8 +27,19 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
         seedDate = divValueByClassName(draggedElmt, "plant-detail__seedDate") || 'n/a',
         transDate = divValueByClassName(draggedElmt, "plant-detail__transDate") || 'n/a';
 
+  // array: plant index list
+  const plantHTMLCollection = tableContent.getElementsByTagName('tr')
+  const plantInfoArr = [].slice.call( plantHTMLCollection )
+  let plantIndexList = []
 
-  const plantInfo = `
+  plantInfoArr.forEach(function callback(plantInfo, index) {
+    const divClass = plantInfo.classList.value
+    if (divClass.includes("plantIndex")) {
+      plantIndexList.push(divClass)
+    }
+  })
+
+  const plantInfoNew = `
                     <tr class="plantIndex__${plantIndex}">
                       <td>${name}</td>
                       <td>${light}</td>
@@ -40,10 +50,13 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
                       <td class="positionX">${offX}</td>
                       <td class="positionY">${offY}</td>
                     </tr>`
-  if (isNewDrag) {
-    tableContent.insertAdjacentHTML('beforeend',plantInfo)
+
+  if (!isRepeatPlant(plantIndex)) {
+    tableContent.insertAdjacentHTML('beforeend',plantInfoNew)
   } else {
-    console.log('test')
+    const repeatPlant = tableContent.getElementsByClassName(`plantIndex__${plantIndex}`)[0]
+    repeatPlant.getElementsByClassName("positionX")[0].innerText = offX
+    repeatPlant.getElementsByClassName("positionY")[0].innerText = offY
   }
 }
 
