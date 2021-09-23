@@ -18,6 +18,7 @@ const mousedownToDrag = () => {
       e = e || window.event
       e.preventDefault()
       const dragged = e.target
+      let plantCount = 1 // amount of plants added to field
 
       if (dragged && dragged.classList.contains("draggable")) {
         const shiftX = e.clientX - dragged.getBoundingClientRect().left,
@@ -37,10 +38,12 @@ const mousedownToDrag = () => {
 
         if (dragged.classList.contains("plantOrigin")) {
           isNewDrag = true
+
           const clone = duplicateDiv(dragged)
           dragged.parentNode.insertBefore(clone, dragged)
           dragged.classList.remove("plantOrigin", "yellow", "m-3")
           dragged.classList.add("plantCopy")
+          dragged.id = plantCount
         }
 
         dragged.style.opacity = 0.7
@@ -82,7 +85,8 @@ const mousedownToDrag = () => {
           dropField.appendChild(dragged)
           adjustToDropZone(dragged, e)
           document.removeEventListener('mousemove', onMouseMove)
-          addToPlantDetailList(dragged, isNewDrag)
+          plantCount = dropField.getElementsByClassName('draggable').length
+          addToPlantDetailList(dragged, plantCount, isNewDrag)
           if (isNewDrag) {
             isNewDrag = false
           }
