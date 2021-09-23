@@ -22,22 +22,6 @@ const addToPlantDetailList = (draggedElmt, plantCount, isNewDrag) => {
         seedDate = getDivValueByClassName(draggedElmt, "plant-detail__seedDate") || 'n/a',
         transDate = getDivValueByClassName(draggedElmt, "plant-detail__transDate") || 'n/a';
 
-  //-----In field plant id array-----
-  function isRepeatPlant(plantId) {
-    const targetDivClass = `plantId__${plantId}`
-    return plantIdList.includes(targetDivClass)
-  }
-  const plantHTMLCollection = tableContent.getElementsByTagName('tr')
-  const plantInfoArr = [].slice.call( plantHTMLCollection )
-  console.log(plantInfoArr)
-  let plantIdList = []
-  plantInfoArr.forEach(function callback(plantInfo, index) {
-    const divClass = plantInfo.classList.value
-    if (divClass.includes("plantId")) {
-      plantIdList.push(divClass)
-    }
-  })
-
   const plantInfoNew = `
                     <tr class="plantId__${plantId} divId__${plantCount}">
                       <td>${plantCount}</td>
@@ -54,11 +38,33 @@ const addToPlantDetailList = (draggedElmt, plantCount, isNewDrag) => {
   if (isNewDrag) {
     tableContent.insertAdjacentHTML('beforeend',plantInfoNew)
   }
-  //-----update div position after drag-------
+  //-----after drag: update div position-------
   const targetplant = tableContent.getElementsByClassName(`divId__${plantCount}`)[0]
   targetplant.getElementsByClassName("positionX")[0].innerText = offX
   targetplant.getElementsByClassName("positionY")[0].innerText = offY
+
+  //-----TEST if plant already exist in field-----
+
+  function isRepeatPlant(plantId) {
+    const targetDivClass = `plantId__${plantId}`
+    const count = plantIdList.filter(pId => pId === targetDivClass).length
+    return count > 1
+  }
+  const plantHTMLCollection = tableContent.getElementsByTagName('tr')
+  const plantInfoArr = [].slice.call( plantHTMLCollection )
+  let plantIdList = []
+
+  plantInfoArr.forEach(function callback(plantInfo, index) {
+    const regexp = /plantId__\d+/
+    const divClass = plantInfo.classList.value.match(regexp)
+
+    if (divClass && divClass[0].includes("plantId")) {
+      plantIdList.push(divClass[0])
+    }
+  })
+
   //-------hide repetitive plants-----------
+    console.log(plantIdList)
     console.log(isRepeatPlant(plantId))
   if (isRepeatPlant(plantId)) {
     targetplant.style.display = "none"
