@@ -18,7 +18,7 @@ const mousedownToDrag = () => {
       e = e || window.event
       e.preventDefault()
       const dragged = e.target
-      const plantCount = dropField.getElementsByClassName('draggable').length + 1
+      let plantCount = 1 // amount of plants added to field
 
       if (dragged && dragged.classList.contains("draggable")) {
         const shiftX = e.clientX - dragged.getBoundingClientRect().left,
@@ -85,7 +85,8 @@ const mousedownToDrag = () => {
           dropField.appendChild(dragged)
           adjustToDropZone(dragged, e)
           document.removeEventListener('mousemove', onMouseMove)
-          addToPlantDetailList(dragged, isNewDrag)
+          plantCount = dropField.getElementsByClassName('draggable').length
+          addToPlantDetailList(dragged, plantCount, isNewDrag)
           if (isNewDrag) {
             isNewDrag = false
           }

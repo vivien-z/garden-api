@@ -1,15 +1,4 @@
-const addToPlantDetailList = (draggedElmt, isNewDrag) => {
-
-  function divValueByClassName(elmt, className) {
-    const div = elmt.getElementsByClassName(className)[0]
-    if (div) {
-      return div.innerText
-    }
-  }
-  function isRepeatPlant(plantIndex) {
-    const targetDivClass = `plantIndex__${plantIndex}`
-    return plantIndexList.includes(targetDivClass)
-  }
+const addToPlantDetailList = (draggedElmt, plantCount, isNewDrag) => {
 
   const dropField = document.getElementsByClassName('drop-field').item(0),
         table = document.getElementsByClassName("plant-detail__table")[0],
@@ -17,32 +6,41 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
   let offX = draggedElmt.getBoundingClientRect().left - dropField.getBoundingClientRect().left,
       offY = draggedElmt.getBoundingClientRect().top - dropField.getBoundingClientRect().top;
 
+  //---------------DATA: get plant info from show pg--------------------------
+  function getDivValueByClassName(elmt, className) {
+    const div = elmt.getElementsByClassName(className)[0]
+    if (div) {
+      return div.innerText
+    }
+  }
 
-  // plant info data variable
-  const plantIndex = divValueByClassName(draggedElmt, "plant-detail__index"),
-        name = divValueByClassName(draggedElmt, "plant-detail__name"),
-        light = divValueByClassName(draggedElmt, "plant-detail__light"),
-        size = divValueByClassName(draggedElmt, "plant-detail__size"),
-        indoorSeeding = divValueByClassName(draggedElmt, "plant-detail__inSeeding") ? 'True' : 'Flase',
-        seedDate = divValueByClassName(draggedElmt, "plant-detail__seedDate") || 'n/a',
-        transDate = divValueByClassName(draggedElmt, "plant-detail__transDate") || 'n/a';
+  const plantId = getDivValueByClassName(draggedElmt, "plant-detail__id"),
+        name = getDivValueByClassName(draggedElmt, "plant-detail__name"),
+        light = getDivValueByClassName(draggedElmt, "plant-detail__light"),
+        size = getDivValueByClassName(draggedElmt, "plant-detail__size"),
+        indoorSeeding = getDivValueByClassName(draggedElmt, "plant-detail__inSeeding") ? 'True' : 'Flase',
+        seedDate = getDivValueByClassName(draggedElmt, "plant-detail__seedDate") || 'n/a',
+        transDate = getDivValueByClassName(draggedElmt, "plant-detail__transDate") || 'n/a';
 
-
-  // array: plant index list
+  //-----In field plant id array-----
+  function isRepeatPlant(plantId) {
+    const targetDivClass = `plantId__${plantId}`
+    return plantIdList.includes(targetDivClass)
+  }
   const plantHTMLCollection = tableContent.getElementsByTagName('tr')
   const plantInfoArr = [].slice.call( plantHTMLCollection )
-  const plantCount = plantInfoArr.length
-  let plantIndexList = []
+  console.log(plantInfoArr)
+  let plantIdList = []
   plantInfoArr.forEach(function callback(plantInfo, index) {
     const divClass = plantInfo.classList.value
-    if (divClass.includes("plantIndex")) {
-      plantIndexList.push(divClass)
+    if (divClass.includes("plantId")) {
+      plantIdList.push(divClass)
     }
   })
 
   const plantInfoNew = `
-                    <tr class="plantIndex__${plantIndex}">
-                      <td class="count">${plantCount}</td>
+                    <tr class="plantId__${plantId} divId__${plantCount}">
+                      <td>${plantCount}</td>
                       <td>${name}</td>
                       <td>${light}</td>
                       <td>${size}</td>
@@ -56,20 +54,14 @@ const addToPlantDetailList = (draggedElmt, isNewDrag) => {
   if (isNewDrag) {
     tableContent.insertAdjacentHTML('beforeend',plantInfoNew)
   }
-
-  // const selectedPlant = draggedElmt.getElementsByClassName("count")[0].innerText
-  // const selectedPlant = draggedElmt.getElementsByClassName("count")[0].innerText
-  // selectedPlant.getElementsByClassName("positionX")[0].innerText = offX
-  // selectedPlant.getElementsByClassName("positionY")[0].innerText = offY
-
-
-  const repeatPlant = tableContent.getElementsByClassName(`plantIndex__${plantIndex}`)[0]
-  let countDisply = repeatPlant.getElementsByClassName("count")[0].innerText
-  repeatPlant.getElementsByClassName("positionX")[0].innerText = offX
-  repeatPlant.getElementsByClassName("positionY")[0].innerText = offY
-  if (isNewDrag) {
-    countDisply = parseInt(countDisply) + 1
-    console.log(countDisply)
+  //-----update div position after drag-------
+  const targetplant = tableContent.getElementsByClassName(`divId__${plantCount}`)[0]
+  targetplant.getElementsByClassName("positionX")[0].innerText = offX
+  targetplant.getElementsByClassName("positionY")[0].innerText = offY
+  //-------hide repetitive plants-----------
+    console.log(isRepeatPlant(plantId))
+  if (isRepeatPlant(plantId)) {
+    targetplant.style.display = "none"
   }
 }
 
