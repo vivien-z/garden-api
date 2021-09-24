@@ -1,0 +1,25 @@
+<div>
+  <h4 class="my-3">Detail</h4>
+  <table class="plant-detail__table">
+    <tbody>
+      <tr class="tableHead test">
+        <th>Count</th>
+        <th>Plant</th>
+        <th>Light</th>
+        <th>Size</th>
+        <th>Indoor Seeding</th>
+        <th>Seeding Date</th>
+        <th>Transplant Date</th>
+        <th>Positiion X</th>
+        <th>Positiion Y</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<%= simple_form_for([@garden, @plant_position]) do |f| %>
+    <%= f.association :plant %>
+    <%= f.input :positionX %>
+    <%= f.input :positionY %>
+  <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+<% end %>

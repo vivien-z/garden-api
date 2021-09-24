@@ -6,6 +6,8 @@ class GardensController < ApplicationController
   def show
     @garden = Garden.find(params[:id])
     @user = current_user
+    @plant_position = PlantPosition.new
+    @plant_position.garden = @garden
     # @plant_info_by_zone = PlantInfoByZone.new
     # @position = Collection.new
     authorize(@garden)
