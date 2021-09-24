@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_05_133500) do
+ActiveRecord::Schema.define(version: 2021_09_24_234719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,15 +69,15 @@ ActiveRecord::Schema.define(version: 2021_08_05_133500) do
     t.index ["zone_id"], name: "index_plant_info_by_zones_on_zone_id"
   end
 
-  create_table "plant_positions", force: :cascade do |t|
+  create_table "plant_position_by_gardens", force: :cascade do |t|
     t.float "positionX"
     t.float "positionY"
     t.bigint "plant_id", null: false
     t.bigint "garden_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["garden_id"], name: "index_plant_positions_on_garden_id"
-    t.index ["plant_id"], name: "index_plant_positions_on_plant_id"
+    t.index ["garden_id"], name: "index_plant_position_by_gardens_on_garden_id"
+    t.index ["plant_id"], name: "index_plant_position_by_gardens_on_plant_id"
   end
 
   create_table "plants", force: :cascade do |t|
@@ -118,7 +118,7 @@ ActiveRecord::Schema.define(version: 2021_08_05_133500) do
   add_foreign_key "gardens", "zones"
   add_foreign_key "plant_info_by_zones", "plants"
   add_foreign_key "plant_info_by_zones", "zones"
-  add_foreign_key "plant_positions", "gardens"
-  add_foreign_key "plant_positions", "plants"
+  add_foreign_key "plant_position_by_gardens", "gardens"
+  add_foreign_key "plant_position_by_gardens", "plants"
   add_foreign_key "plants", "users"
 end

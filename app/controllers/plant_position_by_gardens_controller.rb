@@ -1,0 +1,2 @@
+class PlantPositionByGardensController < ApplicationController
+end

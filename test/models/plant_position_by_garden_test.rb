@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PlantPositionTest < ActiveSupport::TestCase
+class PlantPositionByGardenTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
