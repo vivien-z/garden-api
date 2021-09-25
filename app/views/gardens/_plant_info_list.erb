@@ -17,7 +17,7 @@
   </table>
 </div>
 
-<%= simple_form_for([@garden, @plant_position, url: garden_plant_position_index_path(@garden) ]) do |f| %>
+<%= simple_form_for([@garden, @plant_position_by_garden]) do |f| %>
     <%= f.association :plant %>
     <%= f.input :positionX %>
     <%= f.input :positionY %>
