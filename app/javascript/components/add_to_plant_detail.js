@@ -44,7 +44,6 @@ const addToPlantDetailList = (draggedElmt, plantCount, isNewDrag) => {
   targetplant.getElementsByClassName("positionY")[0].innerText = offY
 
   //-----TEST if plant already exist in field-----
-
   function isRepeatPlant(plantId) {
     const targetDivClass = `plantId__${plantId}`
     const count = plantIdList.filter(pId => pId === targetDivClass).length
@@ -63,9 +62,7 @@ const addToPlantDetailList = (draggedElmt, plantCount, isNewDrag) => {
     }
   })
 
-  //-------hide repetitive plants-----------
-    console.log(plantIdList)
-    console.log(isRepeatPlant(plantId))
+  //-------hide repetitive plants' info-----------
   if (isRepeatPlant(plantId)) {
     targetplant.style.display = "none"
   }

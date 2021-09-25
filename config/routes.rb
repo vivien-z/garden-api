@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     # get '/sign_out' => "devise/sessions#destroy"
     resources :gardens, only: [ :index, :new, :create ]
   end
-  resources :gardens, only: [:show, :edit, :update, :destroy]
+  resources :gardens, only: [:show, :edit, :update, :destroy] do
+    resources :plant_position_by_gardens, only: [:create]
+  end
 
   resources :zones, only: [:create]
   resources :plants, only: [:index, :show, :new, :create] do

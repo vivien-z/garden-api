@@ -1,6 +1,6 @@
-class CreatePlantPositions < ActiveRecord::Migration[6.0]
+class CreatePlantPositionByGardens < ActiveRecord::Migration[6.0]
   def change
-    create_table :plant_positions do |t|
+    create_table :plant_position_by_gardens do |t|
       t.float :positionX
       t.float :positionY
       t.references :plant, null: false, foreign_key: true
