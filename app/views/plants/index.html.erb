@@ -18,13 +18,36 @@
           </div>
         <% end %>
       <% end %>
-      <div class="">
-        <%= link_to new_plant_path, class: "btn btn-warning button-add" do %>
+      <div class="btn btn-warning button-add" data-toggle="modal" data-target="#addNewGardenModalModal">
+        <!-- <= link_to new_plant_path, class: "btn btn-warning button-add" do %> -->
           <i class="fas fa-plus"></i>
-        <% end %>
+        <!-- < end %> -->
       </div>
     </div>
   </div>
+
+    <!-- Modal -->
+  <div id="addNewGardenModalModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add a new plant</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for(@plant) do |f| %>
+            <%= f.input :name %>
+            <%= f.input :light, :collection => ["low", "medium", "high"] %>
+            <%= f.input :size, :placeholder => "in cm", input_html: { min: 0, step: 0.5 }  %>
+            <%= f.input :photo %>
+            <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Modal end -->
 
 </div>
 

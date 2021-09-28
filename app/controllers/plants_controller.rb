@@ -1,6 +1,8 @@
 class PlantsController < ApplicationController
   def index
     @plants = policy_scope(Plant)
+    @plant = Plant.new
+    authorize(@plant)
   end
 
   def show
