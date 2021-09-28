@@ -31,11 +31,17 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Create a new garden</h5>
+          <h5 class="modal-title">Add a new plant</h5>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          hello
+          <%= simple_form_for(@plant) do |f| %>
+            <%= f.input :name %>
+            <%= f.input :light, :collection => ["low", "medium", "high"] %>
+            <%= f.input :size, :placeholder => "in cm", input_html: { min: 0, step: 0.5 }  %>
+            <%= f.input :photo %>
+            <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+          <% end %>
         </div>
       </div>
 
