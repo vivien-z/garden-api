@@ -37,8 +37,10 @@
         <div class="modal-body">
           <%= simple_form_for(@plant) do |f| %>
             <%= f.input :name %>
-            <%= f.input :light, :collection => ["low", "medium", "high"] %>
-            <%= f.input :size, :placeholder => "in cm", input_html: { min: 0, step: 0.5 }  %>
+            <div class="row">
+              <%= f.input :light, :collection => ["low", "medium", "high"], wrapper_html: { class: "col-md-6 w-100" } %>
+              <%= f.input :size, :placeholder => "in cm", input_html: { min: 0, step: 0.5 }, wrapper_html: { class: "col-md-6 w-100" }  %>
+            </div>
             <%= f.input :photo %>
             <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
           <% end %>
