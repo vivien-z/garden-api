@@ -8,8 +8,6 @@ class GardensController < ApplicationController
     @user = current_user
     @plant_position_by_garden = PlantPositionByGarden.new
     @plant_position_by_garden.garden = @garden
-    # @plant_info_by_zone = PlantInfoByZone.new
-    # @position = Collection.new
     authorize(@garden)
   end
 
