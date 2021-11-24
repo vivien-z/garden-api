@@ -39,6 +39,7 @@ const addToPlantDetailList = (draggedElmt, plantCount, isNewDrag) => {
     tableContent.insertAdjacentHTML('beforeend',plantInfoNew)
   }
   //-----after drag: update div position-------
+  // now only updates the last div in the table
   const targetplant = tableContent.getElementsByClassName(`divId__${plantCount}`)[0]
   targetplant.getElementsByClassName("positionX")[0].innerText = offX
   targetplant.getElementsByClassName("positionY")[0].innerText = offY
