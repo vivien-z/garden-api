@@ -25,3 +25,5 @@ document.addEventListener('turbolinks:load', () => {
   // draggableDiv()
   // duplicateDivOnclick()
 });
+
+import "controllers"
