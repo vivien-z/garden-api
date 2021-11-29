@@ -55,10 +55,12 @@
 .card-main {
   width: 220px;
   box-shadow: 4px 10px 10px lightgray;
+  border-radius: 25px;
   .card-m-img {
     height: 160px;
     width: 220px;
     background-repeat: no-repeat;
+    border-radius: 0 25px 0 0;
   }
   &:hover {
     text-decoration: none;

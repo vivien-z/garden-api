@@ -16,3 +16,11 @@ h2 {
 .text-lg {
   font-size: 1.4rem;
 }
+.text-black-bold {
+  color: black;
+  font-weight: bold;
+  &:hover {
+    text-decoration: none;
+    opacity: 0.85;
+  }
+}

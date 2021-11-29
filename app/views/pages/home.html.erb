@@ -1,7 +1,6 @@
-<%= content_for(:navbar_home, "navbar-home") %>
-<%= content_for(:navbar_icon_home, "navbar-icon-home") %>
-
+<%= content_for(:navbar_home, "navbar-dark") %>
 <%= render 'shared/banner' %>
+
 <div class="container home py-5 d-flex flex-column justify-content-center">
   <div class="my-3">
     <h2 class="py-3 text-center"><strong>About Us</strong></h2>
@@ -30,7 +29,7 @@
         <div id="scrollContent" class="scrolling-wrapper py-3">
           <% @plants.each_with_index do |plant, index| %>
             <% if index < 10 %>
-              <%= link_to plant_path(plant), class: "card-main" do %>
+              <%= link_to plant_path(plant), class: "card-main m-3" do %>
                 <% if plant.photo.attached? %>
                   <div class="card-m-img"
                        style="background-image: url(<%= cl_image_path plant.photo.key, height:160, width: 220, crop: :fill %>)">

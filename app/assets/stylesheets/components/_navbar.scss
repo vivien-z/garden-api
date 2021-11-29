@@ -1,7 +1,9 @@
 .navbar {
   padding: 1.25rem 1.75rem;
   justify-content: space-between;
-  background: $m-brown;
+  // background: $m-brown;
+  background: transparent;
+  border-bottom: 1px solid $m-brown;
 }
 
 .navbar .navbar-collapse {
@@ -12,8 +14,8 @@
   img {
     width: 40px;
     margin-left: 5px;
-    -webkit-filter: drop-shadow(5px 5px 8px white);
-    filter: drop-shadow(5px 5px 8px white);
+    -webkit-filter: drop-shadow(5px 5px 8px $m-brown);
+    filter: drop-shadow(5px 5px 8px $m-brown);
   }
   span {
     font-family: $m-title;
@@ -26,28 +28,33 @@
   font-weight: bold;
 }
 
-.navbar-home {
-  background: transparent;
-  position: absolute;
-  width: 100%;
+// Navbar dropdown
+.dropdown-menu {
+  min-width: 10rem;
+  margin: 0.5rem 0 0;
 }
-.navbar-icon-home {
-  height: 0;
-  color: transparent;
-}
-
 .dropdown-menu.show {
-  border-radius: 6px;
-  border: none !important;
-  padding: 0.5rem 0 !important;
+  border-radius: 4px;
+  background: $m-brown;
+  border: 1px solid $m-brown !important;
+  padding: 0.25rem 0 !important;
   .dropdown-item {
-    font-weight: 600 !important;
+    color: $light-gray;
+    padding: 0.25rem 1.5rem 0.25rem 2.5rem;
     &:hover, &:focus {
-      background: rgba(255, 198, 90, 0.6);
+      background: rgba(255, 198, 90, 0.7);
     }
   }
 }
-
 .dropdown-divider {
-  margin: 0.2rem 0 !important;
+  margin: 0.2rem 0 0 !important;
+  color: $m-brown;
+}
+
+// Homepage navbar style
+.navbar-dark {
+  background: transparent;
+  border: none;
+  position: absolute;
+  width: 100%;
 }
