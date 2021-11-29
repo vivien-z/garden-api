@@ -13,3 +13,11 @@
     }
   }
 }
+
+.dz-remove {
+  color: gray;
+  &:hover {
+    color: black;
+    text-decoration: none !important;
+  }
+}
