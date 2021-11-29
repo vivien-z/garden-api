@@ -37,13 +37,15 @@
         <i class="fas fa-plus"></i>
       </button>
     </div>
-    <div class="plants-list my-3">
+    <div class="my-3">
       <% @user.gardens.each do |garden| %>
-        <%= link_to garden_path(garden) do %>
-          <div class="" >
-            <%= garden.name.capitalize %>
-          </div>
-        <% end %>
+        <div class="card-lg">
+          <%= link_to garden_path(garden) do %>
+            <div class="text-black-bold" >
+              <%= garden.name.capitalize %>
+            </div>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>

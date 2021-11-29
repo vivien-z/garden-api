@@ -30,7 +30,7 @@
         <div id="scrollContent" class="scrolling-wrapper py-3">
           <% @plants.each_with_index do |plant, index| %>
             <% if index < 10 %>
-              <%= link_to plant_path(plant), class: "card-main" do %>
+              <%= link_to plant_path(plant), class: "card-main m-3" do %>
                 <% if plant.photo.attached? %>
                   <div class="card-m-img"
                        style="background-image: url(<%= cl_image_path plant.photo.key, height:160, width: 220, crop: :fill %>)">
