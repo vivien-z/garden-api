@@ -1,3 +1,23 @@
 .form {
   background: white;
 }
+
+.dropzone {
+  border: 2px dashed lightgray;
+  border-radius: 10px;
+
+  &.dz-drag-hover {
+    border: 2px dashed gray;
+    .dz-message {
+      opacity: 0.9;
+    }
+  }
+}
+
+.dz-remove {
+  color: gray;
+  &:hover {
+    color: black;
+    text-decoration: none !important;
+  }
+}
