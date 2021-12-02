@@ -22,6 +22,9 @@
         <li class="nav-item">
           <%= link_to "Plants", plants_path, class: "nav-link" %>
         </li>
+        <li class="nav-item" data-toggle="modal" data-target="#newCityFormModal">
+          <a class="nav-link">+City</a>
+        </li>
         <li class="nav-item dropdown">
 
           <%= image_tag "profile-avatar.png", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -35,4 +38,20 @@
       <% end %>
     </ul>
   </div>
+
+<!-- Modal -->
+  <div id="newCityFormModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add a new city</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <%= render("users/new_city_form") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal end-->
 </div>

@@ -1,0 +1,13 @@
+<div>
+  <%= simple_form_for(City.new) do |f| %>
+    <div class="d-flex">
+      <%= f.input :name, wrapper_html: { class: "col-md-6 w-100" } %>
+      <%= f.association :zone,
+                        wrapper_html: { class: "col-md-4 w-100" },
+                        collection: Zone.all.map { |zone| [zone.zone_code, zone.id]},
+                        :include_blank => "Pick a zone"
+      %>
+    </div>
+    <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+  <% end %>
+</div>
