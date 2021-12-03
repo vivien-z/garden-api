@@ -29,6 +29,16 @@ class GardensController < ApplicationController
     end
   end
 
+  def destroy
+    @garden = Garden.find(params[:id])
+    authorize(@garden)
+    @garden.plant_position_by_gardens.destroy_all
+    @garden.destroy
+
+    flash[:notice] = "Page successfully destroyed"
+    redirect_to user_path(current_user)
+  end
+
   private
 
   def garden_params

@@ -38,14 +38,22 @@
       </button>
     </div>
     <div class="my-3">
-      <% @user.gardens.each do |garden| %>
-        <div class="card-lg">
-          <%= link_to garden_path(garden) do %>
+      <% @user.gardens.each do |g| %>
+        <%= link_to garden_path(g) do %>
+          <div class="card-lg align-items-start">
             <div class="text-black-bold" >
-              <%= garden.name.capitalize %>
+              <h5 class="card-title"><%= g.name.capitalize %></h5>
+              <%= link_to garden_path(g), method: :delete, data: { confirm: "Are you sure?"}, class: "" do %>
+                <div>&times;</div>
+              <% end %>
+              <div>
+                <div><%= g.city.name || "city" %></div>
+                <div><%= g.width.to_i %> X <%= g.length.to_i %></div>
+                <div><%= g.plants.count %></div>
+              </div>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
