@@ -9,9 +9,7 @@ class PlantInfoByZonesController < ApplicationController
   # end
 
   def new
-    # @plant = Plant.new
     @plant_info_by_zone = PlantInfoByZone.new
-    # @plant_info_by_zone.plant = @plant
     @zones = policy_scope(Zone)
     authorize(@plant_info_by_zone)
   end
@@ -19,7 +17,6 @@ class PlantInfoByZonesController < ApplicationController
   def create
     @plant_info_by_zone = PlantInfoByZone.new(plant_info_by_zone_params)
     @plant_info_by_zone.plant = Plant.find(params["plant_id"]) unless params["plant_id"] == ""
-    # @plant_info_by_zone.user = current_user
     @plant_info_by_zone.zone = Zone.find(params["plant_info_by_zone"]["zone_id"]) unless params["zone_id"] == ""
     authorize(@plant_info_by_zone)
 

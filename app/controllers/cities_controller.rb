@@ -6,8 +6,9 @@ class CitiesController < ApplicationController
     if @city.save
       redirect_to "/", notice: "City added to successfully."
     else
+      redirect_to "/"
       flash[:title] = '¡Error!'
-      flash[:notice] = 'Please verify your data'
+      flash[:notice] = 'Please verify your data. City might already exist!'
     end
   end
 

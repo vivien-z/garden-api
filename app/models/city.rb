@@ -3,4 +3,6 @@ class City < ApplicationRecord
 
   has_many :gardens
   has_many :users
+
+  validates :name, presence: true, uniqueness: true
 end
