@@ -1,0 +1,34 @@
+<div>
+  <h4>Summary</h4>
+  <table class="">
+    <tr class="">
+      <th>Plant</th>
+      <th>Count</th>
+      <th>Indoor Seeding</th>
+      <th>Seeding Date</th>
+      <th>Transfer Date</th>
+    </tr>
+    <tr>
+      <% @garden.plants.each do |plant| %>
+        <%= link_to plant_path(plant) do %>
+          <td class="cards-list m-3">
+            <%= plant.name.capitalize %>
+          </td>
+        <% end %>
+ <!--        <td>< @garden.plant.count %></td>
+        <td>< @garden.plant.count %></td>
+        <td>< @garden.plant.count %></td>
+        <td>< @garden.plant.count %></td> -->
+      <% end %>
+    </tr>
+  </table>
+  <div class="plants-list my-3">
+    <% @garden.plants.each do |plant| %>
+      <%= link_to plant_path(plant) do %>
+        <div class="cards-list m-3">
+          <%= plant.name.capitalize %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

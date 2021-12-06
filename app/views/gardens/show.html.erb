@@ -5,6 +5,7 @@
 <div class="container d-flex">
 
   <div class="main-content justify-content-center">
+
     <div class="row">
       <div class="col-xs-12 mt-5">
         <h2 class="my-5"><%= @garden.name.capitalize %></h2>
@@ -25,7 +26,7 @@
                 <% end %>
                 <div class="plant-detail__data" style="display: none;">
                   <% listPlant = collection.plant %>
-                  <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.zone} %>
+                  <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.city.zone} %>
                   <div class="plant-detail__id"><%= listPlant.id %></div>
                   <div class="plant-detail__name"><%= listPlant.name %></div>
                   <div class="plant-detail__light"><%= listPlant.light %></div>
@@ -64,16 +65,7 @@
 
     <div class="row">
       <div class="col-xs-12">
-        <h4>Garden Plants</h4>
-        <div class="plants-list my-3">
-          <% @garden.plants.each do |plant| %>
-            <%= link_to plant_path(plant) do %>
-              <div class="cards-list rd m-3">
-                <%= plant.name.capitalize %>
-              </div>
-            <% end %>
-          <% end %>
-        </div>
+        <%= render("plant_summary") %>
       </div>
     </div>
 
