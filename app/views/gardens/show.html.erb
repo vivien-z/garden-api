@@ -14,7 +14,7 @@
           <section id="plantsToDrag" class="drag-target plants-list">
             <% @user.collections.each_with_index do |collection, i| %>
               <div
-                data-action="mouseup->plant-position#test"
+                data-action="mouseup->plant-position#add"
                 class="cards-list rd draggable plantOrigin m-3 yellow"
                 draggable="true"
                 style="
@@ -51,10 +51,11 @@
         <div class="garden-field-container">
           <button
             class="btn btn-warning"
-
+            data-action="click->plant-position#test"
           >
             Confirm
           </button>
+          <div data-plant-position-target="plantInfo"></div>
           <section
                class="drop-field garden-field"
                style="height: <%= (@garden.width)*(0.25).to_f %>rem; width: <%= (@garden.length)*(0.25).to_f %>rem"
