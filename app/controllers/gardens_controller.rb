@@ -13,26 +13,35 @@ class GardensController < ApplicationController
 
   def new
     @garden = Garden.new
-    # @plant.plant_info_by_zones << @plant_info_by_zone
     authorize(@garden)
   end
 
   def create
     @garden = Garden.new(garden_params)
     @garden.user = current_user
-    @garden.zone = Zone.find(params["garden"]["zone_id"]) unless params["zone_id"] == ""
+    @garden.city = City.find(params[:garden][:city_id])
     authorize(@garden)
 
     if @garden.save
       redirect_to garden_path(@garden)
     else
-      render 'new'
+      redirect_to partial: "users/_my_garden_plans"
     end
+  end
+
+  def destroy
+    @garden = Garden.find(params[:id])
+    authorize(@garden)
+    @garden.plant_position_by_gardens.destroy_all
+    @garden.destroy
+
+    flash[:notice] = "Page successfully destroyed"
+    redirect_to user_path(current_user)
   end
 
   private
 
   def garden_params
-    params.require(:garden).permit(:id, :name, :width, :length)
+    params.require(:garden).permit(:id, :name, :width, :length, :city_id)
   end
 end

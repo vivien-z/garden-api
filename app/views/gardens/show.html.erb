@@ -2,9 +2,10 @@
   <script type="text/javascript" scr="mousedown_to_drag.js"></script>
 </head>
 
-<div class="container">
+<div class="container d-flex">
 
-  <div class="main-content">
+  <div class="main-content justify-content-center" data-controller="plant-position">
+
     <div class="row">
       <div class="col-xs-12 mt-5">
         <h2 class="my-5"><%= @garden.name.capitalize %></h2>
@@ -13,6 +14,7 @@
           <section id="plantsToDrag" class="drag-target plants-list">
             <% @user.collections.each_with_index do |collection, i| %>
               <div
+                data-action="mouseup->plant-position#test"
                 class="cards-list rd draggable plantOrigin m-3 yellow"
                 draggable="true"
                 style="
@@ -25,7 +27,7 @@
                 <% end %>
                 <div class="plant-detail__data" style="display: none;">
                   <% listPlant = collection.plant %>
-                  <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.zone} %>
+                  <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.city.zone} %>
                   <div class="plant-detail__id"><%= listPlant.id %></div>
                   <div class="plant-detail__name"><%= listPlant.name %></div>
                   <div class="plant-detail__light"><%= listPlant.light %></div>
@@ -47,18 +49,30 @@
       <div class="col-xs-12">
         <h4 class="my-3">My Field</h4>
         <div class="garden-field-container">
+          <button
+            class="btn btn-warning"
+
+          >
+            Confirm
+          </button>
           <section
                class="drop-field garden-field"
                style="height: <%= (@garden.width)*(0.25).to_f %>rem; width: <%= (@garden.length)*(0.25).to_f %>rem"
           >
           </section>
-      </div>
+        </div>
       </div>
     </div>
 
     <div class="row">
       <div class="col-xs-12">
         <%= render("plant_info_list") %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render("plant_summary") %>
       </div>
     </div>
 

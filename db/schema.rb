@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_234719) do
+ActiveRecord::Schema.define(version: 2021_12_02_201117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,14 @@ ActiveRecord::Schema.define(version: 2021_09_24_234719) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "zone_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["zone_id"], name: "index_cities_on_zone_id"
+  end
+
   create_table "collections", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "plant_id", null: false
@@ -50,11 +58,11 @@ ActiveRecord::Schema.define(version: 2021_09_24_234719) do
     t.float "width"
     t.float "length"
     t.bigint "user_id", null: false
-    t.bigint "zone_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_gardens_on_city_id"
     t.index ["user_id"], name: "index_gardens_on_user_id"
-    t.index ["zone_id"], name: "index_gardens_on_zone_id"
   end
 
   create_table "plant_info_by_zones", force: :cascade do |t|
@@ -99,7 +107,9 @@ ActiveRecord::Schema.define(version: 2021_09_24_234719) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "authentication_token", limit: 30
+    t.bigint "city_id"
     t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true
+    t.index ["city_id"], name: "index_users_on_city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -112,13 +122,15 @@ ActiveRecord::Schema.define(version: 2021_09_24_234719) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cities", "zones"
   add_foreign_key "collections", "plants"
   add_foreign_key "collections", "users"
+  add_foreign_key "gardens", "cities"
   add_foreign_key "gardens", "users"
-  add_foreign_key "gardens", "zones"
   add_foreign_key "plant_info_by_zones", "plants"
   add_foreign_key "plant_info_by_zones", "zones"
   add_foreign_key "plant_position_by_gardens", "gardens"
   add_foreign_key "plant_position_by_gardens", "plants"
   add_foreign_key "plants", "users"
+  add_foreign_key "users", "cities"
 end

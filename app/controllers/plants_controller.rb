@@ -15,14 +15,12 @@ class PlantsController < ApplicationController
 
   def new
     @plant = Plant.new
-    # @plant.plant_info_by_zones << @plant_info_by_zone
     authorize(@plant)
   end
 
   def create
     @plant = Plant.new(plant_params)
     @plant.user = current_user
-    # @plant.plant_info_by_zones << PlantInfoByZone.new(plant_params["plant"]["plant_info_by_zone"])
     authorize(@plant)
 
     if @plant.save
