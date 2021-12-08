@@ -4,7 +4,7 @@
 
 <div class="container d-flex">
 
-  <div class="main-content justify-content-center" data-controller="plant-position">
+  <div class="main-content justify-content-center" data-controller="plant-position" data-garden-id=<%= @garden.id %>>
 
     <div class="row">
       <div class="col-xs-12 mt-5">
@@ -15,6 +15,7 @@
             <% @user.collections.each_with_index do |collection, i| %>
               <div
                 data-action="mouseup->plant-position#add"
+                data-reflex-dataset="combined"
                 class="cards-list rd draggable plantOrigin m-3 yellow"
                 draggable="true"
                 style="

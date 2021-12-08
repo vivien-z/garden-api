@@ -1,31 +1,33 @@
 import ApplicationController from './application_controller'
 
 export default class extends ApplicationController {
-  // beforeReflex(element, reflex, noop, reflexId) {
-  //   const { params } = element.reflexData[reflexId]
-  //   element.reflexData[reflexId].params = {
-  //     ...params,
-  //     garden_id: true,
-  //     plant_id: true,
-  //     positionX: true,
-  //     positionY: true
-  //   }
-  // }
-
   static targets = [ "plantInfo" ]
 
-  submit(event) {
-    // this.formTarget.textContent = 'Hello, Stimulus!'
-    this.stimulate("GardenPlantFormReflex#add_plant", event.target)
-  }
-  // submit(event) {
-  //   console.log(event)
-  //   this.stimulate("GardenPlantForm#add_plant", event.target)
-  // }
+  add(event) {
+    const dataset = this.element.dataset
+    const plantInfo = {
 
+          plantId: this.getInnerText("id"),
+          name: this.getInnerText("name"),
+          light: this.getInnerText("light"),
+          size: this.getInnerText("size"),
+          indoorSeeding: this.getInnerText("inSeeding") ? 'True' : 'Flase',
+          seedDate: this.getInnerText("seedDate") || 'n/a',
+          transDate: this.getInnerText("transDate") || 'n/a'
+    }
+
+    this.stimulate("GardenPlantForm#add_plant", plantInfo, dataset)
+    console.log(dataset)
+  }
   test(event) {
-    // this.stimulate("GardenPlantFormReflex#add_plant", event.target)
     this.plantInfoTarget.textContent = 'Hello, Stimulus!'
+  }
+
+  getInnerText(data) {
+    const element = event.target.getElementsByClassName(`plant-detail__${data}`)[0]
+    if (element) {
+      return element.innerText
+    }
   }
 }
 
