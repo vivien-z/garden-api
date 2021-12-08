@@ -6,7 +6,7 @@ class GardensController < ApplicationController
   def show
     @garden = Garden.find(params[:id])
     @user = current_user
-    @plant_position_by_garden = PlantPositionByGarden.new
+    @plant_position_by_garden ||= PlantPositionByGarden.new
     @plant_position_by_garden.garden = @garden
     authorize(@garden)
   end
