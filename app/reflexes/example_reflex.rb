@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class ExampleReflex < ApplicationReflex
+
+  # def form
+  #   @plant_position_by_garden = PlantPositionByGarden.new(
+  #     )
+  # end
   # Add Reflex methods in this file.
   #
   # All Reflex instances include CableReady::Broadcaster and expose the following properties:
@@ -31,5 +36,9 @@ class ExampleReflex < ApplicationReflex
   #   end
   #
   # Learn more at: https://docs.stimulusreflex.com/reflexes#reflex-classes
-
+#          class="btn btn-warning"
+#             data-flex="click->GardenPlantFormReflex#test"
+#             data-reflex-dataset="combined"
+#             data-garden-id="<%= @garden.id %>"
+#             data-target="output"
 end
