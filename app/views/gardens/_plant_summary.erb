@@ -1,39 +1,28 @@
-<div>
-  <h4>Summary</h4>
-  <table class="">
-    <tr class="">
-      <th>Plant</th>
-      <th>Count</th>
-      <th>Indoor Seeding</th>
-      <th>Seeding Date</th>
-      <th>Transfer Date</th>
-    </tr>
-    <tr>
-      <% @garden.plants.each do |plant| %>
+<div class="table-responsive">
+  <h4 class="my-3">Plants Detail</h4>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Count</th>
+        <th scope="col">Plant</th>
+        <th scope="col">Seeding Place</th>
+        <th scope="col">Seeding Date</th>
+        <th scope="col">Transfer Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @garden.plants.uniq.each do |plant| %>
         <%= link_to plant_path(plant) do %>
           <tr>
+            <td scope="row"><%= @garden.plants.select{|p| p.id == plant.id}.count.to_i %></td>
             <td><%= plant.name.capitalize %></td>
-            <td>#</td>
             <% plant_zinfo = plant.plant_info_by_zones.select{ |info| info.zone_id == @garden.zone.id} %>
-            <td><%= plant_zinfo[0].indoor_seeding %></td>
+            <td><%= plant_zinfo[0].indoor_seeding ? "Indoor" : "Outdoor" %></td>
             <td><%= plant_zinfo[0].seeding_date || "n/a" %></td>
             <td><%= plant_zinfo[0].transplant_date || "n/a" %></td>
           </tr>
         <% end %>
- <!--        <td>< @garden.plant.count %></td>
-        <td>< @garden.plant.count %></td>
-        <td>< @garden.plant.count %></td>
-        <td>< @garden.plant.count %></td> -->
       <% end %>
-    </tr>
+    </tbody>
   </table>
-  <div class="plants-list my-3">
-    <% @garden.plants.each do |plant| %>
-      <%= link_to plant_path(plant) do %>
-        <div class="cards-list m-3">
-          <%= plant.name.capitalize %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
 </div>
