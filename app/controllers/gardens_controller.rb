@@ -25,7 +25,7 @@ class GardensController < ApplicationController
     if @garden.save
       redirect_to garden_path(@garden)
     else
-      redirect_to partial: "users/_my_garden_plans"
+      redirect_to user_path(current_user), notice: "Please make sure all the fields are corrected filled."
     end
   end
 

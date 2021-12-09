@@ -69,10 +69,10 @@
         <div class="modal-body">
           <%= simple_form_for([@user, @garden]) do |f| %>
             <div class="row w-100">
-              <%= f.input :name, wrapper_html: { class: "col-md-6 w-100" } %>
+              <%= f.input :name, error: 'Garden name is mandatory, please specify one', wrapper_html: { class: "col-md-6 w-100" } %>
               <%= f.association :city,
                                 wrapper_html: { class: "col-md-6 w-100" },
-                                collection: City.all.map { |city| [city.name, city.id]},
+                                collection: City.all.map { |city| ["#{city.name} (#{city.zone.zone_code})", city.id]},
                                 :include_blank => "Pick a city"
               %>
               <div class="range-slider col-md-12">
