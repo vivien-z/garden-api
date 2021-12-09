@@ -11,9 +11,14 @@
     <tr>
       <% @garden.plants.each do |plant| %>
         <%= link_to plant_path(plant) do %>
-          <td class="cards-list m-3">
-            <%= plant.name.capitalize %>
-          </td>
+          <tr>
+            <td><%= plant.name.capitalize %></td>
+            <td>#</td>
+            <% plant_zinfo = plant.plant_info_by_zones.select{ |info| info.zone_id == @garden.zone.id} %>
+            <td><%= plant_zinfo[0].indoor_seeding %></td>
+            <td><%= plant_zinfo[0].seeding_date || "n/a" %></td>
+            <td><%= plant_zinfo[0].transplant_date || "n/a" %></td>
+          </tr>
         <% end %>
  <!--        <td>< @garden.plant.count %></td>
         <td>< @garden.plant.count %></td>
