@@ -17,15 +17,12 @@
       </tbody>
     </table>
   </div>
-  <div id="plant-position-form">
-    <%= simple_form_for([@garden, @plant_position_by_garden]) do |f| %>
-        <%= f.association :plant %>
-        <%= f.input :positionX %>
-        <%= f.input :positionY %>
-      <%= f.button :submit,
-        class: "btn btn-warning mt-3 w-100",
-        data: { reflex: "submit->GardenPlantForm#submit", reflex_dataset: "combined" }
-      %>
-    <% end %>
-  </div>
+<!--   <div id="plant-position-form">
+    < simple_form_for([@garden, @plant_position_by_garden]) do |f| %>
+      < f.association :plant %>
+      < f.input :positionX %>
+      < f.input :positionY %>
+      < f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+    < end %>
+  </div> -->
 </div>
