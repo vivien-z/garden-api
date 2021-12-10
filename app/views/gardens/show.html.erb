@@ -79,8 +79,8 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-12">
-        <%= render("plant_summary") %>
+      <div id="plant-sum"  class="col-xs-12">
+        <%= render partial: "plant_summary", locals: {garden: @garden} %>
       </div>
     </div>
 

@@ -5,15 +5,6 @@ export default class extends ApplicationController {
 
   add(event) {
     event.preventDefault()
-    // const plantInfo = {
-    //       plantId: this.getInnerText("id"),
-    //       name: this.getInnerText("name"),
-    //       light: this.getInnerText("light"),
-    //       size: this.getInnerText("size"),
-    //       indoorSeeding: this.getInnerText("inSeeding") ? 'True' : 'Flase',
-    //       seedDate: this.getInnerText("seedDate") || 'n/a',
-    //       transDate: this.getInnerText("transDate") || 'n/a'
-    // }
     const data = {
       "garden_id": this.element.dataset.gardenId,
       "plant_id": this.getInnerText("id"),

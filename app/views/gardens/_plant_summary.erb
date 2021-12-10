@@ -11,12 +11,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @garden.plants.uniq.each do |plant| %>
+      <% garden.plants.uniq.each do |plant| %>
         <%= link_to plant_path(plant) do %>
           <tr>
-            <td scope="row"><%= @garden.plants.select{|p| p.id == plant.id}.count.to_i %></td>
+            <td scope="row"><%= garden.plants.select{|p| p.id == plant.id}.count.to_i %></td>
             <td><%= plant.name.capitalize %></td>
-            <% plant_zinfo = plant.plant_info_by_zones.select{ |info| info.zone_id == @garden.zone.id} %>
+            <% plant_zinfo = plant.plant_info_by_zones.select{ |info| info.zone_id == garden.zone.id} %>
             <td><%= plant_zinfo[0].indoor_seeding ? "Indoor" : "Outdoor" %></td>
             <td><%= plant_zinfo[0].seeding_date || "n/a" %></td>
             <td><%= plant_zinfo[0].transplant_date || "n/a" %></td>
