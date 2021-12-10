@@ -1,16 +1,12 @@
 class GardenPlantFormReflex < ApplicationReflex
-  before_reflex do
-    @plant_position_by_garden = GlobalID::Locator.locate_signed(element.dataset.signed_id)
-    @plant_position_by_garden.assign_attributes(plant_position_by_garden_params)
-  end
+  def add_plant(event, target, data)
+    @plant_position_by_garden = PlantPositionByGarden.new(data)
+    @garden = Garden.find(data[:garden_id])
+    @plant_position_by_garden.garden = @garden
+    @plant = Plant.find(data[:plant_id])
+    @plant_position_by_garden.plant = @plant
+    @plant_position_by_garden.save!
 
-  def submit
-    @plant_position_by_garden.save
-  end
-
-  private
-
-  def plant_position_by_garden_params
-    params.require(:plant_position_by_garden).permit(:garden_id, :plant_id, :positionX, :positionY)
+    morph "#plant-sum", render(partial: "plant_summary", locals: { garden: @garden })
   end
 end

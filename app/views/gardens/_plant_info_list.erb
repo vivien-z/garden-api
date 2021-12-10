@@ -1,8 +1,7 @@
-<!-- <div data-controller="garden_plant_form" data-action=""> -->
 <div>
   <div>
     <h4 class="my-3">Detail</h4>
-    <table class="plant-detail__table" data-reflex="change->ExampleReflex#form" data-reflex-dataset="combined">
+    <table class="plant-detail__table">
       <tbody>
         <tr class="tableHead test">
           <th>Count</th>
@@ -14,25 +13,16 @@
           <th>Transplant Date</th>
           <th>Positiion X</th>
           <th>Positiion Y</th>
-<!--           < render partial: "plant_position_by_gardens/show", locals: { plant_position_by_garden: plant_position_by_garden} %> -->
         </tr>
-        <tr data-target="plant-position.plantInfo"></tr>
       </tbody>
     </table>
-
   </div>
-<!--   <div>
-    <  render partial: "plant_position_by_gardens/form" %>
+<!--   <div id="plant-position-form">
+    < simple_form_for([@garden, @plant_position_by_garden]) do |f| %>
+      < f.association :plant %>
+      < f.input :positionX %>
+      < f.input :positionY %>
+      < f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+    < end %>
   </div> -->
-  <div id="plant-position-form">
-    <%= simple_form_for([@garden, @plant_position_by_garden]) do |f| %>
-        <%= f.association :plant %>
-        <%= f.input :positionX %>
-        <%= f.input :positionY %>
-      <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
-    <% end %>
-  </div>
-
-
-
 </div>

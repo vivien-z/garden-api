@@ -21,7 +21,11 @@ export default class extends Controller {
    */
 
   beforeReflex (element, reflex, noop, reflexId) {
-    // document.body.classList.add('wait')
+    const { params } = element.reflexData[reflexId]
+    element.reflexData[reflexId].params = {
+      ...params, plant_position: true
+    }
+    console.log(element.reflexData[reflexId])
   }
 
   reflexSuccess (element, reflex, noop, reflexId) {
@@ -30,6 +34,7 @@ export default class extends Controller {
 
   reflexError (element, reflex, error, reflexId) {
     // show error message
+    console.log(error)
   }
 
   reflexHalted (element, reflex, error, reflexId) {

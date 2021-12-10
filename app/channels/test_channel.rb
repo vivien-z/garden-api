@@ -1,9 +1,10 @@
 class TestChannel < ApplicationCable::Channel
   def subscribed
-    # stream_from "some_channel"
+    stream_from "test"
   end
 
-  def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+  def receive(data)
+    puts data["message"]
+    ActionCable.server.broadcast("test", "ActionCable is connected")
   end
 end

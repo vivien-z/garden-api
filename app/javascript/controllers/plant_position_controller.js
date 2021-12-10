@@ -1,31 +1,28 @@
 import ApplicationController from './application_controller'
 
 export default class extends ApplicationController {
-  // beforeReflex(element, reflex, noop, reflexId) {
-  //   const { params } = element.reflexData[reflexId]
-  //   element.reflexData[reflexId].params = {
-  //     ...params,
-  //     garden_id: true,
-  //     plant_id: true,
-  //     positionX: true,
-  //     positionY: true
-  //   }
-  // }
-
   static targets = [ "plantInfo" ]
 
-  submit(event) {
-    // this.formTarget.textContent = 'Hello, Stimulus!'
-    this.stimulate("GardenPlantFormReflex#add_plant", event.target)
+  add(event) {
+    event.preventDefault()
+    const data = {
+      "garden_id": this.element.dataset.gardenId,
+      "plant_id": this.getInnerText("id"),
+      "positionX": event.offsetX,
+      "positionY": event.offsetY
+    }
+    this.stimulate("GardenPlantForm#add_plant", event, event.target, data)
+    console.log(data)
   }
-  // submit(event) {
-  //   console.log(event)
-  //   this.stimulate("GardenPlantForm#add_plant", event.target)
-  // }
-
   test(event) {
-    // this.stimulate("GardenPlantFormReflex#add_plant", event.target)
     this.plantInfoTarget.textContent = 'Hello, Stimulus!'
+  }
+
+  getInnerText(data) {
+    const element = event.target.getElementsByClassName(`plant-detail__${data}`)[0]
+    if (element) {
+      return element.innerText
+    }
   }
 }
 
