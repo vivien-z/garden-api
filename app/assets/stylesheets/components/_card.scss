@@ -1,57 +1,4 @@
 /* ==================
-   My Garden plans
-====================*/
-
-// .cards-list-ms {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   background: $m-green-l;
-//   // margin: 1.25rem;
-//   font-weight: bold;
-//   text-shadow: 1px 1px 5px white;
-//   a {
-//     color: $m-brown-d !important;
-//     &:hover {
-//       font-size: 1.25rem;
-//       text-decoration: none;
-//     }
-//   }
-// }
-.cards-list {
-  background: $m-green-l;
-  font-weight: bold;
-  text-shadow: 1px 1px 5px white;
-  a {
-    color: $m-brown-d !important;
-    &:hover {
-      font-size: 1.25rem;
-      text-decoration: none;
-    }
-  }
-}
-.cards-list.center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.cards-list.yellow {
-  background: $m-yellow;
-}
-.cards-list.rd {
-  border-radius: 50%;
-}
-.cards-list.sq {
-  padding: 0.25rem 1rem;
-  border-radius: 8px;
-  &:hover {
-    background: $m-brown-l;
-  }
-  a:hover {
-    font-size: 16px;
-  }
-}
-/* ==================
   plants-index-page
 ====================*/
 .card-main {
@@ -107,7 +54,10 @@
   padding-top: 2rem;
 }
 
-//-------- responsive cards -----------//
+/* -----------------------
+      responsive cards
+-------------------------*/
+
 // Smallest device
 @media (min-width: 100px) and (max-width: 575px) {
   .cards {

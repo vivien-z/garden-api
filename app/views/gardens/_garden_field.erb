@@ -11,7 +11,7 @@
     <section
         class="drop-field garden-field"
         style="
-        position: relative;
+          position: relative;
           height: <%= (@garden.width)*(0.25).to_f %>rem;
           width: <%= (@garden.length)*(0.25).to_f %>rem"
     >
@@ -19,10 +19,9 @@
       <%= content_tag :div, class: "garden_information", data: {garden: @garden, positions: @garden.plant_position_by_gardens} do %>
       <% end %>
       <% @garden.plant_position_by_gardens.each_with_index do |position, i| %>
-
           <div
             id="position_<%= position.id %>"
-            class="cards-list rd draggable plantCopy"
+            class="avatars-list rd draggable plantCopy"
             draggable="true"
             style="
               height: <%= (position.plant.size)*(0.25).to_f %>rem;
