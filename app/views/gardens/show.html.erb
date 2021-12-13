@@ -10,45 +10,7 @@
   >
     <div class="row">
       <div class="col-xs-12 mt-5">
-        <h2 class="my-5"><%= @garden.name.capitalize %></h2>
-        <div class="mb-3">
-          <h4>My Plant Collection</h4>
-
-          <section id="plantsToDrag" class="drag-target plants-list">
-            <% @user.collections.each_with_index do |collection, i| %>
-     <!--          < plant_zone_ids = collection.plant.zones.map{|z| z.id} %>
-              < if (plant_zone_ids != [] && plant_zone_ids.include?(@garden.city.zone.id)) %> -->
-                <div
-                  data-action="mouseup->plant-position#add"
-                  data-reflex-dataset="combined"
-                  class="cards-list rd draggable plantOrigin m-3 yellow"
-                  draggable="true"
-                  style="
-                    height: <%= (collection.plant.size)*(0.25).to_f %>rem;
-                    width: <%= (collection.plant.size)*(0.25).to_f %>rem;
-                    cursor: copy "
-                >
-                  <%= link_to plant_path(collection.plant) do %>
-                    <%= collection.plant.name.capitalize %>
-                  <% end %>
-                  <div class="plant-detail__data" style="display: none;">
-                    <% listPlant = collection.plant %>
-                    <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.city.zone} %>
-                    <div class="plant-detail__id"><%= listPlant.id %></div>
-                    <div class="plant-detail__name"><%= listPlant.name %></div>
-                    <div class="plant-detail__light"><%= listPlant.light %></div>
-                    <div class="plant-detail__size"><%= listPlant.size %></div>
-                    <% if plantInfo && !plantInfo.empty? %>
-                      <div class="plant-detail__inSeeding"><%= plantInfo.indoor_seeding %></div>
-                      <div class="plant-detail__seedDate"><%= plantInfo.seeding_date %></div>
-                      <div class="plant-detail__transDate"><%= plantInfo.transplant_date %></div>
-                    <% end %>
-                  </div>
-                </div>
-              <!-- < end %> -->
-            <% end %>
-          </section>
-        </div>
+        <%= render("plant_collection") %>
       </div>
     </div>
 
@@ -64,9 +26,35 @@
           </button>
           <div data-plant-position-target="plantInfo"></div>
           <section
-               class="drop-field garden-field"
-               style="height: <%= (@garden.width)*(0.25).to_f %>rem; width: <%= (@garden.length)*(0.25).to_f %>rem"
+              class="drop-field garden-field"
+              style="
+              position: relative;
+                height: <%= (@garden.width)*(0.25).to_f %>rem;
+                width: <%= (@garden.length)*(0.25).to_f %>rem"
           >
+          <% if @garden.plant_position_by_gardens %>
+            <%= content_tag :div, class: "garden_information", data: {garden: @garden, positions: @garden.plant_position_by_gardens} do %>
+            <% end %>
+            <% @garden.plant_position_by_gardens.each_with_index do |position, i| %>
+
+                <div
+                  id="position_<%= position.id %>"
+                  class="cards-list rd draggable plantCopy"
+                  draggable="true"
+                  style="
+                    height: <%= (position.plant.size)*(0.25).to_f %>rem;
+                    width: <%= (position.plant.size)*(0.25).to_f %>rem;
+                    position: absolute;
+                    left: <%= (position.positionX) %>px;
+                    top: <%= (position.positionY) %>px;
+                    cursor: grab "
+                >
+                  <!-- < position.plant.name.capitalize %> -->
+                  <%= position.positionX %>
+                  <%= position.positionY %>
+                </div>
+            <% end %>
+          <% end %>
           </section>
         </div>
       </div>

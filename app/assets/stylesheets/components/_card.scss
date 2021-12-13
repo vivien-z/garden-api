@@ -19,9 +19,6 @@
 //   }
 // }
 .cards-list {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: $m-green-l;
   font-weight: bold;
   text-shadow: 1px 1px 5px white;
@@ -32,6 +29,11 @@
       text-decoration: none;
     }
   }
+}
+.cards-list.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .cards-list.yellow {
   background: $m-yellow;
