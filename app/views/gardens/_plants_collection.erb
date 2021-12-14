@@ -17,9 +17,9 @@
               width: <%= (collection.plant.size)*(0.25).to_f %>rem;
               cursor: copy "
           >
-            <%= link_to plant_path(collection.plant) do %>
-              <%= collection.plant.name.capitalize %>
-            <% end %>
+            <%# < link_to plant_path(collection.plant) do %>
+            <%# < end %>
+            <%= collection.plant.name.capitalize %>
             <div class="plant-detail__data" style="display: none;">
               <% listPlant = collection.plant %>
               <% plantInfo = listPlant.plant_info_by_zones.select{|z| z == @garden.city.zone} %>
