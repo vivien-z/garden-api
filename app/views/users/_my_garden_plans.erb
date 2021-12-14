@@ -4,7 +4,7 @@
     <div class="plants-list my-3">
       <% @plants.each do |plant| %>
         <%= link_to plant_path(plant) do %>
-          <div class="cards-list rd m-3 yellow" style="height: <%= (plant.size)*(0.25).to_f %>rem; width: <%= (plant.size)*(0.25).to_f %>rem">
+          <div class="avatars-list center rd m-3 yellow" style="height: <%= (plant.size)*(0.25).to_f %>rem; width: <%= (plant.size)*(0.25).to_f %>rem">
             <%= plant.name.capitalize if plant.user_id == current_user.id %>
           </div>
         <% end %>
@@ -17,7 +17,7 @@
     <div class="plants-list my-3">
       <% @user.collections.each do |collection| %>
         <%= link_to plant_path(collection.plant) do %>
-          <div class="cards-list rd m-3" style="height: <%= (collection.plant.size)*(0.25).to_f %>rem; width: <%= (collection.plant.size)*(0.25).to_f %>rem">
+          <div class="avatars-list center rd m-3" style="height: <%= (collection.plant.size)*(0.25).to_f %>rem; width: <%= (collection.plant.size)*(0.25).to_f %>rem">
             <%= collection.plant.name.capitalize %>
           </div>
         <% end %>
