@@ -3,7 +3,7 @@
   <div class="mb-3">
     <h4>My Plant Collection</h4>
 
-    <section id="drag_<%= @garden.id %>" class="drag-target plants-list">
+    <section id="drag_<%= @garden.id %>" class="drag-zone plants-list">
       <% @user.collections.each_with_index do |collection, i| %>
 <!--          < plant_zone_ids = collection.plant.zones.map{|z| z.id} %>
         < if (plant_zone_ids != [] && plant_zone_ids.include?(@garden.city.zone.id)) %> -->
