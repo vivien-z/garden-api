@@ -6,16 +6,29 @@ const mousedownToDrag = () => {
   const dropZone = document.getElementById(`drop_${garden.id}`)
 
   if (dragZone && dropZone) {
-    // const dropZone = document.getElementsByClassName('drop-field').item(0)
-    // const moveTarget = dropZone.getElementsByClassName('plantCopy').item(0)
-// ---------Define drag and drop: action--------------------------------
+
+  // ---- TEST: dropzone: getBoundingClientRect() -----------
+  // document.addEventListener( "scroll", () => {
+  //   let rectdpz = dropZone.getBoundingClientRect();
+  //   const exp = document.getElementById('example');
+  //   exp.innerHTML = ''; 
+  //   for (let key in rectdpz) {
+  //     if(typeof rectdpz[key] !== 'function') {
+  //       let para = document.createElement('p');
+  //       para.textContent  = `${ key } : ${ rectdpz[key] } `;
+  //       exp.appendChild(para);
+  //     }
+  //   }
+  // })
+  // console.log( dropZone.getBoundingClientRect())
+  // ---------Define drag and drop: action--------------------------------
     dragZone.ondragstart = () => { return false }
     dropZone.ondragstart = () => { return false }
 
     dragZone.onmousedown = dragItem
     dropZone.onmousedown = dragItem
 
-// ---------Define drag event-------------------------------------------
+  // ---------Define drag event-------------------------------------------
     function dragItem(e) {
       e = e || window.event
       e.preventDefault()
@@ -27,7 +40,6 @@ const mousedownToDrag = () => {
         const shiftX = e.clientX - dragged.getBoundingClientRect().left,
               shiftY = e.clientY - dragged.getBoundingClientRect().top;
               
-
         //------DRAG: new item to field------
         if (isNewDrag) {
           addToDropzone(dragged)
@@ -46,12 +58,12 @@ const mousedownToDrag = () => {
         moveAt(dragged, e)
         document.addEventListener('mousemove', onMouseMove)
 
-        function addToDropzone(elmt) {
-          const clone = duplicateDiv(elmt)
-          elmt.parentNode.insertBefore(clone, elmt)
-          elmt.classList.remove("plantOrigin", "yellow", "m-3")
-          elmt.classList.add("plantCopy")
-          elmt.id = plantCount
+        function addToDropzone(elmnt) {
+          const clone = duplicateDiv(elmnt)
+          elmnt.parentNode.insertBefore(clone, elmnt)
+          elmnt.classList.remove("plantOrigin", "yellow", "m-3")
+          elmnt.classList.add("plantCopy")
+          elmnt.id = plantCount
         }
         function duplicateDiv(originDiv) {
           let clone = originDiv.cloneNode(true)
@@ -64,41 +76,66 @@ const mousedownToDrag = () => {
         function onMouseMove(e) {
           moveAt(dragged, e)
         }
-        //------DROP and remove unneeded handlers------
-        function adjustToDropZone(elmnt, event) {
-          const rectField = dropZone.getBoundingClientRect()
-          const rectElmnt = elmnt.getBoundingClientRect()
-          const diff = event.pageY - event.clientY
-
-          if ((rectField.left + 6) > rectElmnt.left) {
-            elmnt.style.left = (rectField.left + 6) + 'px'
-          }
-          if ((rectField.right - 6) < rectElmnt.right) {
-            elmnt.style.left = (rectField.right - 6 - rectElmnt.width) + 'px'
-          }
-          if ((rectField.top + 6) > rectElmnt.top) {
-            elmnt.style.top = (diff + rectField.top + 6) + 'px'
-          }
-          if ((rectField.bottom - 6) < rectElmnt.bottom) {
-            elmnt.style.top = (diff + rectField.bottom - 6 - rectElmnt.height) + 'px'
-          }
-        }
-
+        //------DROP and remove un-needed handlers------
         dragged.onmouseup = function(e) {
-          dragged.style.opacity = ''
-          dragged.style.cursor = 'grab'
-
+          const position = trackPosition(dragged)
           dragged.parentNode.removeChild(dragged)
           dropZone.appendChild(dragged)
-          adjustToDropZone(dragged, e)
+          setPosition(position, dragged)
+          
+          dragged.style.opacity = ''
+          dragged.style.cursor = 'grab'
           document.removeEventListener('mousemove', onMouseMove)
           plantCount = dropZone.getElementsByClassName('draggable').length
           addToPlantDetailList(dragged, plantCount, isNewDrag)
-          if (isNewDrag) {
-            isNewDrag = false
-          }
+
           dragged.onmouseup = null
         }
+        function trackPosition(elmnt) {
+          const rectField = dropZone.getBoundingClientRect(),
+                rectElmnt = elmnt.getBoundingClientRect(),
+                position = { rectField: rectField, rectElmnt: rectElmnt }
+          return position
+        }
+        function setPosition(position, elmnt) {
+          const rectField = position.rectField,
+                rectElmnt = position.rectElmnt
+          const borderWth = 6
+
+          let isAllAdjusted = false
+
+          while (!isAllAdjusted) {
+            let tooLeft = rectElmnt.left < rectField.left + borderWth,
+                tooRight = rectElmnt.right > rectField.right - borderWth,
+                tooHigh = rectElmnt.top < rectField.top + borderWth,
+                tooLow = rectElmnt.bottom > rectField.bottom - borderWth
+            
+            elmnt.style.left = (rectElmnt.left - rectField.left - borderWth) + 'px'
+            elmnt.style.top = (rectElmnt.top - rectField.top - borderWth) + 'px'
+            if (tooLeft) {
+              elmnt.style.left = 0 + 'px'
+              // elmnt.style.left = borderWth + 'px'
+              tooLeft = false
+            }
+            if (tooRight) {
+              elmnt.style.left = (rectField.width - rectElmnt.width - 2*borderWth) + 'px'
+              tooRight = false
+            }
+            if (tooHigh) {
+              elmnt.style.top = 0 + 'px'
+              // elmnt.style.top = (borderWth) + 'px'
+              tooHigh = false
+            }
+            if (tooLow) {
+              elmnt.style.top = (rectField.height - rectElmnt.height - 2*borderWth) + 'px'
+              tooLow = false
+            }
+            
+            isAllAdjusted = ((tooLeft && tooRight && tooHigh && tooLow) === false)
+          }
+        }
+
+
       }
     }
   }
