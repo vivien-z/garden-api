@@ -1,6 +1,11 @@
 import { addToPlantDetailList } from "../components/add_to_plant_detail";
 
 const mousedownToDrag = () => {
+  if ($('.garden_info')) {
+    const garden = $('.garden_info').data('garden')
+    console.log(garden)
+  }
+
   const dragTarget = document.getElementsByClassName('drag-target').item(0)
 
   if (dragTarget) {

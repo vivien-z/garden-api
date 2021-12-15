@@ -8,10 +8,10 @@
        data-controller="plant-position"
        data-garden-id=<%= @garden.id %>
   >
-    <%# <%= content_tag :div,  %>
-      <%# class: "garden_info",  %>
-      <%# data: { garden: @garden, position: @garden.plant_position_by_gardens do } %>
-    <%# <% end %> 
+    <%= content_tag :div, 
+      class: "garden_info", 
+      data: { garden: @garden, position: @garden.plant_position_by_gardens } do %>
+    <% end %>
     <div class="row">
       <div class="col-xs-12 mt-5">
         <%= render("plants_collection") %>
