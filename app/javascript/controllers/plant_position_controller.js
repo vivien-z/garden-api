@@ -16,9 +16,7 @@ export default class extends ApplicationController {
     const count = this.plantCountTarget.textContent
     this.plantCountTarget.textContent = Number(count, 10) + 1
   }
-  test(event) {
-    this.plantCountTarget.textContent = 'Hello, Stimulus!'
-  }
+
 }
 
 // beforeReflex (element, reflex, noop, reflexId) {
