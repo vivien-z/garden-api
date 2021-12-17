@@ -9,24 +9,26 @@
           height: <%= (@garden.width)*(0.25).to_f %>rem;
           width: <%= (@garden.length)*(0.25).to_f %>rem"
     >
-    <% if @garden.plant_position_by_gardens %>
-      <% @garden.plant_position_by_gardens.each_with_index do |position, i| %>
-          <div
-            id="position_<%= position.id %>"
-            class="avatars-list rd draggable plantCopy"
-            draggable="true"
-            style="
-              height: <%= (position.plant.size)*(0.25).to_f %>rem;
-              width: <%= (position.plant.size)*(0.25).to_f %>rem;
-              position: absolute;
-              cursor: grab "
-          >
-            <!-- < position.plant.name.capitalize %> -->
-            <%= position.positionX %>
-            <%= position.positionY %>
-          </div>
+      <% if @garden.plant_position_by_gardens %>
+        <% @garden.plant_position_by_gardens.each_with_index do |position, i| %>
+            <div
+              id="position_<%= position.id %>"
+              class="avatars-list rd draggable plantCopy"
+              draggable="true"
+              style="
+                height: <%= (position.plant.size)*(0.25).to_f %>rem;
+                width: <%= (position.plant.size)*(0.25).to_f %>rem;
+                position: absolute;
+                left: <%= (position.positionX).to_f %>px;
+                top: <%= (position.positionY).to_f %>px;
+                cursor: grab "
+            >
+              <!-- < position.plant.name.capitalize %> -->
+              <%= position.positionX %>
+              <%= position.positionY %>
+            </div>
+        <% end %>
       <% end %>
-    <% end %>
     </section>
   </div>
 </div>

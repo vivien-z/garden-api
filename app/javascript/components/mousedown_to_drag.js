@@ -60,25 +60,28 @@ const mousedownToDrag = () => {
           dragged.parentNode.removeChild(dragged)
           dropZone.appendChild(dragged)
           setPosition(position, dragged)
-          
+          dragged.setAttribute("data-plant-positionx", `${dragged.style.left}`)
+          dragged.setAttribute("data-plant-positiony", `${dragged.style.top}`)
+          // dragged.setAttribute("data-offset-position", `left: ${dragged.style.left}; top: ${dragged.style.top}`)
+
           dragged.style.opacity = ''
           dragged.style.cursor = 'grab'
           document.removeEventListener('mousemove', onMouseMove)
           plantCount = dropZone.getElementsByClassName('draggable').length
           addToPlantDetailList(dragged, plantCount, isNewDrag)
-
+          
           dragged.onmouseup = null
           function trackPosition(elmnt) {
             const rectField = dropZone.getBoundingClientRect(),
-                  rectElmnt = elmnt.getBoundingClientRect(),
-                  position = { rectField: rectField, rectElmnt: rectElmnt }
+            rectElmnt = elmnt.getBoundingClientRect(),
+            position = { rectField: rectField, rectElmnt: rectElmnt }
             return position
           }
           function setPosition(position, elmnt) {
             const rectField = position.rectField,
-                  rectElmnt = position.rectElmnt
+            rectElmnt = position.rectElmnt
             const borderWth = 6
-  
+            
             let isAllAdjusted = false
             while (!isAllAdjusted) {
               // set general element position
@@ -86,9 +89,9 @@ const mousedownToDrag = () => {
               elmnt.style.top = (rectElmnt.top - rectField.top - borderWth) + 'px'
               // adjust element position when dropped OUTSIDE range
               let tooLeft = rectElmnt.left < rectField.left + borderWth,
-                  tooRight = rectElmnt.right > rectField.right - borderWth,
-                  tooHigh = rectElmnt.top < rectField.top + borderWth,
-                  tooLow = rectElmnt.bottom > rectField.bottom - borderWth
+              tooRight = rectElmnt.right > rectField.right - borderWth,
+              tooHigh = rectElmnt.top < rectField.top + borderWth,
+              tooLow = rectElmnt.bottom > rectField.bottom - borderWth
               
               if (tooLeft) {
                 elmnt.style.left = 0 + 'px'
@@ -107,6 +110,8 @@ const mousedownToDrag = () => {
                 tooLow = false
               } 
               isAllAdjusted = ((tooLeft && tooRight && tooHigh && tooLow) === false)
+              console.log(elmnt.style.left)
+              console.log(elmnt.style.top)
             }
           }
         }

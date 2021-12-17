@@ -2,7 +2,7 @@
   <div>
     <h4 class="my-3">Detail</h4>
     <table class="plant-detail__table">
-      <tbody>
+      <thead>
         <tr class="tableHead test">
           <th>Count</th>
           <th>Plant</th>
@@ -13,6 +13,45 @@
           <th>Transplant Date</th>
           <th>Positiion X</th>
           <th>Positiion Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @garden.plants.uniq.each do |plt| %>
+          <%= link_to plant_path(plt) do %>
+            <tr>
+              <td scope="row" data-plant-position-target="plantCount">
+                <%= @garden.plants.select{|p| p.id == plt.id}.count.to_i %>
+              </td>
+              <td><%= plt.name.capitalize %></td>
+              <% plant_zinfo = plt.plant_info_by_zones.select{ |info| info.zone_id == @garden.zone.id} %>
+              <% if plant_zinfo != [] %>
+                <td><%= plant_zinfo[0].indoor_seeding ? "Indoor" : "Outdoor" %></td>
+                <td><%= plant_zinfo[0].seeding_date %></td>
+                <td><%= plant_zinfo[0].transplant_date %></td>
+              <% else %>
+                <td><%= "n/a" %></td>
+                <td><%= "n/a" %></td>
+                <td><%= "n/a" %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <table>
+      <thead>
+        <tr class="tableHead test">
+          <th>Plant</th>
+          <th>Positiion X</th>
+          <th>Positiion Y</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% position = @garden.plant_position_by_gardens.last() %>
+        <tr>
+          <td><%= position.plant.name.capitalize %></td>
+          <td><%= position.positionX %></td>
+          <td><%= position.positionY %></td>
         </tr>
       </tbody>
     </table>

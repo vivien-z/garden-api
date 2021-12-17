@@ -11,10 +11,29 @@ export default class extends ApplicationController {
       "positionX": event.offsetX,
       "positionY": event.offsetY
     }
-    this.stimulate("GardenPlantForm#add_plant", event, event.target, data);
+    // this.stimulate("GardenPlantForm#add_plant", event, event.target, data);
     // update Plants Detail table
     const count = this.plantCountTarget.textContent
     this.plantCountTarget.textContent = Number(count, 10) + 1
+    // get plant position
+    const dropZone = document.getElementById(`drop_${this.element.dataset.gardenId}`)
+    const rect = dropZone.getBoundingClientRect()
+    const shiftX = event.clientX - event.target.getBoundingClientRect().left,
+          shiftY = event.clientY - event.target.getBoundingClientRect().top;
+    const dataset = event.target.dataset
+    console.log(event.clientX - shiftX - rect.left)
+    console.log(event.clientY - shiftY - rect.top)
+
+    console.log(event.target.getAttribute("data-plant-positionx"))
+    console.log(event.target.getAttribute("data-plant-positionx"))
+    console.log(dataset.plantPositionx)
+    console.log(dataset.plantPositiony)
+    console.log(dataset.plantId)
+    console.log(dataset.action)
+    console.log(dataset)
+    console.log(event.target.attributes.style)
+    console.log(event.target)
+
   }
 
 }
