@@ -1,4 +1,5 @@
 import { addToPlantDetailList } from "../components/add_to_plant_detail";
+import { setPlantPosition } from "../components/set_plant_position";
 
 const mousedownToDrag = () => {
   const garden = $('.garden_info').data('garden')
@@ -56,12 +57,13 @@ const mousedownToDrag = () => {
         }
         //------DROP and remove un-needed handlers------
         dragged.onmouseup = function(e) {
-          const position = trackPosition(dragged) // capture getBoundingClientRect() value, to avoid abnormal data
+          const position = trackPosition(dragged, dropZone) // capture getBoundingClientRect() value, to avoid abnormal data
           dragged.parentNode.removeChild(dragged)
           dropZone.appendChild(dragged)
-          setPosition(position, dragged)
-          dragged.setAttribute("data-plant-positionx", `${dragged.style.left}`)
-          dragged.setAttribute("data-plant-positiony", `${dragged.style.top}`)
+          setPlantPosition(dragged, position.rectField, position.rectElmnt, 6)
+
+          // dragged.setAttribute("data-plant-positionx", `${dragged.style.left}`)
+          // dragged.setAttribute("data-plant-positiony", `${dragged.style.top}`)
           // dragged.setAttribute("data-offset-position", `left: ${dragged.style.left}; top: ${dragged.style.top}`)
 
           dragged.style.opacity = ''
@@ -71,48 +73,11 @@ const mousedownToDrag = () => {
           addToPlantDetailList(dragged, plantCount, isNewDrag)
           
           dragged.onmouseup = null
-          function trackPosition(elmnt) {
+
+          function trackPosition(elmnt, dropZone) {
             const rectField = dropZone.getBoundingClientRect(),
-            rectElmnt = elmnt.getBoundingClientRect(),
-            position = { rectField: rectField, rectElmnt: rectElmnt }
-            return position
-          }
-          function setPosition(position, elmnt) {
-            const rectField = position.rectField,
-            rectElmnt = position.rectElmnt
-            const borderWth = 6
-            
-            let isAllAdjusted = false
-            while (!isAllAdjusted) {
-              // set general element position
-              elmnt.style.left = (rectElmnt.left - rectField.left - borderWth) + 'px'
-              elmnt.style.top = (rectElmnt.top - rectField.top - borderWth) + 'px'
-              // adjust element position when dropped OUTSIDE range
-              let tooLeft = rectElmnt.left < rectField.left + borderWth,
-              tooRight = rectElmnt.right > rectField.right - borderWth,
-              tooHigh = rectElmnt.top < rectField.top + borderWth,
-              tooLow = rectElmnt.bottom > rectField.bottom - borderWth
-              
-              if (tooLeft) {
-                elmnt.style.left = 0 + 'px'
-                tooLeft = false
-              }
-              if (tooRight) {
-                elmnt.style.left = (rectField.width - rectElmnt.width - 2*borderWth) + 'px'
-                tooRight = false
-              }
-              if (tooHigh) {
-                elmnt.style.top = 0 + 'px'
-                tooHigh = false
-              }
-              if (tooLow) {
-                elmnt.style.top = (rectField.height - rectElmnt.height - 2*borderWth) + 'px'
-                tooLow = false
-              } 
-              isAllAdjusted = ((tooLeft && tooRight && tooHigh && tooLow) === false)
-              console.log(elmnt.style.left)
-              console.log(elmnt.style.top)
-            }
+                  rectElmnt = elmnt.getBoundingClientRect()
+            return { rectField: rectField, rectElmnt: rectElmnt }
           }
         }
       }
