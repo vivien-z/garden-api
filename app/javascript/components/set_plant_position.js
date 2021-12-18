@@ -1,4 +1,8 @@
-const setPlantPosition = (elmnt, rectField, rectElmnt, borderWth = 0) => {
+const setPlantPosition = (elmnt, dropZone, borderWth = 0) => {
+    const rectField = dropZone.getBoundingClientRect(),
+          rectElmnt = elmnt.getBoundingClientRect()
+          console.log(rectField)
+          console.log(rectElmnt)
     let isAllAdjusted = false
     while (!isAllAdjusted) {
         // set general element position

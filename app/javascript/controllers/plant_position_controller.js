@@ -11,7 +11,8 @@ export default class extends ApplicationController {
           dropZone = document.getElementById(`drop_${this.element.dataset.gardenId}`),
           rectField = dropZone.getBoundingClientRect(),
           rectElmnt = elmnt.getBoundingClientRect()
-    setPlantPosition(elmnt, rectField, rectElmnt, 6)
+    setPlantPosition(elmnt, dropZone, 6)
+    // setPlantPosition(elmnt, rectField, rectElmnt, 6)
     console.log(elmnt)
     console.log(elmnt.style.left)
     console.log(elmnt.style.top)

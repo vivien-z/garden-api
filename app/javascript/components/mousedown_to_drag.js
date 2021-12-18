@@ -58,34 +58,14 @@ const mousedownToDrag = () => {
           }
           //------DROP and remove un-needed handlers------
           dragged.onmouseup = function(e) {
-            console.log(e.target.style.left)
-            console.log(e.target.style.top)
-            console.log(dropZone.getBoundingClientRect().top)
-            console.log(dragged.getBoundingClientRect().top)
-
-            const position = trackPosition(dragged, dropZone) // capture getBoundingClientRect() value, to avoid abnormal data
             dragged.parentNode.removeChild(dragged)
             dropZone.appendChild(dragged)
-            console.log(dropZone.getBoundingClientRect().top)
-            console.log(dragged.getBoundingClientRect().top)
 
-
-            setPlantPosition(dragged, position.rectField, position.rectElmnt, 6)
-            console.log(dragged.style.left)
-            console.log(dragged.style.top)
             dragged.style.opacity = ''
             dragged.style.cursor = 'grab'
             document.removeEventListener('mousemove', onMouseMove)
-            // plantCount = dropZone.getElementsByClassName('draggable').length
-            // addToPlantDetailList(dragged, plantCount, isNewDrag)
             
             dragged.onmouseup = null
-
-            function trackPosition(elmnt, dropZone) {
-              const rectField = dropZone.getBoundingClientRect(),
-                    rectElmnt = elmnt.getBoundingClientRect()
-              return { rectField: rectField, rectElmnt: rectElmnt }
-            }
           }
         }
       }
