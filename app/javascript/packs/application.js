@@ -10,14 +10,11 @@ import { onclickToClipboard } from "../components/onclick_to_clipboard";
 import { clickToScroll } from "../components/click_to_scroll";
 import { mousedownToDrag } from "../components/mousedown_to_drag";
 import { rangeSlider } from "../components/range_slider";
-import { listPlantPosition } from "../components/list_plant_position";
-
 
 document.addEventListener('turbolinks:load', () => {
   onclickToClipboard();
   mousedownToDrag();
   rangeSlider();
   clickToScroll();
-  listPlantPosition();
 });
 
