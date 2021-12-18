@@ -31,7 +31,7 @@ const mousedownToDrag = () => {
           dragged.style.cursor = 'grabbing'
           dragged.style.position = 'absolute'
           
-          moveAt(dragged, e)
+          moveAt(dragged, e, isNewDrag)
           document.addEventListener('mousemove', onMouseMove)
 
           function setItemAtt(elmnt) {
@@ -44,12 +44,17 @@ const mousedownToDrag = () => {
             let clone = originDiv.cloneNode(true)
             return clone
           }
-          function moveAt(elmnt, event) {
-            elmnt.style.left = event.pageX - shiftX + 'px'
-            elmnt.style.top = event.pageY - shiftY + 'px'
+          function moveAt(elmnt, event, isNewDrag) {
+            if (isNewDrag) {
+              elmnt.style.left = event.pageX - shiftX + 'px'
+              elmnt.style.top = event.pageY - shiftY + 'px'
+            } else {
+              elmnt.style.left = event.offsetX - shiftX + 'px'
+              elmnt.style.top = event.offsetY - shiftY + 'px'
+            }
           }
           function onMouseMove(e) {
-            moveAt(dragged, e)
+            moveAt(dragged, e, isNewDrag)
           }
           //------DROP and remove un-needed handlers------
           dragged.onmouseup = function(e) {
