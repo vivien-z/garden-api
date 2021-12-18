@@ -1,8 +1,7 @@
 const setPlantPosition = (elmnt, dropZone, borderWth = 0) => {
     const rectField = dropZone.getBoundingClientRect(),
           rectElmnt = elmnt.getBoundingClientRect()
-          console.log(rectField)
-          console.log(rectElmnt)
+
     let isAllAdjusted = false
     while (!isAllAdjusted) {
         // set general element position
@@ -31,8 +30,6 @@ const setPlantPosition = (elmnt, dropZone, borderWth = 0) => {
         tooLow = false
         } 
         isAllAdjusted = ((tooLeft && tooRight && tooHigh && tooLow) === false)
-        console.log(elmnt.style.left)
-        console.log(elmnt.style.top)
     }
 }
 

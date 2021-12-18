@@ -14,7 +14,7 @@
       <% @garden.plants.uniq.each do |plt| %>
         <%= link_to plant_path(plt) do %>
           <tr>
-            <td scope="row" data-plant-position-target="plantCount">
+            <td scope="row">
               <%= @garden.plants.select{|p| p.id == plt.id}.count.to_i %>
             </td>
             <td><%= plt.name.capitalize %></td>

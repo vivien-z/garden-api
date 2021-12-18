@@ -1,6 +1,3 @@
-import { addToPlantDetailList } from "../components/add_to_plant_detail";
-import { setPlantPosition } from "../components/set_plant_position";
-
 const mousedownToDrag = () => {
   const garden = $('.garden_info').data('garden')
   if (garden) {
@@ -21,7 +18,6 @@ const mousedownToDrag = () => {
         e.preventDefault()
         const dragged = e.target
         const isNewDrag = dragged.parentNode.classList.contains("drag-zone")
-        // let plantCount = 1 // XX
 
         if (dragged && dragged.classList.contains("draggable")) {
           const shiftX = e.clientX - dragged.getBoundingClientRect().left,
@@ -43,7 +39,6 @@ const mousedownToDrag = () => {
             elmnt.parentNode.insertBefore(clone, elmnt)
             elmnt.classList.remove("plantOrigin", "yellow", "m-3")
             elmnt.classList.add("plantCopy")
-            // elmnt.id = plantCount
           }
           function duplicateDiv(originDiv) {
             let clone = originDiv.cloneNode(true)
