@@ -11,15 +11,23 @@
       </tr>
     </thead>
     <tbody>
-      <% garden.plants.uniq.each do |plant| %>
-        <%= link_to plant_path(plant) do %>
+      <% @garden.plants.uniq.each do |plt| %>
+        <%= link_to plant_path(plt) do %>
           <tr>
-            <td scope="row"><%= garden.plants.select{|p| p.id == plant.id}.count.to_i %></td>
-            <td><%= plant.name.capitalize %></td>
-            <% plant_zinfo = plant.plant_info_by_zones.select{ |info| info.zone_id == garden.zone.id} %>
-            <td><%= plant_zinfo[0].indoor_seeding ? "Indoor" : "Outdoor" %></td>
-            <td><%= plant_zinfo[0].seeding_date || "n/a" %></td>
-            <td><%= plant_zinfo[0].transplant_date || "n/a" %></td>
+            <td scope="row">
+              <%= @garden.plants.select{|p| p.id == plt.id}.count.to_i %>
+            </td>
+            <td><%= plt.name.capitalize %></td>
+            <% plant_zinfo = plt.plant_info_by_zones.select{ |info| info.zone_id == @garden.zone.id} %>
+            <% if plant_zinfo != [] %>
+              <td><%= plant_zinfo[0].indoor_seeding ? "Indoor" : "Outdoor" %></td>
+              <td><%= plant_zinfo[0].seeding_date %></td>
+              <td><%= plant_zinfo[0].transplant_date %></td>
+            <% else %>
+              <td><%= "n/a" %></td>
+              <td><%= "n/a" %></td>
+              <td><%= "n/a" %></td>
+            <% end %>
           </tr>
         <% end %>
       <% end %>

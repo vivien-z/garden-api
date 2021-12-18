@@ -8,6 +8,10 @@
        data-controller="plant-position"
        data-garden-id=<%= @garden.id %>
   >
+    <%= content_tag :div, 
+      class: "garden_info", 
+      data: { garden: @garden, plant_position: @garden.plant_position_by_gardens } do %>
+    <% end %>
     <div class="row">
       <div class="col-xs-12 mt-5">
         <%= render("plant_collection") %>
@@ -19,13 +23,8 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-xs-12">
-        <%= render("plant_info_list") %>
-      </div>
-    </div>
-    <div class="row">
       <div id="plant-sum"  class="col-xs-12">
-        <%= render partial: "plant_summary", locals: {garden: @garden} %>
+        <%= render partial: "plant_summary" %>
       </div>
     </div>
 

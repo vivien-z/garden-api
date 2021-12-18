@@ -1,40 +1,32 @@
 <div>
   <h4 class="my-3">My Field</h4>
   <div class="garden-field-container">
-    <button
-      class="btn btn-warning"
-      data-action="click->plant-position#test"
-    >
-      Confirm
-    </button>
-    <div data-plant-position-target="plantInfo"></div>
     <section
+        id="drop_<%= @garden.id %>"
         class="drop-field garden-field"
         style="
           position: relative;
           height: <%= (@garden.width)*(0.25).to_f %>rem;
           width: <%= (@garden.length)*(0.25).to_f %>rem"
     >
-    <% if @garden.plant_position_by_gardens %>
-      <%= content_tag :div, class: "garden_information", data: {garden: @garden, positions: @garden.plant_position_by_gardens} do %>
+      <% if @garden.plant_position_by_gardens %>
+        <% @garden.plant_position_by_gardens.each_with_index do |position, i| %>
+            <div
+              id="position_<%= position.id %>"
+              class="avatars-list rd draggable plantCopy"
+              draggable="true"
+              style="
+                height: <%= (position.plant.size)*(0.25).to_f %>rem;
+                width: <%= (position.plant.size)*(0.25).to_f %>rem;
+                position: absolute;
+                left: <%= (position.positionX).to_f %>px;
+                top: <%= (position.positionY).to_f %>px;
+                cursor: grab "
+            >
+              <%= position.plant.name.capitalize %>
+            </div>
+        <% end %>
       <% end %>
-      <% @garden.plant_position_by_gardens.each_with_index do |position, i| %>
-          <div
-            id="position_<%= position.id %>"
-            class="avatars-list rd draggable plantCopy"
-            draggable="true"
-            style="
-              height: <%= (position.plant.size)*(0.25).to_f %>rem;
-              width: <%= (position.plant.size)*(0.25).to_f %>rem;
-              position: absolute;
-              cursor: grab "
-          >
-            <!-- < position.plant.name.capitalize %> -->
-            <%= position.positionX %>
-            <%= position.positionY %>
-          </div>
-      <% end %>
-    <% end %>
     </section>
   </div>
 </div>

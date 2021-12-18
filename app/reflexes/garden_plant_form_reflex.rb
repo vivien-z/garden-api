@@ -7,6 +7,7 @@ class GardenPlantFormReflex < ApplicationReflex
     @plant_position_by_garden.plant = @plant
     @plant_position_by_garden.save!
 
-    morph "#plant-sum", render(partial: "plant_summary", locals: { garden: @garden })
+    morph "#plant-sum", render(partial: "plant_summary")
+    # morph "#plant-sum", render(partial: "plant_summary", locals: { garden: @garden })
   end
 end
