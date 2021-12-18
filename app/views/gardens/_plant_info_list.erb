@@ -49,9 +49,15 @@
       <tbody>
         <% position = @garden.plant_position_by_gardens.last() %>
         <tr>
-          <td><%= position.plant.name.capitalize %></td>
-          <td><%= position.positionX %></td>
-          <td><%= position.positionY %></td>
+          <% if position %>
+            <td><%= position.plant.name.capitalize %></td>
+            <td><%= position.positionX %></td>
+            <td><%= position.positionY %></td>
+          <% else %>
+            <td><%= "n/a" %></td>
+            <td><%= "n/a" %></td>
+            <td><%= "n/a" %></td>
+          <% end %>
         </tr>
       </tbody>
     </table>
