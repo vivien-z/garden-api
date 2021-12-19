@@ -18,8 +18,8 @@
           </div>
         <% end %>
       <% end %>
-      <div class="btn btn-warning button-add" data-toggle="modal" data-target="#addNewGardenModalModal">
-        <!-- <= link_to new_plant_path, class: "btn btn-warning button-add" do %> -->
+      <div class="btn btn-warning button-rd" data-toggle="modal" data-target="#addNewGardenModalModal">
+        <!-- <= link_to new_plant_path, class: "btn btn-warning button-rd" do %> -->
           <i class="fas fa-plus"></i>
         <!-- < end %> -->
       </div>
@@ -50,7 +50,7 @@
               >
                 <%= f.input_field :photo,
                   direct_upload: true,
-                  data: { target: "dropzone.input"}
+                  data: { dropzone_target: "input"}
 
                 %>
                 <div class="dropzone-msg dz-message text-muted">
