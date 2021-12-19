@@ -49,7 +49,7 @@
               <div>
                 <div><%= g.city.name || "city" %></div>
                 <div><%= g.width.to_i %> X <%= g.length.to_i %></div>
-                <div><%= g.plants.count %></div>
+                <div><%= g.plants.count || 0 %></div>
               </div>
             </div>
           </div>
