@@ -1,0 +1,44 @@
+<div id="newGardenFormModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Create a new garden</h5>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for([@user, @garden]) do |f| %>
+            <div class="row w-100">
+              <%= f.input :name, error: 'Garden name is mandatory, please specify one', wrapper_html: { class: "col-md-6 w-100" } %>
+              <%= f.association :city,
+                                wrapper_html: { class: "col-md-6 w-100" },
+                                collection: City.all.map { |city| ["#{city.name} (#{city.zone.zone_code})", city.id]},
+                                :include_blank => "Pick a city"
+              %>
+              <div class="range-slider col-md-12">
+                <%= f.input :width,
+                          id: 'fieldWidth',
+                          label: 'Width (Max 100cm)',
+                          :placeholder => "in cm",
+                          input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 100, step: 5 },
+                          wrapper_html: { class: 'w-100' }
+                          %>
+                <span class="range-slider__value border">0</span>
+              </div>
+
+              <div class="range-slider col-md-12">
+                <%= f.input :length,
+                            id: 'fieldLength',
+                            label: 'Length (Max 200cm)',
+                            :placeholder => "in cm",
+                            input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 200, step: 5 },
+                            wrapper_html: { class: 'w-100' }
+                          %>
+                <span class="range-slider__value">0</span>
+              </div>
+              <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>

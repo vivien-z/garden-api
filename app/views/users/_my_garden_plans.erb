@@ -39,71 +39,26 @@
     </div>
     <div class="my-3">
       <% @user.gardens.each do |g| %>
-        <%= link_to garden_path(g) do %>
-          <div class="card-lg align-items-start">
-            <div class="text-black-bold" >
-              <h5 class="card-title"><%= g.name.capitalize %></h5>
+          <div class="card-lg d-flex flex-column">
+            <div class="card-top d-flex justify-content-between px-3 w-100 border-bottom">
+              <%= link_to garden_path(g) do %>
+                <h5 class="card-title"><%= g.name.capitalize %></h5>
+              <% end %>
               <%= link_to garden_path(g), method: :delete, data: { confirm: "Are you sure?"}, class: "" do %>
                 <div>&times;</div>
               <% end %>
-              <div>
-                <div><%= g.city.name || "city" %></div>
-                <div><%= g.width.to_i %> X <%= g.length.to_i %></div>
-                <div><%= g.plants.count || 0 %></div>
-              </div>
+            </div>
+            <div class="d-flex flex-column px-3 pt-2 w-100">
+              <div><strong>City:</strong> <%= g.city.name.capitalize || "city n/a" %></div>
+              <div><strong>Size:</strong> <%= g.width.to_i %> &times; <%= g.length.to_i %></div>
             </div>
           </div>
-        <% end %>
       <% end %>
     </div>
   </div>
 
   <!-- Modal -->
-  <div id="newGardenFormModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Create a new garden</h5>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <%= simple_form_for([@user, @garden]) do |f| %>
-            <div class="row w-100">
-              <%= f.input :name, error: 'Garden name is mandatory, please specify one', wrapper_html: { class: "col-md-6 w-100" } %>
-              <%= f.association :city,
-                                wrapper_html: { class: "col-md-6 w-100" },
-                                collection: City.all.map { |city| ["#{city.name} (#{city.zone.zone_code})", city.id]},
-                                :include_blank => "Pick a city"
-              %>
-              <div class="range-slider col-md-12">
-                <%= f.input :width,
-                          id: 'fieldWidth',
-                          label: 'Width (Max 100cm)',
-                          :placeholder => "in cm",
-                          input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 100, step: 5 },
-                          wrapper_html: { class: 'w-100' }
-                          %>
-                <span class="range-slider__value border">0</span>
-              </div>
-
-              <div class="range-slider col-md-12">
-                <%= f.input :length,
-                            id: 'fieldLength',
-                            label: 'Length (Max 200cm)',
-                            :placeholder => "in cm",
-                            input_html: { class: "range-slider__range", type: "range", value: 0, min: 0, max: 200, step: 5 },
-                            wrapper_html: { class: 'w-100' }
-                          %>
-                <span class="range-slider__value">0</span>
-              </div>
-              <%= f.button :submit, class: "btn btn-warning mt-3 w-100" %>
-            </div>
-          <% end %>
-        </div>
-      </div>
-
-    </div>
-  </div>
+  <%= render("new_garden_form_modal") %>
   <!-- Modal end -->
 
 </div>

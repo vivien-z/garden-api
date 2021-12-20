@@ -53,7 +53,28 @@
   margin-top: 1rem;
   padding-top: 2rem;
 }
-
+/* ==================
+  user-show-page
+====================*/
+.card-lg {
+  border-color: $m-brown-d;
+  color: $m-brown-d;
+  .card-top {
+    background: $m-brown;
+  }
+  .card-title {
+    margin-bottom: 0.25rem;
+  }
+  a {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    font-weight: bold;
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
 /* -----------------------
       responsive cards
 -------------------------*/
