@@ -1,0 +1,5 @@
+@keyframes backgroundFlash {
+    0% { background-color: $m-yellow; }
+    50% { background-color: $body-bg; }
+    100% { background-color: $m-yellow; }
+}
