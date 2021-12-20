@@ -9,7 +9,7 @@
     "bootstrap": "^4.6.0",
     "dropzone": "^6.0.0-beta.1",
     "jquery": "^3.6.0",
-    "node-sass": "4.14.1",
+    "node-sass": "6.0.1",
     "popper.js": "^1.16.1",
     "stimulus": "^3.0.1",
     "stimulus_reflex": "3.4.1",
