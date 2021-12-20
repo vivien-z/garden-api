@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :city
+  belongs_to :city, required: true
   has_many :collections
   has_many :plants
   has_many :plants, through: :collections
