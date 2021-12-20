@@ -3,7 +3,6 @@
 </head>
 
 <div class="container d-flex mb-5">
-
   <div class="main-content justify-content-center"
        data-controller="plant-position"
        data-garden-id=<%= @garden.id %>
@@ -14,6 +13,7 @@
     <% end %>
     <div class="row">
       <div class="col-xs-12 mt-5">
+        <h2 class="my-5"><strong><%= @garden.name.capitalize %></strong></h2>
         <%= render("plant_collection") %>
       </div>
     </div>
