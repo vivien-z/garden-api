@@ -12,8 +12,8 @@
             <% end %>
           </div>
           <div class="containter-info d-flex flex-column justify-content-center" >
-            <p><strong>Light:</strong> <%= @plant.light %></p>
-            <p><strong>Size:</strong><%= sprintf("%.2f",@plant.size) %> cm</p>
+            <p><strong class="mr-1">Light:</strong> <%= @plant.light %></p>
+            <p><strong class="mr-1">Size:</strong><%= sprintf("%.2f",@plant.size) %> cm</p>
             <div class="">
               <%= simple_form_for([@plant, @collection]) do |f| %>
                 <%= f.button :submit,"Add to my collection", class: "button-b sm my-1 w-100" %>
@@ -76,6 +76,3 @@
       <!-- Modal end -->
     </div>
 </div>
-<!-- simple_fields_for --><!--
-f.association :zone, collection: Zone.all.map { |zone| zone.zone_code },
-                                   :include_blank => "Select a zone matches your local" -->

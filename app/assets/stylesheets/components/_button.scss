@@ -33,9 +33,9 @@
 /* ==================
   plants-index-page
 ====================*/
-.button-add {
+.button-rd {
   position: absolute;
-  top: -34px;
+  top: -26.5px;
   right: 6%;
   height: 52px;
   width: 52px;
@@ -43,8 +43,34 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 38px;
+  font-weight: 100;
   box-shadow: 1px 2px 4px lightgray;
+  border: 1px solid transparent;
+
   &:hover {
-    box-shadow: 1px 2px 4px gray;
+    border-top-color: $m-brown-d;
+    border-right-color: $m-brown-d;
+    border-bottom-color: $m-brown-d;
+    border-left-color: $m-brown-d;
+    animation-name: backgroundFlash;
+    animation-duration: 0.5s;
+    transition-timing-function: ease-in-out;
+
+    transition:
+      border-top-color 0.10s linear, // Stagger border appearances
+      border-right-color 0.10s linear 0.08s,
+      border-bottom-color 0.10s linear 0.16s,
+      border-left-color 0.10s linear 0.24s;
   }
+}
+
+.button-sq {
+  width: 38px;
+  height: 38px;
+  font-size: 24px;
+  font-weight: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
