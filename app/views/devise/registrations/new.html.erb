@@ -8,6 +8,10 @@
           <%= f.error_notification %>
 
           <div class="form-inputs">
+            <%= f.association :city,
+                              required: true,
+                              collection: City.all.map { |city| ["#{city.name.capitalize} (#{city.zone.zone_code})", city.id]},
+                              include_blank: "Pick your city"%>
             <%= f.input :email,
                         required: true,
                         autofocus: true,
