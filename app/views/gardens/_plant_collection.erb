@@ -4,24 +4,20 @@
 
     <section id="drag_<%= @garden.id %>" class="drag-zone plants-list">
       <% @user.collections.each_with_index do |collection, i| %>
-<!--          < plant_zone_ids = collection.plant.zones.map{|z| z.id} %>
-        < if (plant_zone_ids != [] && plant_zone_ids.include?(@garden.city.zone.id)) %> -->
-          <div
-            data-plant-id=<%= collection.plant.id %>
-            data-action="mouseup->plant-position#submit"
-            data-reflex-dataset="combined"
-            class="avatars-list center rd draggable plantOrigin m-3 yellow"
-            draggable="true"
-            style="
-              height: <%= (collection.plant.size)*(0.25).to_f %>rem;
-              width: <%= (collection.plant.size)*(0.25).to_f %>rem;
-              cursor: copy "
-          >
-            <%# < link_to plant_path(collection.plant) do %>
-            <%# < end %>
-            <%= collection.plant.name.capitalize %>
-          </div>
-        <!-- < end %> -->
+        <div
+          data-plant-id=<%= collection.plant.id %>
+          data-action="mouseup->plant-position#submit"
+          data-reflex-dataset="combined"
+          class="avatars-list center rd draggable plantOrigin m-3 yellow"
+          draggable="true"
+          style="
+            height: <%= (collection.plant.size)*(0.25).to_f %>rem;
+            width: <%= (collection.plant.size)*(0.25).to_f %>rem;
+            cursor: copy "
+        >
+
+          <%= collection.plant.name.capitalize %>
+        </div>
       <% end %>
     </section>
   </div>

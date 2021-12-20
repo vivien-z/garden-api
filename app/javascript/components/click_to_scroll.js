@@ -14,7 +14,6 @@ const clickToScroll = () => {
       e.preventDefault();
     }
   }
-
 }
 
 export { clickToScroll };
