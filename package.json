@@ -1,6 +1,10 @@
 {
   "name": "garden_api",
   "private": true,
+  "engines": {
+    "node": "14.x",
+    "yarn": "1.x"
+  },
   "dependencies": {
     "-": "0.0.1",
     "@rails/actioncable": "^6.0.0",
