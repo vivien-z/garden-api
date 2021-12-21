@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"-@0.0.1":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/-/-/--0.0.1.tgz#db6db7cd866142880dd03e5b8781d1b4fac0e5bd"
+  integrity sha512-3HfneK3DGAm05fpyj20sT3apkNcvPpCuccOThOPdzz8sY7GgQGe0l93XH9bt+YzibcTIgUAIMoyVJI740RtgyQ==
+
 "@babel/code-frame@^7.0.0", "@babel/code-frame@^7.12.13":
   version "7.12.13"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.12.13.tgz#dcfc826beef65e75c50e21d3837d7d95798dd658"
@@ -3233,6 +3238,11 @@ function-bind@^1.1.1:
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.1.tgz#a56899d3ea3c9bab874bb9773b7c5ede92f4895d"
   integrity sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A==
 
+g@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/g/-/g-2.0.1.tgz#0b5963ebd0ca70e3bc8c6766934a021821c8b857"
+  integrity sha1-C1lj69DKcOO8jGdmk0oCGCHIuFc=
+
 gauge@~2.7.3:
   version "2.7.4"
   resolved "https://registry.yarnpkg.com/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
@@ -4678,6 +4688,11 @@ multicast-dns@^6.0.1:
   dependencies:
     dns-packet "^1.3.1"
     thunky "^1.0.2"
+
+n@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/n/-/n-8.0.1.tgz#fb2cb4cedd107f54dc1c5b4ef64cafedd1d619ed"
+  integrity sha512-vbISQMhNQILeHdAyGT59BOP6Jl1nl6dQiVa0LZFQKCnCJPKWHZwOpMUkqfU1lD7Xt/wEnUfT3Bdfo8/Xm9qqdQ==
 
 nan@^2.12.1, nan@^2.13.2:
   version "2.14.2"
