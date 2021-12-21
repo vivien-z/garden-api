@@ -2,8 +2,7 @@
   "name": "garden_api",
   "private": true,
   "engines": {
-    "node": "14.x",
-    "yarn": "1.x"
+    "node": "14.x"
   },
   "dependencies": {
     "-": "0.0.1",
